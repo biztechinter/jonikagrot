@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-forest: #19382D;
+  --color-evergreen: #10271F;
+  --color-ivory: #F7F4EC;
+  --color-sand: #E8DCC4;
+  --color-earth: #A88B65;
+  --color-charcoal: #282C29;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    color: #282C29;
+    background-color: #F7F4EC;
+    font-family: var(--font-inter), system-ui, sans-serif;
+  }
+
+  body {
+    @apply antialiased min-h-screen flex flex-col selection:bg-earth selection:text-white;
+  }
+
+  h1, h2, h3, h4, .font-serif {
+    font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
+    letter-spacing: -0.015em;
+  }
+}
+
+/* Custom Luxury UI Utilities */
+.luxury-btn-primary {
+  @apply inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium tracking-wider uppercase transition-all duration-300 rounded-none bg-forest text-ivory hover:bg-forest-light hover:shadow-elevated active:scale-[0.99] border border-forest;
+}
+
+.luxury-btn-outline {
+  @apply inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium tracking-wider uppercase transition-all duration-300 rounded-none border border-forest/30 text-forest hover:border-forest hover:bg-forest/5 active:scale-[0.99];
+}
+
+.luxury-btn-gold {
+  @apply inline-flex items-center justify-center px-6 py-3.5 text-sm font-medium tracking-wider uppercase transition-all duration-300 rounded-none bg-earth text-white hover:bg-earth-dark hover:shadow-elevated active:scale-[0.99];
+}
+
+.luxury-card {
+  @apply bg-white border border-sand/40 shadow-card transition-all duration-300 hover:shadow-elevated hover:border-earth/40;
+}
+
+.luxury-badge {
+  @apply inline-flex items-center px-2.5 py-1 text-xs tracking-wider uppercase font-semibold;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7F4EC;
+}
+::-webkit-scrollbar-thumb {
+  background: #A88B65;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #19382D;
+}

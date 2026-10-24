@@ -1,0 +1,16 @@
+VERSION 3.0 FILE MANIFEST
+
+Core outputs:
+- One-page investor teaser PDF
+- Investor brief DOCX
+- Investor presentation PPTX
+- 10-year illustrative financial model XLSX
+- Master investment case, FAQ, pitch script, 90-day capital raising plan, term sheet framework, data room index, outreach template
+- Conceptual site/design brief
+- Visual board PDF and AI concept visual assets
+- Sources & uses worksheet and diligence checklist
+
+Superseded figures: 24 units and US$10.8m are erroneous and should not be reused.
+Current brief: 12–15 units; US$2.4m total capital including proposed additional land acquisition.
+
+Financial model caution: inputs are deliberately placeholders. All must be replaced/validated before investor circulation. The model is a starting template, not a forecast.
