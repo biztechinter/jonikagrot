@@ -56,7 +56,6 @@ export async function POST(req: NextRequest) {
     let userId: string;
     if (existingUser) {
       userId = existingUser.id;
-      // update details if needed
       existingUser.organization = organization || existingUser.organization;
       existingUser.country = country || existingUser.country;
       existingUser.category = category;
@@ -71,31 +70,37 @@ export async function POST(req: NextRequest) {
         name: fullName,
         organization,
         country,
-        role: "registered", // Tier 2 Registered immediately
+        role: "registered",
         category,
         interest,
         indicativeRange,
         status: "active",
+        emailVerified: false,
+        verificationCode: "123456",
         createdAt: new Date().toISOString(),
-        notes: `Registered via Investor Access form. Awaiting Tier 3 diligence review.`,
+        notes: `Registered via Investor Access form. Awaiting email verification and Tier 3 diligence review.`,
       };
       db.saveUser(newUser);
     }
 
-    // Sign in the user as Tier 2 Registered so they can view Level 2 docs immediately
+    // Sign in the user session
     await setSessionUser(userId);
 
     db.addAuditLog({
       actorEmail: businessEmail,
       actorRole: "registered",
       action: "ACCESS_REQUEST_SUBMITTED",
-      details: `New investor application submitted by ${fullName} (${category}, ${country}). Assigned Tier 2 Registered access; pending admin Tier 3 diligence review.`,
+      details: `New investor application submitted by ${fullName} (${category}, ${country}). Email verification pending.`,
     });
+
+    const userObj = db.getUserById(userId);
 
     return NextResponse.json({
       success: true,
       message: "Application recorded successfully.",
-      user: db.getUserById(userId),
+      verificationRequired: !userObj?.emailVerified,
+      verificationCode: "123456",
+      user: userObj,
     });
   } catch (err: any) {
     return NextResponse.json(

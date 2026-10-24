@@ -55,6 +55,26 @@ export default async function PortalDashboard() {
         </div>
       </div>
 
+      {/* Email Verification Banner */}
+      {user.emailVerified === false && (
+        <div className="p-4 bg-amber-50 border-l-4 border-amber-600 text-xs text-amber-950 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div className="space-y-0.5">
+            <span className="font-semibold text-amber-900 block">
+              Identity Notice: Email Verification Pending
+            </span>
+            <p className="text-amber-800">
+              Please verify your business email address ({user.email}) to complete your accredited investor registration.
+            </p>
+          </div>
+          <Link
+            href={`/verify-email?email=${encodeURIComponent(user.email)}`}
+            className="px-3 py-1.5 bg-amber-800 hover:bg-amber-900 text-white font-semibold text-[11px] uppercase tracking-wider flex-shrink-0 text-center"
+          >
+            Verify Email Now
+          </Link>
+        </div>
+      )}
+
       {/* Upgrade Banner for Tier 2 */}
       {!isApproved && (
         <div className="p-5 bg-sand/30 border-l-4 border-earth text-xs text-charcoal/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">

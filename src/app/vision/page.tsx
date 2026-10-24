@@ -15,7 +15,7 @@ export default function VisionPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 pt-24">
+      <main id="main-content" className="flex-1 pt-24">
         {/* Header Hero Banner */}
         <section className="bg-evergreen text-ivory py-20 border-b border-sand/20">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">

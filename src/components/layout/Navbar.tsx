@@ -34,17 +34,26 @@ export default function Navbar() {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled || !isHome
-          ? "bg-evergreen/95 backdrop-blur-md shadow-elevated border-b border-sand/20 py-3.5"
-          : "bg-gradient-to-b from-evergreen/80 via-evergreen/30 to-transparent py-5"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Brand Wordmark */}
-          <Link href="/" className="group flex flex-col">
+    <>
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-earth focus:text-white focus:outline-none focus:ring-2 focus:ring-white text-xs uppercase tracking-widest font-semibold"
+      >
+        Skip to main content
+      </a>
+
+      <header
+        role="banner"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+          isScrolled || !isHome
+            ? "bg-evergreen/95 backdrop-blur-md shadow-elevated border-b border-sand/20 py-3.5"
+            : "bg-gradient-to-b from-evergreen/80 via-evergreen/30 to-transparent py-5"
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between">
+            {/* Brand Wordmark */}
+            <Link href="/" className="group flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand p-1">
             <span className="font-serif text-xl sm:text-2xl font-bold tracking-wider text-ivory group-hover:text-sand transition-colors">
               JONIK NDOVU FARM
             </span>
@@ -149,6 +158,7 @@ export default function Navbar() {
           </div>
         </div>
       )}
-    </header>
+      </header>
+    </>
   );
 }

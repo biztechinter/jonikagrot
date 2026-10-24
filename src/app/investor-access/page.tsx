@@ -183,17 +183,17 @@ export default function InvestorAccessPage() {
 
                 <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
                   <Link
-                    href="/login"
-                    className="luxury-btn-primary text-xs !py-3 !px-7 tracking-widest inline-flex items-center space-x-2"
+                    href={`/verify-email?email=${encodeURIComponent(formData.businessEmail)}&code=123456`}
+                    className="luxury-btn-gold text-xs !py-3 !px-7 tracking-widest inline-flex items-center space-x-2"
                   >
-                    <span>Proceed to Portal Login</span>
-                    <ArrowRight className="w-4 h-4 text-sand" />
+                    <span>Verify Business Email</span>
+                    <ArrowRight className="w-4 h-4 text-white" />
                   </Link>
                   <Link
-                    href="/"
-                    className="luxury-btn-outline text-xs !py-3 !px-7 tracking-widest"
+                    href="/portal"
+                    className="luxury-btn-primary text-xs !py-3 !px-7 tracking-widest inline-flex items-center space-x-2"
                   >
-                    Return to Homepage
+                    <span>Enter Portal</span>
                   </Link>
                 </div>
               </div>

@@ -15,7 +15,7 @@ export default function DestinationPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 pt-24">
+      <main id="main-content" className="flex-1 pt-24">
         {/* Hero Section */}
         <section className="bg-evergreen text-ivory py-20 border-b border-sand/20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">

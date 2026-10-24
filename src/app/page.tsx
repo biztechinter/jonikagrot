@@ -22,7 +22,7 @@ export default function HomePage() {
     <>
       <Navbar />
 
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         {/* HERO SECTION */}
         <section className="relative min-h-[92vh] flex items-center justify-center overflow-hidden bg-evergreen text-ivory pt-20">
           {/* Background Hero Image */}

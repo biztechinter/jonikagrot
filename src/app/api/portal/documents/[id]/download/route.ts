@@ -55,7 +55,13 @@ export async function GET(req: NextRequest, { params }: Params) {
       );
     }
 
-    const filePath = path.join(process.cwd(), "server-storage", "documents", doc.filename);
+    const storageDir = path.resolve(process.cwd(), "server-storage", "documents");
+    const filePath = path.resolve(storageDir, doc.filename);
+
+    // Prevent directory traversal attacks
+    if (!filePath.startsWith(storageDir)) {
+      return NextResponse.json({ error: "Access Denied: Path traversal detected." }, { status: 400 });
+    }
 
     if (!fs.existsSync(filePath)) {
       return NextResponse.json(

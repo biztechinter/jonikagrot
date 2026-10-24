@@ -40,9 +40,75 @@
       "status": "active",
       "createdAt": "2026-10-18T16:45:00Z",
       "notes": "Registered portal user; pending administrative diligence interview for Tier 3 upgrade."
+    },
+    {
+      "id": "usr-1792871726822",
+      "email": "test.investor.lifecycle@example.com",
+      "name": "Amina Kenyatta",
+      "organization": "Savannah Growth Capital",
+      "country": "Kenya",
+      "role": "registered",
+      "category": "Private Investor",
+      "interest": "Equity",
+      "indicativeRange": "US,000 – US,000,000",
+      "status": "active",
+      "emailVerified": false,
+      "verificationCode": "123456",
+      "createdAt": "2026-10-24T19:55:26.822Z",
+      "notes": "Registered via Investor Access form. Awaiting email verification and Tier 3 diligence review."
+    },
+    {
+      "id": "usr-1792871746050",
+      "email": "test.investor.lifecycle2@example.com",
+      "name": "Amina Kenyatta",
+      "organization": "Savannah Growth Capital",
+      "country": "Kenya",
+      "role": "approved",
+      "category": "Private Investor",
+      "interest": "Equity",
+      "indicativeRange": "US,000 – US,000,000",
+      "status": "suspended",
+      "emailVerified": true,
+      "verificationCode": "123456",
+      "createdAt": "2026-10-24T19:55:46.050Z",
+      "notes": "Registered via Investor Access form. Awaiting email verification and Tier 3 diligence review.",
+      "approvedAt": "2026-10-24T19:55:46.637Z",
+      "approvedBy": "admin@jonikndovufarm.com"
     }
   ],
   "accessRequests": [
+    {
+      "id": "req-1792871746049",
+      "fullName": "Amina Kenyatta",
+      "businessEmail": "test.investor.lifecycle2@example.com",
+      "organization": "Savannah Growth Capital",
+      "country": "Kenya",
+      "category": "Private Investor",
+      "interest": "Equity",
+      "indicativeRange": "US,000 – US,000,000",
+      "message": "Testing full diligence onboarding lifecycle.",
+      "privacyAccepted": true,
+      "status": "approved",
+      "createdAt": "2026-10-24T19:55:46.049Z",
+      "emailVerified": true,
+      "assignedRole": "approved",
+      "reviewedAt": "2026-10-24T19:55:46.623Z",
+      "reviewedBy": "admin@jonikndovufarm.com"
+    },
+    {
+      "id": "req-1792871726821",
+      "fullName": "Amina Kenyatta",
+      "businessEmail": "test.investor.lifecycle@example.com",
+      "organization": "Savannah Growth Capital",
+      "country": "Kenya",
+      "category": "Private Investor",
+      "interest": "Equity",
+      "indicativeRange": "US,000 – US,000,000",
+      "message": "Testing full diligence onboarding lifecycle.",
+      "privacyAccepted": true,
+      "status": "pending",
+      "createdAt": "2026-10-24T19:55:26.821Z"
+    },
     {
       "id": "req-01",
       "fullName": "Amina Odhiambo",
@@ -186,7 +252,7 @@
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 15
+      "downloadsCount": 16
     },
     {
       "id": "doc-08",
@@ -301,8 +367,120 @@
       "downloadsCount": 19
     }
   ],
-  "inquiries": [],
+  "inquiries": [
+    {
+      "id": "inq-1792871766551",
+      "userId": "usr-approved",
+      "userName": "Marcus Vance",
+      "userEmail": "investor.approved@example.com",
+      "subject": "CONFIDENTIAL TAX STRUCTURING QUERY FROM INVESTOR A",
+      "type": "Due Diligence Request",
+      "message": "Specific offshore trust vehicle details for Investor A only.",
+      "status": "new",
+      "createdAt": "2026-10-24T19:56:06.551Z"
+    }
+  ],
   "auditLogs": [
+    {
+      "id": "aud-1792871766601",
+      "timestamp": "2026-10-24T19:56:06.601Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "details": "User signed in with role 'registered' from IP ::1."
+    },
+    {
+      "id": "aud-1792871766572",
+      "timestamp": "2026-10-24T19:56:06.572Z",
+      "actorEmail": "investor.approved@example.com",
+      "actorRole": "approved",
+      "action": "INQUIRY_SUBMITTED",
+      "details": "Investor submitted Due Diligence Request: \"CONFIDENTIAL TAX STRUCTURING QUERY FROM INVESTOR A\""
+    },
+    {
+      "id": "aud-1792871766390",
+      "timestamp": "2026-10-24T19:56:06.390Z",
+      "actorEmail": "investor.approved@example.com",
+      "actorRole": "approved",
+      "action": "USER_LOGIN",
+      "details": "User signed in with role 'approved' from IP ::1."
+    },
+    {
+      "id": "aud-1792871746740",
+      "timestamp": "2026-10-24T19:55:46.740Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_ROLE_CHANGED",
+      "targetResource": "test.investor.lifecycle2@example.com",
+      "details": "Administrator updated role for test.investor.lifecycle2@example.com from 'approved' to 'approved'. Status: 'suspended'."
+    },
+    {
+      "id": "aud-1792871746701",
+      "timestamp": "2026-10-24T19:55:46.701Z",
+      "actorEmail": "test.investor.lifecycle2@example.com",
+      "actorRole": "approved",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
+      "details": "User downloaded confidential document '10-Year Illustrative Financial Model' (Version V3.0)."
+    },
+    {
+      "id": "aud-1792871746650",
+      "timestamp": "2026-10-24T19:55:46.650Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ACCESS_REQUEST_APPROVED",
+      "targetResource": "test.investor.lifecycle2@example.com",
+      "details": "Administrator approved investor access for Amina Kenyatta (test.investor.lifecycle2@example.com) with role 'approved'."
+    },
+    {
+      "id": "aud-1792871746508",
+      "timestamp": "2026-10-24T19:55:46.508Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "details": "User signed in with role 'admin' from IP ::1."
+    },
+    {
+      "id": "aud-1792871746389",
+      "timestamp": "2026-10-24T19:55:46.389Z",
+      "actorEmail": "test.investor.lifecycle2@example.com",
+      "actorRole": "registered",
+      "action": "DOCUMENT_VIEWED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
+      "details": "UNAUTHORIZED download attempt: User with role 'registered' attempted to access restricted file '10-Year Illustrative Financial Model' (Tier 3 Approved). Access blocked."
+    },
+    {
+      "id": "aud-1792871746266",
+      "timestamp": "2026-10-24T19:55:46.266Z",
+      "actorEmail": "test.investor.lifecycle2@example.com",
+      "actorRole": "registered",
+      "action": "EMAIL_VERIFIED",
+      "details": "Investor email verified successfully."
+    },
+    {
+      "id": "aud-1792871746082",
+      "timestamp": "2026-10-24T19:55:46.082Z",
+      "actorEmail": "test.investor.lifecycle2@example.com",
+      "actorRole": "registered",
+      "action": "ACCESS_REQUEST_SUBMITTED",
+      "details": "New investor application submitted by Amina Kenyatta (Private Investor, Kenya). Email verification pending."
+    },
+    {
+      "id": "aud-1792871726856",
+      "timestamp": "2026-10-24T19:55:26.856Z",
+      "actorEmail": "test.investor.lifecycle@example.com",
+      "actorRole": "registered",
+      "action": "ACCESS_REQUEST_SUBMITTED",
+      "details": "New investor application submitted by Amina Kenyatta (Private Investor, Kenya). Email verification pending."
+    },
+    {
+      "id": "aud-1792870755803",
+      "timestamp": "2026-10-24T19:39:15.803Z",
+      "actorEmail": "investor.approved@example.com",
+      "actorRole": "approved",
+      "action": "USER_LOGIN",
+      "details": "User signed in with role 'approved' from IP ::1."
+    },
     {
       "id": "aud-1792868475497",
       "timestamp": "2026-10-24T19:01:15.497Z",

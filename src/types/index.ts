@@ -25,6 +25,8 @@ export interface User {
   interest?: InvestmentInterest;
   indicativeRange?: string;
   status: "active" | "suspended" | "pending";
+  emailVerified?: boolean;
+  verificationCode?: string;
   createdAt: string;
   approvedAt?: string;
   approvedBy?: string;
@@ -66,6 +68,7 @@ export interface AccessRequest {
   indicativeRange?: string;
   message?: string;
   privacyAccepted: boolean;
+  emailVerified?: boolean;
   status: "pending" | "approved" | "rejected";
   assignedRole?: UserRole;
   createdAt: string;
@@ -96,6 +99,7 @@ export interface AuditEvent {
     | "USER_LOGIN"
     | "USER_LOGOUT"
     | "ACCESS_REQUEST_SUBMITTED"
+    | "EMAIL_VERIFIED"
     | "ACCESS_REQUEST_APPROVED"
     | "ACCESS_REQUEST_REJECTED"
     | "USER_ROLE_CHANGED"
