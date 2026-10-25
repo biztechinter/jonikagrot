@@ -12,7 +12,7 @@ export default function PrivacyPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 pt-24 bg-ivory">
+      <main id="main-content" tabIndex={-1} className="flex-1 pt-24 bg-ivory outline-none">
         <section className="bg-evergreen text-ivory py-16 border-b border-sand/20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
             <span className="text-xs font-semibold tracking-[0.25em] uppercase text-sand block">

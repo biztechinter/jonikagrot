@@ -14,7 +14,7 @@ export default function InvestmentPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 pt-24">
+      <main id="main-content" tabIndex={-1} className="flex-1 pt-24 outline-none">
         {/* Hero Section */}
         <section className="bg-evergreen text-ivory py-20 border-b border-sand/20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
@@ -41,7 +41,7 @@ export default function InvestmentPage() {
               Why Jonik Ndovu Farm?
             </h2>
             <p className="text-base text-charcoal/75 leading-relaxed font-light">
-              Boutique hospitality provides the principal commercial engine, while integrated regenerative agriculture enriches the guest experience, builds regional differentiation, and supports local food security.
+              Boutique hospitality provides the principal commercial engine, while integrated regenerative agriculture and direct adjacency to premier wildlife sanctuaries (Lewa and Ol Pejeta) create an irreproducible competitive moat and premium ADR pricing power.
             </p>
           </div>
 
@@ -79,10 +79,10 @@ export default function InvestmentPage() {
             </div>
 
             <div className="luxury-card p-8 space-y-4">
-              <span className="text-xs font-bold text-earth tracking-widest uppercase">05 / Market Tailwinds</span>
-              <h3 className="font-serif text-xl font-bold text-forest">High-Yield Eco-Tourism</h3>
+              <span className="text-xs font-bold text-earth tracking-widest uppercase">05 / Wildlife Proximity</span>
+              <h3 className="font-serif text-xl font-bold text-forest">Bordering Lewa & Ol Pejeta</h3>
               <p className="text-sm text-charcoal/75 leading-relaxed">
-                Laikipia commands some of East Africa's most resilient tourism receipts, attracting conservation-minded global travelers and Kenya’s growing domestic luxury weekend market.
+                Segera borders world-renowned rhino and predator sanctuaries (Lewa Wildlife Conservancy and Ol Pejeta Conservancy), generating strong halo guest demand from global safari travelers and Nairobi weekenders.
               </p>
             </div>
 
@@ -138,19 +138,43 @@ export default function InvestmentPage() {
 
               {/* Capital Headings Table */}
               <div className="bg-white border border-sand/50 shadow-card p-6 sm:p-8">
-                <h3 className="font-serif text-xl font-bold text-forest mb-4 pb-3 border-b border-sand/30">
-                  Capital Allocation Headings
-                </h3>
+                <div className="flex items-center justify-between pb-3 border-b border-sand/30 mb-4">
+                  <div>
+                    <h3 className="font-serif text-xl font-bold text-forest">
+                      Capital Allocation Headings
+                    </h3>
+                    <span className="text-xs text-charcoal/60">Fixed US$2.4M Turnkey Development Budget</span>
+                  </div>
+                  <span className="text-xs font-mono font-bold px-2.5 py-1 bg-forest text-sand">
+                    12 Categories
+                  </span>
+                </div>
+
+                {/* Greener Ecosystem Highlight Box */}
+                <div className="mb-4 p-4 bg-sand/20 border-l-4 border-earth text-xs space-y-1">
+                  <span className="font-bold text-forest block uppercase tracking-wider">
+                    Green Ecosystem & Productive Assets Subtotal: US$980,000 (40.8%)
+                  </span>
+                  <p className="text-charcoal/75 leading-relaxed">
+                    Over 40% of capital is deployed into circular infrastructure: solar-hybrid microgrid ($160k), circular biogas ($80k), precision irrigation ($240k), contour landscaping ($120k), animal structures ($80k), farm machinery ($60k), and catering hub & produce shop ($240k).
+                  </p>
+                </div>
+
                 <div className="divide-y divide-sand/20">
                   {SOURCES_AND_USES_ITEMS.map((item, idx) => (
                     <div key={idx} className="py-3.5 first:pt-0 last:pb-0">
-                      <div className="flex items-center justify-between">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
                         <span className="text-sm font-semibold text-forest">
                           {item.category}
                         </span>
-                        <span className="text-[11px] font-mono bg-sand/30 text-charcoal/80 px-2 py-0.5 rounded-none uppercase">
-                          {item.status}
-                        </span>
+                        <div className="flex items-center space-x-2">
+                          <span className="text-xs font-mono font-bold text-earth">
+                            ${(item.allocationUSD).toLocaleString()} ({item.sharePct})
+                          </span>
+                          <span className="text-[10px] font-mono bg-sand/30 text-charcoal/80 px-2 py-0.5 rounded-none uppercase">
+                            {item.status}
+                          </span>
+                        </div>
                       </div>
                       <p className="text-xs text-charcoal/70 mt-1 leading-relaxed">
                         {item.notes}

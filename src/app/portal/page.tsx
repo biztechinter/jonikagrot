@@ -145,7 +145,7 @@ export default async function PortalDashboard() {
             href="/portal/documents"
             className="text-xs font-semibold text-forest hover:text-earth flex items-center space-x-1"
           >
-            <span>View All 15 Documents</span>
+            <span>View All 17 Documents</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>
@@ -156,7 +156,7 @@ export default async function PortalDashboard() {
             <div>
               <div className="flex items-center justify-between mb-3">
                 <span className="px-2 py-0.5 text-[10px] font-mono uppercase bg-sand text-evergreen font-bold">
-                  PDF · 142 KB
+                  PDF · 5.3 KB
                 </span>
                 <span className="text-[10px] uppercase tracking-wider text-earth font-semibold">
                   Tier 2
@@ -183,7 +183,7 @@ export default async function PortalDashboard() {
             <div>
               <div className="flex items-center justify-between mb-3">
                 <span className="px-2 py-0.5 text-[10px] font-mono uppercase bg-sand text-evergreen font-bold">
-                  DOCX · 48 KB
+                  DOCX · 41.7 KB
                 </span>
                 <span className="text-[10px] uppercase tracking-wider text-earth font-semibold">
                   Tier 2
@@ -210,7 +210,7 @@ export default async function PortalDashboard() {
             <div>
               <div className="flex items-center justify-between mb-3">
                 <span className="px-2 py-0.5 text-[10px] font-mono uppercase bg-sand text-evergreen font-bold">
-                  XLSX · 115 KB
+                  XLSX · 13.7 KB
                 </span>
                 <span className="text-[10px] uppercase tracking-wider text-red-700 font-semibold">
                   Tier 3 Only

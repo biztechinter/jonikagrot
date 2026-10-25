@@ -14,7 +14,7 @@ export default function AboutPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 pt-24">
+      <main id="main-content" tabIndex={-1} className="flex-1 pt-24 outline-none">
         {/* Hero Section */}
         <section className="bg-evergreen text-ivory py-20 border-b border-sand/20">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
@@ -34,7 +34,7 @@ export default function AboutPage() {
         <section className="py-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-6 text-charcoal/80 leading-relaxed font-light text-base sm:text-lg">
             <p className="first-letter:text-5xl first-letter:font-serif first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:text-forest">
-              Jonik Ndovu Farm originated from a profound appreciation for the open landscapes of Laikipia County and the conviction that sustainable tourism must engage directly with the soil. While conventional safari lodges often exist in isolation from their immediate surroundings, Jonik Ndovu Farm is designed to integrate the agricultural life of the highlands with tranquil, considered accommodation.
+              Jonik Ndovu Farm originated from a profound appreciation for the open landscapes of Laikipia County and the conviction that sustainable tourism must engage directly with the soil. While conventional safari lodges often exist in isolation from their immediate surroundings, Jonik Ndovu Farm is designed to integrate the agricultural life of the highlands with tranquil, considered accommodation—situated in Segera bordering major wildlife strongholds including Lewa Wildlife Conservancy and Ol Pejeta Conservancy.
             </p>
             <p>
               By establishing an operational agro-ecological farm alongside a 12 to 15 unit boutique lodge, the project creates authentic guest experiences while demonstrating sustainable dryland farming, water conservation, and soil restoration in an arid savannah climate.

@@ -40,7 +40,15 @@ if (fs.existsSync(publicSrc)) {
   copyFolderRecursiveSync(publicSrc, publicDest);
 }
 
-// 3. Create .htaccess for Hostinger LiteSpeed/Apache routing fallback (if needed)
+// 3. Copy server-storage to .next/standalone/server-storage (data room files and JSON DB)
+const serverStorageSrc = path.join(rootDir, 'server-storage');
+const serverStorageDest = path.join(standaloneDir, 'server-storage');
+if (fs.existsSync(serverStorageSrc)) {
+  console.log('-> Copying server-storage directory to standalone bundle...');
+  copyFolderRecursiveSync(serverStorageSrc, serverStorageDest);
+}
+
+// 4. Create .htaccess for Hostinger LiteSpeed/Apache routing fallback (if needed)
 const htaccessPath = path.join(standaloneDir, '.htaccess');
 const htaccessContent = `# Hostinger Node.js Environment Setup
 RewriteEngine On

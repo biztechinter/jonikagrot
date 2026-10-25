@@ -74,9 +74,39 @@
       "notes": "Registered via Investor Access form. Awaiting email verification and Tier 3 diligence review.",
       "approvedAt": "2026-10-24T19:55:46.637Z",
       "approvedBy": "admin@jonikndovufarm.com"
+    },
+    {
+      "id": "usr-1792945086290",
+      "email": "timwam@gmail.com",
+      "name": "Tim Wamalwa",
+      "organization": "RICH",
+      "country": "Switzerland",
+      "role": "registered",
+      "category": "Private Investor",
+      "interest": "Equity",
+      "indicativeRange": "US$1,000,000 – US$2,400,000 (Lead Partner)",
+      "status": "active",
+      "emailVerified": false,
+      "verificationCode": "123456",
+      "createdAt": "2026-10-25T16:18:06.290Z",
+      "notes": "Registered via Investor Access form. Awaiting email verification and Tier 3 diligence review."
     }
   ],
   "accessRequests": [
+    {
+      "id": "req-1792945086289",
+      "fullName": "Tim Wamalwa",
+      "businessEmail": "timwam@gmail.com",
+      "organization": "RICH",
+      "country": "Switzerland",
+      "category": "Private Investor",
+      "interest": "Equity",
+      "indicativeRange": "US$1,000,000 – US$2,400,000 (Lead Partner)",
+      "message": "I want invest real bad",
+      "privacyAccepted": true,
+      "status": "pending",
+      "createdAt": "2026-10-25T16:18:06.289Z"
+    },
     {
       "id": "req-1792871746049",
       "fullName": "Amina Kenyatta",
@@ -162,27 +192,39 @@
       "description": "High-level visual executive summary of the hospitality-led agro-tourism opportunity, landholding, and capital requirements.",
       "category": "Investment Overview",
       "filename": "Jonik_Ndovu_Farm_V3_One_Page_Investor_Teaser.pdf",
-      "filesize": "142 KB",
+      "filesize": "5.3 KB",
       "filetype": "PDF",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 2 Registered",
       "requiredRole": "registered",
-      "downloadsCount": 18
+      "downloadsCount": 30,
+      "executiveHighlights": [
+        "Fixed US$2.4M capital target with US$980k (40.8%) allocated to greener ecosystem & productive assets",
+        "8.0 ha owned today + ~7.0 ha adjacent option in negotiation (15 ha total)",
+        "Prime wildlife adjacency: bordering Lewa Conservancy (UNESCO rhino stronghold) & Ol Pejeta Conservancy",
+        "Unlevered project IRR of 14.8% and 2.85x equity multiple over 10-year horizon"
+      ]
     },
     {
       "id": "doc-02",
       "title": "Investor Brief — 5-Minute Overview",
-      "description": "Comprehensive 5-minute briefing document on project background, concept architecture, land logic, and investor milestones.",
+      "description": "Decision-useful executive briefing on project background, concept architecture, land logic, and investor milestones.",
       "category": "Investment Overview",
       "filename": "Jonik_Ndovu_Farm_V3_Investor_Brief.docx",
-      "filesize": "48 KB",
+      "filesize": "41.7 KB",
       "filetype": "DOCX",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 2 Registered",
       "requiredRole": "registered",
-      "downloadsCount": 24
+      "downloadsCount": 42,
+      "executiveHighlights": [
+        "Comprehensive synthesis of verified project facts ($2.4M, 12–15 suites, 15 ha total)",
+        "Strategic conservation geography bordering Lewa and Ol Pejeta with permeable wildlife corridor design",
+        "Full 12-category Sources & Uses schedule with $980k / 40.8% greener ecosystem subtotal",
+        "10-year pro-forma highlights: ADR ramping $380 to $560, occupancy 35% to 68%"
+      ]
     },
     {
       "id": "doc-03",
@@ -190,139 +232,218 @@
       "description": "Master slide deck covering destination context, competitive landscape, accommodation typologies, and financial thesis.",
       "category": "Investment Overview",
       "filename": "Jonik_Ndovu_Farm_V3_Investor_Presentation.pptx",
-      "filesize": "1.2 MB",
+      "filesize": "183.2 KB",
       "filetype": "PPTX",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 12
+      "downloadsCount": 19,
+      "executiveHighlights": [
+        "20 visual slides formatted for presentation to investment committees",
+        "Macro tourism data for Laikipia conservancy and safari circuits",
+        "Spatial masterplan overlays and accommodation architectural renders",
+        "Series A Preferred Equity investment summary & governance terms"
+      ]
     },
     {
       "id": "doc-04",
       "title": "Master Investment Case",
-      "description": "Detailed institutional thesis detailing hospitality economics, agricultural integration, target demographic, and phased execution options.",
+      "description": "Detailed institutional thesis detailing hospitality economics, agricultural integration, target demographic, and risk matrix.",
       "category": "Investment Overview",
       "filename": "Jonik_Ndovu_Farm_V3_Master_Investment_Case.docx",
-      "filesize": "56 KB",
+      "filesize": "44.2 KB",
       "filetype": "DOCX",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 15
+      "downloadsCount": 31,
+      "executiveHighlights": [
+        "10 comprehensive sections covering macro context, land assembly, unit economics, and circular utilities",
+        "Regional analysis: Segera bordering Lewa and Ol Pejeta rhinos and apex predator sanctuaries",
+        "Greener ecosystem deep dive ($980,000 / 40.8% of Capex): microgrid, biogas, hydrology, animals, and retail",
+        "Institutional risk matrix with 7 risk categories and minority shareholder protections"
+      ]
     },
     {
       "id": "doc-05",
-      "title": "Conceptual Site & Design Brief",
-      "description": "Architectural design guidelines, low-impact structural philosophy, site zoning, landscape ecology, and guest circulation concept.",
+      "title": "Conceptual Site & Infrastructure Plan",
+      "description": "Spatial masterplanning, circulation engineering, and off-grid utility sizing brief for the consolidated 15-hectare platform.",
       "category": "Site and Development",
       "filename": "Jonik_Ndovu_Farm_V3_Conceptual_Site_Design_Brief.docx",
-      "filesize": "52 KB",
+      "filesize": "40.7 KB",
       "filetype": "DOCX",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 9
+      "downloadsCount": 22,
+      "executiveHighlights": [
+        "Full spatial allocation across 15 ha with dedicated greener ecosystem & productive infrastructure schedule",
+        "60 kWp solar PV + 120 kWh LiFePO4 battery storage + 10k L/hr solar borehole + biogas digester",
+        "Segregated circulation: Guest Serenity, Farm Operations, and BOH Service networks",
+        "Precision drip irrigation network across 5.3 ha and reed-bed greywater recycling"
+      ]
     },
     {
       "id": "doc-06",
       "title": "Visual Investor Board & Moodboard",
-      "description": "Visual direction portfolio illustrating proposed material palettes (stone, cedar, thatch, canvas) and agro-tourism guest experiences.",
+      "description": "Visual direction portfolio illustrating proposed material palettes (volcanic stone, cedar, thatch, canvas) and guest experiences.",
       "category": "Site and Development",
       "filename": "Jonik_Ndovu_Farm_V3_Visual_Investor_Board.pdf",
-      "filesize": "2.1 MB",
+      "filesize": "3.5 MB",
       "filetype": "PDF",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 2 Registered",
       "requiredRole": "registered",
-      "downloadsCount": 22
+      "downloadsCount": 37,
+      "executiveHighlights": [
+        "Material board featuring local Segera stone, sustainable timber, and natural canvas",
+        "Guest pavilion interior moodboards with private savannah viewing plunge pools",
+        "Farm harvest larder and dining pavilion concept visuals",
+        "Wellness deck and infinity pool integrated into indigenous acacia landscape"
+      ]
+    },
+    {
+      "id": "doc-17",
+      "title": "Concept Storybook & Brand Vision",
+      "description": "Brand narrative exploring the journey from an integrated pastoral farm to a world-class destination agro-resort.",
+      "category": "Site and Development",
+      "filename": "Jonik_Ndovu_Farm_V3_Concept_Storybook.docx",
+      "filesize": "38.7 KB",
+      "filetype": "DOCX",
+      "version": "V3.0",
+      "date": "October 2026",
+      "confidentiality": "Tier 2 Registered",
+      "requiredRole": "registered",
+      "downloadsCount": 16,
+      "executiveHighlights": [
+        "The farm as the living classroom: farm-to-table culinary philosophy",
+        "Harmonious coexistence of agriculture, wildlife corridors, and guest luxury",
+        "Highland wellness concept: botanical therapies, dark-sky astronomy, and trail runs"
+      ]
     },
     {
       "id": "doc-07",
       "title": "10-Year Illustrative Financial Model",
-      "description": "Integrated spreadsheet covering 10-year pro-forma statements, room yield modeling, food & beverage margins, capex phasing, and returns analysis.",
+      "description": "Dynamic spreadsheet with 10-year pro-forma statements, room yield modeling, departmental opex build-ups, and scenario toggles.",
       "category": "Financial Information",
       "filename": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
-      "filesize": "115 KB",
+      "filesize": "13.7 KB",
       "filetype": "XLSX",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 16
+      "downloadsCount": 31,
+      "executiveHighlights": [
+        "Interactive workbook with sheets: Read Me, Inputs, 10-Year Model, Sources & Uses, Scenarios",
+        "Conservative base-case ramping to $3.33M gross revenue and $1.07M EBITDA in Year 10",
+        "Downside Case (8.4% IRR, 1.9x MOIC) vs Upside Case (18.2% IRR, 3.4x MOIC)",
+        "Unlevered project cash flow modeling with corporate tax and depreciation schedules"
+      ]
     },
     {
       "id": "doc-08",
       "title": "Sources & Uses Verification Worksheet",
-      "description": "Framework reconciling the fixed US$2.4M capital target across land, construction, FF&E, professional fees, working capital, and contingencies.",
+      "description": "Turnkey schedule reconciling the US$2.4M capital target across land, infrastructure, construction, FF&E, and contingencies.",
       "category": "Financial Information",
       "filename": "Jonik_Ndovu_Farm_V3_Sources_Uses_Worksheet.pdf",
-      "filesize": "88 KB",
+      "filesize": "4.4 KB",
       "filetype": "PDF",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 16
+      "downloadsCount": 25,
+      "executiveHighlights": [
+        "Full 12-line verified Sources & Uses budget reconciling the fixed US$2.4M capital target",
+        "Explicit US$980,000 (40.8%) subtotal for circular utilities, productive agriculture, catering & farm shop",
+        "Itemized allocations: Land $320k, Solar $160k, Biogas $80k, Irrigation $240k, Swales $120k, Animals $80k, Fleet $60k, Suites $720k, Catering/Shop $240k, FF&E $140k, Permits $120k, Contingency $120k",
+        "Independent Quantity Surveyor (QS) certification milestone disbursement triggers"
+      ]
     },
     {
       "id": "doc-09",
-      "title": "Due Diligence Checklist & Index",
+      "title": "Investor Data Room Index & Diligence Tracker",
       "description": "Master index and tracking matrix of all legal, corporate, land title, planning, environmental, and technical diligence items.",
       "category": "Due Diligence",
       "filename": "Jonik_Ndovu_Farm_V3_Data_Room_Index.docx",
-      "filesize": "39 KB",
+      "filesize": "39.8 KB",
       "filetype": "DOCX",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 11
+      "downloadsCount": 18,
+      "executiveHighlights": [
+        "24 categorized diligence items across corporate, land, technical, design, and regulatory",
+        "Clear status flags: official land registry searches verified, hydrogeological survey ready",
+        "Document custodians, clearance tier mappings, and file formats",
+        "Statutory NEMA EIA and County Government physical planning tracker"
+      ]
     },
     {
       "id": "doc-10",
       "title": "Reconciliation & Diligence Status Checklist",
-      "description": "Operational and technical diligence status tracker including water survey, soil testing, planning permissions pathway, and infrastructure scoping.",
+      "description": "Operational and technical diligence status tracker including water survey, soil testing, planning permissions, and infrastructure scoping.",
       "category": "Due Diligence",
       "filename": "Jonik_Ndovu_Farm_V3_Reconciliation_Diligence_Checklist.docx",
-      "filesize": "44 KB",
+      "filesize": "37.7 KB",
       "filetype": "DOCX",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 8
+      "downloadsCount": 14,
+      "executiveHighlights": [
+        "Technical survey checklist: 0.5m contour topography, geotechnical bearing, solar simulation",
+        "Water rights and borehole drilling permit status under Water Resources Authority (WRA)",
+        "Road access easement verification connecting to the main Segera arterial route"
+      ]
     },
     {
       "id": "doc-11",
       "title": "Investor Frequently Asked Questions (FAQ)",
-      "description": "Direct answers to key commercial questions regarding capital requirements, unit counts, water security, land title, and target visitor profiles.",
+      "description": "Authoritative answers to 20 critical commercial questions regarding capital requirements, unit counts, water security, and land title.",
       "category": "Due Diligence",
       "filename": "Jonik_Ndovu_Farm_V3_Investor_FAQ.docx",
-      "filesize": "46 KB",
+      "filesize": "41.1 KB",
       "filetype": "DOCX",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 2 Registered",
       "requiredRole": "registered",
-      "downloadsCount": 31
+      "downloadsCount": 52,
+      "executiveHighlights": [
+        "Definitive answers on why preliminary $10.8M / 24-unit models were superseded",
+        "Question 16 breakdown: US$980k (40.8%) dedicated to greener ecosystem & productive infrastructure",
+        "Water security: 10,000 L/hr solar borehole + 200,000L buffer = 45 days reserve",
+        "100% off-grid clean energy: 60 kWp solar PV array + 120 kWh LiFePO4 batteries",
+        "Exit strategy: trade sale, regional PE buyout, or dividend distributions"
+      ]
     },
     {
       "id": "doc-12",
       "title": "Indicative Term-Sheet Framework",
-      "description": "Discussion template outlining governance rights, board representation, information rights, pre-emption, and exit mechanisms for lead investors.",
+      "description": "Institutional discussion template outlining Series A Preferred terms, governance rights, Board seats, and Reserved Matters.",
       "category": "Transaction and Investment Process",
       "filename": "Jonik_Ndovu_Farm_V3_Term_Sheet_Framework.docx",
-      "filesize": "42 KB",
+      "filesize": "39.9 KB",
       "filetype": "DOCX",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 7
+      "downloadsCount": 23,
+      "executiveHighlights": [
+        "Series A Preferred Equity with 8.0% cumulative accrued coupon during construction",
+        "Pre-money valuation of US$1.2M; post-money valuation of US$3.6M (66.7% investor equity)",
+        "Reserved Matters schedule: 8 key corporate actions requiring 75% shareholder approval",
+        "Information rights: Monthly KPI flash reports, quarterly financials, annual audited IFRS"
+      ]
     },
     {
       "id": "doc-13",
@@ -330,13 +451,18 @@
       "description": "Structured capital formation timeline moving from initial outreach and lead-investor alignment to technical diligence and close.",
       "category": "Transaction and Investment Process",
       "filename": "Jonik_Ndovu_Farm_V3_90_Day_Capital_Raising_Plan.docx",
-      "filesize": "41 KB",
+      "filesize": "38.2 KB",
       "filetype": "DOCX",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 10
+      "downloadsCount": 15,
+      "executiveHighlights": [
+        "Phase 1 (Days 1–30): Lead investor identification and term sheet alignment",
+        "Phase 2 (Days 31–60): Confirmatory legal, technical, and QS cost diligence",
+        "Phase 3 (Days 61–90): Definitive legal execution, escrow funding, and close"
+      ]
     },
     {
       "id": "doc-14",
@@ -344,13 +470,37 @@
       "description": "Standardized outreach protocol and introduction framework for prospective co-investors, family offices, and strategic partners.",
       "category": "Transaction and Investment Process",
       "filename": "Jonik_Ndovu_Farm_V3_Investor_Outreach_Template.docx",
-      "filesize": "37 KB",
+      "filesize": "37.5 KB",
       "filetype": "DOCX",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 6
+      "downloadsCount": 11,
+      "executiveHighlights": [
+        "Tailored email messaging for institutional funds, family offices, and strategic operators",
+        "Follow-up cadence and data room onboarding protocol",
+        "Confidentiality agreement (NDA) workflow and tier upgrade instructions"
+      ]
+    },
+    {
+      "id": "doc-16",
+      "title": "Investor Pitch Script & Founder Guide",
+      "description": "10-minute presentation narrative, slide-by-slide speaker notes, and anticipated Q&A speaking guide for project leadership.",
+      "category": "Transaction and Investment Process",
+      "filename": "Jonik_Ndovu_Farm_V3_Investor_Pitch_Script.docx",
+      "filesize": "39.5 KB",
+      "filetype": "DOCX",
+      "version": "V3.0",
+      "date": "October 2026",
+      "confidentiality": "Tier 3 Approved",
+      "requiredRole": "approved",
+      "downloadsCount": 17,
+      "executiveHighlights": [
+        "Word-for-word opening hook addressing the owned land starting asset",
+        "Compelling transition from traditional high-overhead safaris to agro-resort hospitality",
+        "Direct talking points for explaining the $2.4M budget discipline and 14.8% IRR"
+      ]
     },
     {
       "id": "doc-15",
@@ -358,16 +508,32 @@
       "description": "Official release notes for Version 3.0 package, explicitly documenting superseded unit figures and validation protocols.",
       "category": "Transaction and Investment Process",
       "filename": "V3_File_Manifest.txt",
-      "filesize": "1 KB",
+      "filesize": "3.0 KB",
       "filetype": "TXT",
       "version": "V3.0",
       "date": "October 2026",
       "confidentiality": "Tier 2 Registered",
       "requiredRole": "registered",
-      "downloadsCount": 19
+      "downloadsCount": 27,
+      "executiveHighlights": [
+        "Formal release notes harmonizing all project figures to US$2.4M and 12–15 units",
+        "Full repository file manifest matching the physical disk storage structure"
+      ]
     }
   ],
   "inquiries": [
+    {
+      "id": "inq-1792945337294",
+      "userId": "usr-1792945086290",
+      "userName": "Tim Wamalwa",
+      "userEmail": "timwam@gmail.com",
+      "subject": "Hi",
+      "type": "Due Diligence Request",
+      "message": "wow",
+      "preferredDate": "",
+      "status": "new",
+      "createdAt": "2026-10-25T16:22:17.294Z"
+    },
     {
       "id": "inq-1792871766551",
       "userId": "usr-approved",
@@ -381,6 +547,182 @@
     }
   ],
   "auditLogs": [
+    {
+      "id": "aud-1792953892223",
+      "timestamp": "2026-10-25T18:44:52.223Z",
+      "actorEmail": "timwam@gmail.com",
+      "actorRole": "registered",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_One_Page_Investor_Teaser.pdf",
+      "ipAddress": "::1",
+      "details": "Downloaded 'One-Page Investor Teaser' (Tier 2 Registered, Version V3.0). IP: ::1."
+    },
+    {
+      "id": "aud-1792953878999",
+      "timestamp": "2026-10-25T18:44:38.999Z",
+      "actorEmail": "timwam@gmail.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "User signed in via portal with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1792951756838",
+      "timestamp": "2026-10-25T18:09:16.838Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "User signed in via portal with role 'admin'. IP: ::1."
+    },
+    {
+      "id": "aud-1792951729584",
+      "timestamp": "2026-10-25T18:08:49.584Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
+      "ipAddress": "::1",
+      "details": "Downloaded '10-Year Illustrative Financial Model' (Tier 3 Approved, Version V3.0). IP: ::1."
+    },
+    {
+      "id": "aud-1792951729516",
+      "timestamp": "2026-10-25T18:08:49.516Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "User signed in via portal with role 'admin'. IP: ::1."
+    },
+    {
+      "id": "aud-1792951729465",
+      "timestamp": "2026-10-25T18:08:49.465Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "DOCUMENT_VIEWED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
+      "ipAddress": "::1",
+      "details": "UNAUTHORISED download attempt: role 'registered' tried to access '10-Year Illustrative Financial Model' (Tier 3 Approved). Blocked. IP: ::1."
+    },
+    {
+      "id": "aud-1792951729406",
+      "timestamp": "2026-10-25T18:08:49.406Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_One_Page_Investor_Teaser.pdf",
+      "ipAddress": "::1",
+      "details": "Downloaded 'One-Page Investor Teaser' (Tier 2 Registered, Version V3.0). IP: ::1."
+    },
+    {
+      "id": "aud-1792951728607",
+      "timestamp": "2026-10-25T18:08:48.607Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "User signed in via portal with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1792951649972",
+      "timestamp": "2026-10-25T18:07:29.972Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
+      "ipAddress": "::1",
+      "details": "Downloaded '10-Year Illustrative Financial Model' (Tier 3 Approved, Version V3.0). IP: ::1."
+    },
+    {
+      "id": "aud-1792951649831",
+      "timestamp": "2026-10-25T18:07:29.831Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "User signed in via portal with role 'admin'. IP: ::1."
+    },
+    {
+      "id": "aud-1792948901812",
+      "timestamp": "2026-10-25T17:21:41.812Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "DOCUMENT_VIEWED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
+      "ipAddress": "::1",
+      "details": "UNAUTHORISED download attempt: role 'registered' tried to access '10-Year Illustrative Financial Model' (Tier 3 Approved). Blocked. IP: ::1."
+    },
+    {
+      "id": "aud-1792948889951",
+      "timestamp": "2026-10-25T17:21:29.951Z",
+      "actorEmail": "investor.approved@example.com",
+      "actorRole": "approved",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
+      "ipAddress": "::1",
+      "details": "Downloaded '10-Year Illustrative Financial Model' (Tier 3 Approved, Version V3.0). IP: ::1."
+    },
+    {
+      "id": "aud-1792948877915",
+      "timestamp": "2026-10-25T17:21:17.915Z",
+      "actorEmail": "investor.approved@example.com",
+      "actorRole": "approved",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_One_Page_Investor_Teaser.pdf",
+      "ipAddress": "::1",
+      "details": "Downloaded 'One-Page Investor Teaser' (Tier 2 Registered, Version V3.0). IP: ::1."
+    },
+    {
+      "id": "aud-1792948855813",
+      "timestamp": "2026-10-25T17:20:55.813Z",
+      "actorEmail": "investor.approved@example.com",
+      "actorRole": "approved",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_One_Page_Investor_Teaser.pdf",
+      "ipAddress": "::1",
+      "details": "Downloaded 'One-Page Investor Teaser' (Tier 2 Registered, Version V3.0). IP: ::1."
+    },
+    {
+      "id": "aud-1792945337314",
+      "timestamp": "2026-10-25T16:22:17.314Z",
+      "actorEmail": "timwam@gmail.com",
+      "actorRole": "registered",
+      "action": "INQUIRY_SUBMITTED",
+      "details": "Investor submitted Due Diligence Request: \"Hi\""
+    },
+    {
+      "id": "aud-1792945086317",
+      "timestamp": "2026-10-25T16:18:06.317Z",
+      "actorEmail": "timwam@gmail.com",
+      "actorRole": "registered",
+      "action": "ACCESS_REQUEST_SUBMITTED",
+      "details": "New investor application submitted by Tim Wamalwa (Private Investor, Switzerland). Email verification pending."
+    },
+    {
+      "id": "aud-1792873538158",
+      "timestamp": "2026-10-24T20:25:38.158Z",
+      "actorEmail": "investor.approved@example.com",
+      "actorRole": "approved",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_One_Page_Investor_Teaser.pdf",
+      "details": "User downloaded confidential document 'One-Page Investor Teaser' (Version V3.0)."
+    },
+    {
+      "id": "aud-1792873512151",
+      "timestamp": "2026-10-24T20:25:12.151Z",
+      "actorEmail": "investor.approved@example.com",
+      "actorRole": "approved",
+      "action": "USER_LOGIN",
+      "details": "User signed in with role 'approved' from IP 79.34.31.77."
+    },
+    {
+      "id": "aud-1792873155846",
+      "timestamp": "2026-10-24T20:19:15.846Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "details": "User signed in with role 'admin' from IP ::1."
+    },
     {
       "id": "aud-1792871766601",
       "timestamp": "2026-10-24T19:56:06.601Z",

@@ -83,7 +83,7 @@ export default async function FinancialsPage() {
 
       {/* Sources & Uses Verification Schedule */}
       <div className="bg-white p-6 sm:p-8 border border-sand/40 space-y-6">
-        <div className="flex items-center justify-between pb-4 border-b border-sand/30">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-sand/30 gap-2">
           <div>
             <h3 className="font-serif text-xl font-bold text-forest">
               Sources & Uses Verification Schedule
@@ -94,32 +94,50 @@ export default async function FinancialsPage() {
           </div>
           <a
             href="/api/portal/documents/doc-08/download"
-            className="text-xs text-forest hover:text-earth flex items-center space-x-1 font-semibold"
+            className="text-xs text-forest hover:text-earth flex items-center space-x-1 font-semibold flex-shrink-0"
           >
             <Download className="w-3.5 h-3.5" />
             <span>Download Worksheet PDF</span>
           </a>
         </div>
 
+        {/* Greener Ecosystem Banner */}
+        <div className="p-4 bg-sand/20 border-l-4 border-earth text-xs space-y-1">
+          <span className="font-bold text-forest block uppercase tracking-wider">
+            Green Ecosystem & Productive Assets Allocation: US$980,000 (40.8% of Capex)
+          </span>
+          <p className="text-charcoal/75 leading-relaxed">
+            Over 40% of the $2.4M capital program directly finances circular and productive assets: Solar Microgrid ($160k), Circular Biogas ($80k), Hydrology & Drip Irrigation ($240k), Contour Landscaping ($120k), Animal Structures ($80k), Clean Fleet ($60k), and Commercial Catering Kitchen & Farm Produce Shop ($240k).
+          </p>
+        </div>
+
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border border-sand/30">
             <thead className="bg-sand/20 text-forest uppercase font-semibold tracking-wider">
               <tr>
-                <th className="p-3.5 border-b border-sand/30">Capital Heading</th>
-                <th className="p-3.5 border-b border-sand/30">Description & Scope</th>
-                <th className="p-3.5 border-b border-sand/30">Required Third-Party Evidence</th>
-                <th className="p-3.5 border-b border-sand/30">Status</th>
+                <th className="p-3 border-b border-sand/30">Capital Heading</th>
+                <th className="p-3 border-b border-sand/30 text-right">Allocation</th>
+                <th className="p-3 border-b border-sand/30 text-right">Share</th>
+                <th className="p-3 border-b border-sand/30">Description & Scope</th>
+                <th className="p-3 border-b border-sand/30">Required Third-Party Evidence</th>
+                <th className="p-3 border-b border-sand/30">Status</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-sand/20 text-charcoal/80">
               {SOURCES_AND_USES_ITEMS.map((item, idx) => (
                 <tr key={idx} className="hover:bg-sand/10 transition-colors">
-                  <td className="p-3.5 font-semibold text-forest whitespace-nowrap">
+                  <td className="p-3 font-semibold text-forest whitespace-nowrap">
                     {item.category}
                   </td>
-                  <td className="p-3.5 leading-relaxed max-w-xs">{item.notes}</td>
-                  <td className="p-3.5 leading-relaxed text-charcoal/70">{item.evidenceRequired}</td>
-                  <td className="p-3.5 whitespace-nowrap">
+                  <td className="p-3 font-mono font-bold text-forest text-right whitespace-nowrap">
+                    ${(item.allocationUSD).toLocaleString()}
+                  </td>
+                  <td className="p-3 font-mono text-earth text-right whitespace-nowrap">
+                    {item.sharePct}
+                  </td>
+                  <td className="p-3 leading-relaxed max-w-xs">{item.notes}</td>
+                  <td className="p-3 leading-relaxed text-charcoal/70">{item.evidenceRequired}</td>
+                  <td className="p-3 whitespace-nowrap">
                     <span className="px-2 py-0.5 text-[10px] font-mono uppercase bg-sand/30 text-charcoal font-semibold">
                       {item.status}
                     </span>
@@ -128,11 +146,17 @@ export default async function FinancialsPage() {
               ))}
               <tr className="bg-forest text-ivory font-bold">
                 <td className="p-3.5">TOTAL USES</td>
+                <td className="p-3.5 text-right font-mono text-sand text-sm whitespace-nowrap">
+                  US$2,400,000
+                </td>
+                <td className="p-3.5 text-right font-mono text-sand whitespace-nowrap">
+                  100.0%
+                </td>
                 <td colSpan={2} className="p-3.5">
                   Reconciled against certified quantity surveyor cost plan and signed land contracts
                 </td>
-                <td className="p-3.5 whitespace-nowrap text-sand font-mono text-sm">
-                  US$2,400,000
+                <td className="p-3.5 whitespace-nowrap text-sand text-[11px] uppercase">
+                  Turnkey Budget
                 </td>
               </tr>
             </tbody>

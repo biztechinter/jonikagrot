@@ -53,7 +53,7 @@ export default async function OpportunityPage() {
           90-Second Executive Summary
         </h3>
         <p className="text-xs sm:text-sm text-ivory/85 leading-relaxed font-light">
-          “Jonik Ndovu Farm is a hospitality-led agro-tourism destination being developed in Segera, Laikipia County, Kenya. The premise is to create a boutique 12–15 unit destination where comfortable accommodation, farm-to-table dining, and authentic agricultural experiences form one compelling product. Hospitality is our commercial engine; agriculture provides differentiation, guest engagement, food authenticity, and landscape stewardship. We start from 8 hectares already owned, with approximately 7 additional hectares proposed for acquisition within the US$2.4 million capital plan.”
+          “Jonik Ndovu Farm is a hospitality-led agro-tourism destination being developed in Segera, Laikipia County, Kenya. Situated directly at the threshold of world-renowned wildlife strongholds—bordering Lewa Wildlife Conservancy and Ol Pejeta Conservancy—the premise is to create an intimate 12–15 unit retreat where understated luxury, farm-to-table culinary authenticity, and premier rhino and predator safari access converge. Hospitality is our primary commercial engine; our closed-loop $980,000 greener bio-economy delivers over 35% utility and food opex savings alongside unforgettable guest immersion. We start from 8 unencumbered hectares already owned, with approximately 7 adjacent hectares proposed for acquisition within the US$2.4 million capital plan.”
         </p>
       </div>
 
@@ -68,7 +68,10 @@ export default async function OpportunityPage() {
               <strong>Stay:</strong> 12–15 low-density suites built with natural stone and cedar, delivering high privacy, panoramic views, and low environmental disturbance.
             </p>
             <p>
-              <strong>Eat:</strong> Farm-informed seasonal menus pairing onsite organic harvests with local artisanal dairy and pastoral ingredients.
+              <strong>Safari & Conservancies:</strong> Direct adjacency to Lewa (UNESCO rhino stronghold, Grevy&apos;s zebra) and Ol Pejeta (largest black rhino sanctuary, apex predators), pairing big-game safaris with quiet farm immersion.
+            </p>
+            <p>
+              <strong>Eat:</strong> Farm-informed seasonal menus pairing onsite organic harvests with local artisanal dairy, honey from our apiary, and wood-fired hearth baking.
             </p>
             <p>
               <strong>Experience:</strong> Guided agricultural walks, permaculture workshops, nature trails along the Ewaso riverine corridor, and quiet night-sky astronomy.
@@ -85,10 +88,10 @@ export default async function OpportunityPage() {
           </h3>
           <div className="space-y-2.5 text-xs text-charcoal/80">
             <p>
-              <strong>Resilient High-Yield Market:</strong> Laikipia commands strong average daily rates from international conservation and safari travelers.
+              <strong>World-Class Conservation Halo:</strong> Bordering Lewa and Ol Pejeta captures premium safari circuit overflow and justifies top-tier boutique ADRs ($380–$560).
             </p>
             <p>
-              <strong>Domestic Weekend Demand:</strong> Strong year-round drive-in demand from Nairobi professionals seeking tranquil nature retreats.
+              <strong>Domestic Weekend Demand:</strong> Strong year-round drive-in demand from Nairobi professionals seeking tranquil nature retreats (malaria-free, ~1,800m ASL).
             </p>
             <p>
               <strong>Diversified Revenue:</strong> Accommodation revenue supplemented by experiential dining covers, wellness retreats, and guided educational programs.
@@ -96,6 +99,60 @@ export default async function OpportunityPage() {
             <p>
               <strong>Capital Discipline:</strong> Focused boutique scale avoids heavy overheads and high fixed operating costs associated with high-inventory resorts.
             </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Circular Bio-Economy Capital Allocation Box */}
+      <div className="bg-white p-6 sm:p-8 border border-sand/40 space-y-4">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-sand/30 gap-2">
+          <div>
+            <span className="text-[11px] font-mono uppercase text-earth font-bold block">
+              Ecosystem Economics
+            </span>
+            <h3 className="font-serif text-xl font-bold text-forest">
+              Circular Bio-Economy & Productive Assets: US$980,000 (40.8%)
+            </h3>
+          </div>
+          <span className="px-3 py-1 bg-forest text-sand text-xs font-mono font-bold uppercase">
+            Over 40% of Capex
+          </span>
+        </div>
+        <p className="text-xs text-charcoal/75 leading-relaxed">
+          Unlike conventional hotels that treat utilities and landscaping as sunk overheads, Jonik Ndovu Farm deploys $980,000 into closed-loop assets that directly reduce lifecycle operating costs and generate new revenues:
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+          <div className="p-3.5 bg-sand/15 border border-sand/30 space-y-1">
+            <span className="text-[11px] font-bold text-forest block">Solar-Hybrid Microgrid ($160k)</span>
+            <p className="text-[11px] text-charcoal/70">60 kWp solar PV + 120 kWh LiFePO4 batteries deliver near-zero fuel cost.</p>
+          </div>
+          <div className="p-3.5 bg-sand/15 border border-sand/30 space-y-1">
+            <span className="text-[11px] font-bold text-forest block">Circular Biogas ($80k)</span>
+            <p className="text-[11px] text-charcoal/70">Converts manure and kitchen waste to pressurized cooking gas and bio-fertilizer.</p>
+          </div>
+          <div className="p-3.5 bg-sand/15 border border-sand/30 space-y-1">
+            <span className="text-[11px] font-bold text-forest block">Hydrology & Drip ($240k)</span>
+            <p className="text-[11px] text-charcoal/70">10k L/hr solar borehole, 200kL tanks, and 5.3 ha automated drip irrigation.</p>
+          </div>
+          <div className="p-3.5 bg-sand/15 border border-sand/30 space-y-1">
+            <span className="text-[11px] font-bold text-forest block">Contour Swales ($120k)</span>
+            <p className="text-[11px] text-charcoal/70">Earthworks retain soil moisture; agroforestry orchards yield fruit & shelter.</p>
+          </div>
+          <div className="p-3.5 bg-sand/15 border border-sand/30 space-y-1">
+            <span className="text-[11px] font-bold text-forest block">Animal Structures ($80k)</span>
+            <p className="text-[11px] text-charcoal/70">Rotational sheep paddocks, poultry houses, dairy station, and 40+ apiary hives.</p>
+          </div>
+          <div className="p-3.5 bg-sand/15 border border-sand/30 space-y-1">
+            <span className="text-[11px] font-bold text-forest block">Clean Farm Fleet ($60k)</span>
+            <p className="text-[11px] text-charcoal/70">Low-till tractors, compost spreaders, and zero-emission electric utility buggies.</p>
+          </div>
+          <div className="p-3.5 bg-sand/15 border border-sand/30 space-y-1">
+            <span className="text-[11px] font-bold text-forest block">Catering Kitchen ($160k)</span>
+            <p className="text-[11px] text-charcoal/70">Commercial farm-to-table lodge kitchen, stone bakery, and solar walk-in chiller.</p>
+          </div>
+          <div className="p-3.5 bg-sand/15 border border-sand/30 space-y-1">
+            <span className="text-[11px] font-bold text-forest block">Farm Produce Shop ($80k)</span>
+            <p className="text-[11px] text-charcoal/70">On-site boutique retail market selling branded honey, cold-pressed oils, and produce.</p>
           </div>
         </div>
       </div>

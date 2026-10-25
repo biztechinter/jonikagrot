@@ -27,14 +27,16 @@ export default async function DueDiligencePage() {
       status: "Verification In Progress",
     },
     {
-      title: "C. Technical, Planning & Environmental",
+      title: "C. Technical, Ecological & Utilities",
       items: [
-        "National Environment Management Authority (NEMA) Project Report & License",
-        "County Government of Laikipia physical planning change-of-user approvals",
-        "Hydrological survey, borehole drilling permit, and water quality laboratory assay",
-        "Geotechnical soil load-bearing analysis for lodge pavilion foundations",
+        "Solar microgrid yield simulation (60 kWp / 120 kWh LiFePO4) & MEP drawings",
+        "Anaerobic biogas digester technical sizing & bio-fertilizer safety protocols",
+        "Hydrological borehole pumping test (10k L/hr) & 5.3 ha smart drip layout",
+        "Livestock housing & animal welfare plans (sheep, dairy, poultry, apiary)",
+        "NEMA Environmental & Social Impact Assessment (ESIA) Project Report",
+        "Public health certification for commercial kitchen & farm produce shop",
       ],
-      status: "Consultant Brief Active",
+      status: "Engineering Active",
     },
     {
       title: "D. Commercial & Market Context",

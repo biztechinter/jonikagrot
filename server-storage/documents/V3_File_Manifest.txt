@@ -1,16 +1,53 @@
-VERSION 3.0 FILE MANIFEST
+================================================================================
+JONIK NDOVU FARM — INVESTOR PACKAGE & DATA ROOM MANIFEST
+Version: Version 3.0 Verified
+Date: October 2026
+Location: Segera, Laikipia County, Kenya
+================================================================================
 
-Core outputs:
-- One-page investor teaser PDF
-- Investor brief DOCX
-- Investor presentation PPTX
-- 10-year illustrative financial model XLSX
-- Master investment case, FAQ, pitch script, 90-day capital raising plan, term sheet framework, data room index, outreach template
-- Conceptual site/design brief
-- Visual board PDF and AI concept visual assets
-- Sources & uses worksheet and diligence checklist
+EXECUTIVE NOTICE & RECONCILIATION:
+This package represents the consolidated, verified working investor materials
+for Jonik Ndovu Farm. All figures and development allocations have been
+harmonized with the official development brief:
+  • Capital Requirement: US$2.4 Million Total (Turnkey to commercial launch)
+  • Landholding: 8.0 Hectares (19.8 Acres) already purchased and owned
+  • Proposed Acquisition: ~7.0 Hectares (17.3 Acres) currently in negotiation
+  • Ultimate Footprint: ~15.0 Hectares (37.1 Acres) consolidated masterplan
+  • Accommodation Scale: 12–15 Boutique Suites (24–30 guests maximum)
+  • Primary Engine: Boutique Hospitality; Permaculture differentiates the journey
+  • Superseded Note: All earlier preliminary drafts referencing 24 keys or
+    US$10.8 million of capital are formally superseded and erroneous.
 
-Superseded figures: 24 units and US$10.8m are erroneous and should not be reused.
-Current brief: 12–15 units; US$2.4m total capital including proposed additional land acquisition.
+--------------------------------------------------------------------------------
+PORTAL DOCUMENT REPOSITORY
+--------------------------------------------------------------------------------
+All documents in this repository are served through the secure authenticated
+investor portal with role-based access control (Tier 2 Registered vs Tier 3 Approved):
 
-Financial model caution: inputs are deliberately placeholders. All must be replaced/validated before investor circulation. The model is a starting template, not a forecast.
+Investment Overview:
+  • Jonik_Ndovu_Farm_V3_One_Page_Investor_Teaser.pdf (PDF · Tier 2 Registered)
+  • Jonik_Ndovu_Farm_V3_Investor_Brief.docx (DOCX · Tier 2 Registered)
+  • Jonik_Ndovu_Farm_V3_Investor_Presentation.pptx (PPTX · Tier 3 Approved)
+  • Jonik_Ndovu_Farm_V3_Master_Investment_Case.docx (DOCX · Tier 3 Approved)
+
+Site and Development:
+  • Jonik_Ndovu_Farm_V3_Conceptual_Site_Design_Brief.docx (DOCX · Tier 3 Approved)
+  • Jonik_Ndovu_Farm_V3_Visual_Investor_Board.pdf (PDF · Tier 2 Registered)
+  • Jonik_Ndovu_Farm_V3_Concept_Storybook.docx (DOCX · Tier 2 Registered)
+
+Financial Information:
+  • Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx (XLSX · Tier 3 Approved)
+  • Jonik_Ndovu_Farm_V3_Sources_Uses_Worksheet.pdf (PDF · Tier 3 Approved)
+
+Due Diligence:
+  • Jonik_Ndovu_Farm_V3_Data_Room_Index.docx (DOCX · Tier 3 Approved)
+  • Jonik_Ndovu_Farm_V3_Reconciliation_Diligence_Checklist.docx (DOCX · Tier 3 Approved)
+  • Jonik_Ndovu_Farm_V3_Investor_FAQ.docx (DOCX · Tier 2 Registered)
+
+Transaction & Process:
+  • Jonik_Ndovu_Farm_V3_Term_Sheet_Framework.docx (DOCX · Tier 3 Approved)
+  • Jonik_Ndovu_Farm_V3_90_Day_Capital_Raising_Plan.docx (DOCX · Tier 3 Approved)
+  • Jonik_Ndovu_Farm_V3_Investor_Outreach_Template.docx (DOCX · Tier 3 Approved)
+  • Jonik_Ndovu_Farm_V3_Investor_Pitch_Script.docx (DOCX · Tier 3 Approved)
+  • V3_File_Manifest.txt (TXT · Tier 2 Registered)
+================================================================================

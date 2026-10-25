@@ -101,10 +101,44 @@ npm start
 
 ---
 
-## 6. Hosting & Production Deployment
-This application is designed to be hosted seamlessly on platforms like **Vercel**, **Netlify**, or any **Node.js / Docker container**.
-To deploy to Vercel:
-1. Push this repository to GitHub or GitLab.
-2. Import the project in Vercel.
-3. Add environment variables from `.env.example` as desired.
-4. Deploy with one click.
+## 6. Hosting & Production Deployment on Hostinger (Non-VPS / hPanel)
+
+This project has been pre-configured for **Hostinger Web & Cloud Hosting (Non-VPS)**.
+
+### Method 1: Hostinger Business or Cloud Hosting (Built-in Node.js in hPanel)
+Hostinger's Business Web Hosting and Cloud Hosting plans include a native **Node.js Application Manager** directly inside hPanel.
+
+#### 1. Generate the Standalone Bundle
+Run the packaging command locally:
+```powershell
+npm run build:hostinger
+```
+This builds Next.js in `standalone` mode and bundles all static chunks, images, and server dependencies into `.next/standalone/`.
+
+#### 2. Upload to Hostinger via File Manager
+1. Log in to **Hostinger hPanel** and open **File Manager** for your domain.
+2. Compress the contents of `.next/standalone` into a zip file on your computer.
+3. Upload and extract the zip file directly into your website's folder (e.g., `public_html` or `/domains/yourdomain.com/jonik-app`).
+4. Ensure your `.env` or production variables (like `SESSION_SECRET`) are present or added in hPanel.
+
+#### 3. Configure the Node.js App in hPanel
+1. In hPanel, go to **Websites** > **Node.js** (or search "Node.js" in the top bar).
+2. Click **Create Application**:
+   - **Node.js version**: Choose `Node.js 18.x` or `20.x`.
+   - **Application root**: Select the directory where files were uploaded (e.g., `public_html` or `jonik-app`).
+   - **Application startup file**: Enter `server.js`.
+   - **Application mode**: Set to `Production`.
+3. Click **Create** / **Start Application**.
+4. The application is now live on your domain.
+
+---
+
+### Method 2: Hostinger Shared/Premium Hosting with Custom Domain Routing
+If your Hostinger plan is **Single** or **Premium Shared Hosting** (which does not have the persistent Node.js daemon enabled in hPanel):
+
+Because Next.js 14 App Router powers dynamic server authentication (`cookies()`, session validation, and tiered document streaming), running dynamic Node.js directly on Apache-only shared web roots is not supported by Hostinger. In this case, the standard industry approach is:
+
+1. Deploy the Next.js frontend/server for free to **Vercel** or **Cloudflare Pages**.
+2. Keep your domain, business email, and DNS on **Hostinger**.
+3. In **Hostinger hPanel DNS Zone Editor**, point your `@` (A record) or `www` (CNAME record) to the deployment endpoint (e.g. `cname.vercel-dns.com` or Cloudflare).
+4. All traffic resolves seamlessly under your Hostinger custom domain without requiring a VPS.

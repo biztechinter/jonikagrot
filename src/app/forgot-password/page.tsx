@@ -9,7 +9,7 @@ export default function ForgotPasswordPage() {
     <>
       <Navbar />
 
-      <main className="flex-1 pt-24 pb-20 bg-ivory flex items-center justify-center">
+      <main id="main-content" tabIndex={-1} className="flex-1 pt-24 pb-20 bg-ivory flex items-center justify-center outline-none">
         <div className="max-w-md w-full mx-auto px-4 py-8">
           <div className="luxury-card p-8 sm:p-10 border-sand/60 text-center space-y-6">
             <div className="w-12 h-12 bg-forest/10 text-forest mx-auto flex items-center justify-center">

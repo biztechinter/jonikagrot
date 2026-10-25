@@ -3,7 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { PROJECT_FACTS } from "@/data/projectData";
-import { Compass, CheckCircle2, ArrowRight, Layers, Sun, Shield, FileText } from "lucide-react";
+import { Compass, CheckCircle2, ArrowRight, Layers, Sun, Shield, FileText, Flame, Droplets, ShoppingBag, Sprout, Utensils } from "lucide-react";
 
 export const metadata = {
   title: "The Vision | Jonik Ndovu Farm",
@@ -15,7 +15,7 @@ export default function VisionPage() {
     <>
       <Navbar />
 
-      <main id="main-content" className="flex-1 pt-24">
+      <main id="main-content" tabIndex={-1} className="flex-1 pt-24 outline-none">
         {/* Header Hero Banner */}
         <section className="bg-evergreen text-ivory py-20 border-b border-sand/20">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
@@ -39,10 +39,10 @@ export default function VisionPage() {
                 <Compass className="w-6 h-6 text-earth" />
               </div>
               <h3 className="font-serif text-2xl font-bold text-forest">
-                Landscape Deference
+                Corridor & Landscape Deference
               </h3>
               <p className="text-sm text-charcoal/75 leading-relaxed">
-                Rather than imposing heavy monumental structures, each accommodation unit is positioned following the natural contours of the 8-hectare holding, protecting indigenous trees and animal migratory pathways.
+                Rather than imposing heavy monumental structures or impenetrable fortress fencing, each accommodation unit is positioned following natural contours, respecting the open wildlife corridors linking Segera to neighboring Lewa and Ol Pejeta conservancies.
               </p>
             </div>
 
@@ -90,6 +90,9 @@ export default function VisionPage() {
                   <p>
                     Upon completion of the land transaction, the property will span approximately <strong>15 hectares (37 acres)</strong>, accommodating 12 to 15 discreet guest pavilions, central dining lounge, wellness deck, and 5+ hectares of productive agro-ecological cultivation.
                   </p>
+                  <p className="text-xs text-charcoal/70 bg-sand/20 p-3.5 border-l-2 border-earth">
+                    <strong>Contiguity with Premier Conservancies:</strong> Segera borders major neighboring wildlife zones in the Laikipia ecosystem, including Lewa Wildlife Conservancy and Ol Pejeta Conservancy. Our site planning incorporates permeable boundaries and natural bioswales, respecting historic elephant and predator migration routes across the Greater Ewaso ecosystem.
+                  </p>
                 </div>
 
                 <div className="mt-6 pt-6 border-t border-sand/40 grid grid-cols-2 gap-4">
@@ -111,16 +114,123 @@ export default function VisionPage() {
                 <div className="relative h-96 sm:h-[450px] border border-sand/50 shadow-card overflow-hidden">
                   <Image
                     src="/images/masterplan-concept.jpg"
-                    alt="Illustrative masterplan moodboard concept for Jonik Ndovu Farm"
+                    alt="Illustrative masterplan layout for Jonik Ndovu Farm"
                     fill
                     className="object-cover"
                   />
                   <div className="absolute top-3 left-3 bg-evergreen/90 text-sand text-[10px] tracking-widest uppercase px-2.5 py-1">
-                    Concept Visualisation
+                    Conceptual Masterplan Footprint
                   </div>
                 </div>
                 <p className="text-[11px] text-charcoal/60 text-center uppercase tracking-wider">
-                  Illustrative concept plan — not an approved surveyed architectural drawing
+                  Illustrative concept plan — subject to professional topographical survey and approvals
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CIRCULAR AGRO-ECOLOGICAL SYSTEMS & PRODUCTIVE LAYOUT */}
+        <section className="py-20 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-16 space-y-3">
+              <span className="text-xs font-semibold tracking-[0.25em] uppercase text-earth block">
+                Closed-Loop Infrastructure
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-forest">
+                Circular Agro-Ecological Architecture
+              </h2>
+              <p className="text-sm text-charcoal/75 leading-relaxed font-light">
+                Our masterplan allocates US$980,000 (over 40% of the US$2.4M capital program) towards creating a self-sustaining ecological engine where clean energy, water security, organic livestock, farm machinery, commercial catering, and retail commerce reinforce each other.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="p-6 bg-sand/15 border border-sand/40 space-y-2.5">
+                <div className="flex items-center space-x-2 text-forest">
+                  <Sun className="w-5 h-5 text-earth" />
+                  <span className="text-xs font-mono font-bold uppercase">Solar Microgrid</span>
+                </div>
+                <h4 className="font-serif text-base font-bold text-forest">60 kWp / 120 kWh Storage</h4>
+                <p className="text-xs text-charcoal/70 leading-relaxed">
+                  Bifacial solar panels with automated solar tracking paired with LiFePO4 battery banks powering lodge suites and cold storage with zero fossil reliance.
+                </p>
+              </div>
+
+              <div className="p-6 bg-sand/15 border border-sand/40 space-y-2.5">
+                <div className="flex items-center space-x-2 text-forest">
+                  <Flame className="w-5 h-5 text-earth" />
+                  <span className="text-xs font-mono font-bold uppercase">Circular Biogas</span>
+                </div>
+                <h4 className="font-serif text-base font-bold text-forest">Waste-to-Energy Digester</h4>
+                <p className="text-xs text-charcoal/70 leading-relaxed">
+                  Commercial anaerobic digester consuming animal manure and kitchen waste to produce pressurized cooking gas for the lodge kitchen plus nutrient-rich bio-slurry.
+                </p>
+              </div>
+
+              <div className="p-6 bg-sand/15 border border-sand/40 space-y-2.5">
+                <div className="flex items-center space-x-2 text-forest">
+                  <Droplets className="w-5 h-5 text-earth" />
+                  <span className="text-xs font-mono font-bold uppercase">Hydrology & Drip</span>
+                </div>
+                <h4 className="font-serif text-base font-bold text-forest">Precision Irrigation</h4>
+                <p className="text-xs text-charcoal/70 leading-relaxed">
+                  10k L/hr solar borehole feeding 200kL gravity storage tanks, automated drip lines across 5.3 ha, and constructed reed-bed wetlands treating greywater.
+                </p>
+              </div>
+
+              <div className="p-6 bg-sand/15 border border-sand/40 space-y-2.5">
+                <div className="flex items-center space-x-2 text-forest">
+                  <Compass className="w-5 h-5 text-earth" />
+                  <span className="text-xs font-mono font-bold uppercase">Landscaping & Swales</span>
+                </div>
+                <h4 className="font-serif text-base font-bold text-forest">Keyline Earthworks</h4>
+                <p className="text-xs text-charcoal/70 leading-relaxed">
+                  Contour swales that intercept rainwater runoff, stabilizing soil moisture, combined with indigenous acacia shelterbelts and multi-canopy agroforestry orchards.
+                </p>
+              </div>
+
+              <div className="p-6 bg-sand/15 border border-sand/40 space-y-2.5">
+                <div className="flex items-center space-x-2 text-forest">
+                  <Sprout className="w-5 h-5 text-earth" />
+                  <span className="text-xs font-mono font-bold uppercase">Livestock & Dairy</span>
+                </div>
+                <h4 className="font-serif text-base font-bold text-forest">Ethical Animal Structures</h4>
+                <p className="text-xs text-charcoal/70 leading-relaxed">
+                  Rotational sheep paddocks for holistic pasture regeneration, solarized milking dairy station, free-range poultry, and 40+ Langstroth apiary hives.
+                </p>
+              </div>
+
+              <div className="p-6 bg-sand/15 border border-sand/40 space-y-2.5">
+                <div className="flex items-center space-x-2 text-forest">
+                  <Layers className="w-5 h-5 text-earth" />
+                  <span className="text-xs font-mono font-bold uppercase">Clean Farm Fleet</span>
+                </div>
+                <h4 className="font-serif text-base font-bold text-forest">Farm Machinery Depot</h4>
+                <p className="text-xs text-charcoal/70 leading-relaxed">
+                  Compact low-till tractors, compost spreaders, solar charging infrastructure, and silent zero-emission electric utility buggies for clean logistics.
+                </p>
+              </div>
+
+              <div className="p-6 bg-sand/15 border border-sand/40 space-y-2.5">
+                <div className="flex items-center space-x-2 text-forest">
+                  <Utensils className="w-5 h-5 text-earth" />
+                  <span className="text-xs font-mono font-bold uppercase">Catering Hub</span>
+                </div>
+                <h4 className="font-serif text-base font-bold text-forest">Commercial Lodge Kitchen</h4>
+                <p className="text-xs text-charcoal/70 leading-relaxed">
+                  HACCP-compliant commercial lodge kitchen, stone sourdough hearth bakery, solar walk-in cold rooms, and charcuterie pantry supporting farm-to-table dining.
+                </p>
+              </div>
+
+              <div className="p-6 bg-sand/15 border border-sand/40 space-y-2.5">
+                <div className="flex items-center space-x-2 text-forest">
+                  <ShoppingBag className="w-5 h-5 text-earth" />
+                  <span className="text-xs font-mono font-bold uppercase">Farm Gate Market</span>
+                </div>
+                <h4 className="font-serif text-base font-bold text-forest">Farm Produce Sale Shop</h4>
+                <p className="text-xs text-charcoal/70 leading-relaxed">
+                  Dedicated on-site retail boutique offering branded raw honey, artisanal oils, herbal teas, fruit preserves, and fresh farm hampers to guests and day visitors.
                 </p>
               </div>
             </div>
@@ -170,6 +280,7 @@ export default function VisionPage() {
               </p>
             </div>
           </div>
+
         </section>
 
         {/* CTA to Due Diligence */}

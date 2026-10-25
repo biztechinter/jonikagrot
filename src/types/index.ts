@@ -55,6 +55,7 @@ export interface DiligenceDocument {
   confidentiality: ConfidentialityLevel;
   requiredRole: UserRole; // 'registered', 'approved', 'admin'
   downloadsCount: number;
+  executiveHighlights?: string[];
 }
 
 export interface AccessRequest {

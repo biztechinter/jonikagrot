@@ -2,6 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ─────────────────────────────────────────────────────────────
+   JONIK NDOVU FARM — PREMIUM DESIGN SYSTEM
+   Brand palette, typography, utility classes & animations
+   ───────────────────────────────────────────────────────────── */
+
 :root {
   --color-forest: #19382D;
   --color-evergreen: #10271F;
@@ -11,74 +16,225 @@
   --color-charcoal: #282C29;
 }
 
+/* ── Base layer ──────────────────────────────────────────────── */
 @layer base {
   html {
     scroll-behavior: smooth;
     color: #282C29;
     background-color: #F7F4EC;
     font-family: var(--font-inter), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
   body {
-    @apply antialiased min-h-screen flex flex-col selection:bg-earth selection:text-white;
+    @apply antialiased min-h-screen flex flex-col;
+    selection-color: white;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  h1, h2, h3, h4, .font-serif {
+  /* Text selection styling */
+  ::selection {
+    background-color: #A88B65;
+    color: white;
+  }
+
+  /* Editorial serif applied to all headings and explicit serif elements */
+  h1, h2, h3, h4, h5, h6, .font-serif {
     font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
+    font-variant-ligatures: common-ligatures;
   }
 
-  /* Accessible Focus Rings */
+  h1 { @apply leading-[1.1]; }
+  h2 { @apply leading-[1.15]; }
+  h3 { @apply leading-[1.2]; }
+
+  /* Accessible visible focus rings — uses brand earth gold */
   *:focus-visible {
     outline: 2px solid #A88B65 !important;
-    outline-offset: 2px !important;
+    outline-offset: 3px !important;
+    border-radius: 1px;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, ::before, ::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
   }
 }
 
-/* Custom Luxury UI Utilities */
-.luxury-btn-primary {
-  @apply inline-flex items-center justify-center min-h-[44px] px-6 py-3.5 text-xs sm:text-sm font-medium tracking-wider uppercase transition-all duration-300 rounded-none bg-forest text-ivory hover:bg-forest-light hover:shadow-elevated active:scale-[0.99] border border-forest focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-earth;
-}
+/* ── Component layer ─────────────────────────────────────────── */
+@layer components {
 
-.luxury-btn-outline {
-  @apply inline-flex items-center justify-center min-h-[44px] px-6 py-3.5 text-xs sm:text-sm font-medium tracking-wider uppercase transition-all duration-300 rounded-none border border-forest/30 text-forest hover:border-forest hover:bg-forest/5 active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-earth;
-}
+  /* PRIMARY CTA — Forest green with ivory text */
+  .luxury-btn-primary {
+    @apply inline-flex items-center justify-center min-h-[44px] px-6 py-3.5
+           text-[11px] sm:text-xs font-semibold tracking-[0.18em] uppercase
+           transition-all duration-300 ease-out rounded-none
+           bg-forest text-ivory border border-forest
+           hover:bg-forest-light hover:shadow-elevated
+           active:scale-[0.985]
+           focus-visible:ring-2 focus-visible:ring-earth focus-visible:ring-offset-2;
+  }
 
-.luxury-btn-gold {
-  @apply inline-flex items-center justify-center min-h-[44px] px-6 py-3.5 text-xs sm:text-sm font-medium tracking-wider uppercase transition-all duration-300 rounded-none bg-earth text-white hover:bg-earth-dark hover:shadow-elevated active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-forest;
-}
+  /* OUTLINE CTA — Transparent with forest border */
+  .luxury-btn-outline {
+    @apply inline-flex items-center justify-center min-h-[44px] px-6 py-3.5
+           text-[11px] sm:text-xs font-semibold tracking-[0.18em] uppercase
+           transition-all duration-300 ease-out rounded-none
+           border border-forest/30 text-forest bg-transparent
+           hover:border-forest hover:bg-forest/5 hover:shadow-subtle
+           active:scale-[0.985]
+           focus-visible:ring-2 focus-visible:ring-earth focus-visible:ring-offset-2;
+  }
 
-.luxury-card {
-  @apply bg-white border border-sand/40 shadow-card transition-all duration-300 hover:shadow-elevated hover:border-earth/40;
-}
+  /* GOLD ACCENT CTA — Earth tone */
+  .luxury-btn-gold {
+    @apply inline-flex items-center justify-center min-h-[44px] px-6 py-3.5
+           text-[11px] sm:text-xs font-semibold tracking-[0.18em] uppercase
+           transition-all duration-300 ease-out rounded-none
+           bg-earth text-white border border-earth
+           hover:bg-earth-dark hover:shadow-elevated hover:border-earth-dark
+           active:scale-[0.985]
+           focus-visible:ring-2 focus-visible:ring-forest focus-visible:ring-offset-2;
+  }
 
-.luxury-badge {
-  @apply inline-flex items-center px-2.5 py-1 text-xs tracking-wider uppercase font-semibold;
-}
+  /* GHOST CTA — Ivory on dark backgrounds */
+  .luxury-btn-ghost {
+    @apply inline-flex items-center justify-center min-h-[44px] px-6 py-3.5
+           text-[11px] sm:text-xs font-semibold tracking-[0.18em] uppercase
+           transition-all duration-300 ease-out rounded-none
+           border border-ivory/30 text-ivory bg-transparent
+           hover:border-ivory hover:bg-ivory/10
+           active:scale-[0.985]
+           focus-visible:ring-2 focus-visible:ring-earth focus-visible:ring-offset-2;
+  }
 
-/* Reduced Motion Support (WCAG 2.2 AA) */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  ::before,
-  ::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  /* PREMIUM CARD — White with sand border, elevated on hover */
+  .luxury-card {
+    @apply bg-white border border-sand/40 shadow-card
+           transition-all duration-300 ease-out
+           hover:shadow-elevated hover:border-earth/30;
+  }
+
+  /* STATUS BADGE */
+  .luxury-badge {
+    @apply inline-flex items-center px-2.5 py-1
+           text-[10px] tracking-[0.15em] uppercase font-bold;
+  }
+
+  /* EYEBROW / LABEL — Small caps label above headings */
+  .luxury-eyebrow {
+    @apply text-[10px] sm:text-[11px] tracking-[0.25em] uppercase font-semibold text-earth;
+  }
+
+  /* SECTION DIVIDER — Thin earth-toned horizontal rule */
+  .luxury-divider {
+    @apply border-0 border-t border-sand/50 my-8 sm:my-12;
+  }
+
+  /* FORM INPUT — Consistent across all forms */
+  .luxury-input {
+    @apply block w-full px-4 py-3 bg-white border border-sand/60 text-charcoal
+           text-sm placeholder:text-charcoal/40
+           transition-all duration-200
+           focus:border-forest focus:ring-1 focus:ring-forest focus:outline-none
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* FORM LABEL */
+  .luxury-label {
+    @apply block text-[11px] font-semibold uppercase tracking-[0.15em] text-charcoal/70 mb-1.5;
+  }
+
+  /* PORTAL SIDEBAR LINK */
+  .portal-nav-link {
+    @apply flex items-center space-x-3 px-4 py-3 text-xs font-semibold tracking-wider uppercase
+           transition-all duration-200 rounded-none border-l-2 border-transparent
+           text-ivory/70 hover:text-ivory hover:bg-white/5 hover:border-l-earth;
+  }
+
+  .portal-nav-link.active {
+    @apply text-ivory bg-white/10 border-l-earth;
+  }
+
+  /* STAT CARD — Data room metrics */
+  .stat-card {
+    @apply bg-white p-5 sm:p-6 border border-sand/40 shadow-subtle;
+  }
+
+  /* DOCUMENT ROW CARD */
+  .doc-card {
+    @apply bg-white border border-sand/40 p-5 sm:p-6
+           transition-all duration-200
+           hover:border-earth/40 hover:shadow-card;
   }
 }
 
-/* Custom Scrollbar */
+/* ── Utility layer ───────────────────────────────────────────── */
+@layer utilities {
+
+  /* Smooth text fade-in for staggered section reveals */
+  .animate-delay-100 { animation-delay: 100ms; }
+  .animate-delay-200 { animation-delay: 200ms; }
+  .animate-delay-300 { animation-delay: 300ms; }
+  .animate-delay-400 { animation-delay: 400ms; }
+  .animate-delay-500 { animation-delay: 500ms; }
+
+  /* Clamp multi-line text with ellipsis */
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .line-clamp-3 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+
+  /* Prevent content shift on scrollbar appearance */
+  .scrollbar-gutter-stable {
+    scrollbar-gutter: stable;
+  }
+}
+
+/* ── Custom scrollbar ────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: #F7F4EC;
 }
 ::-webkit-scrollbar-thumb {
-  background: #A88B65;
+  background: #D4C3A3;
+  border-radius: 0;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #19382D;
+  background: #A88B65;
+}
+
+/* ── Print styles ────────────────────────────────────────────── */
+@media print {
+  .no-print { display: none !important; }
+
+  body {
+    background: white;
+    color: black;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.75em;
+    color: #666;
+  }
 }
