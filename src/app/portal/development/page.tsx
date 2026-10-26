@@ -217,12 +217,12 @@ export default async function DevelopmentPage() {
                 fill
                 className="object-cover"
               />
-              <div className="absolute bottom-3 left-3 bg-evergreen/90 text-sand text-[10px] tracking-widest uppercase px-2.5 py-1">
-                Masterplan Footprint
+              <div className="absolute bottom-3 left-3 bg-evergreen/95 text-sand text-[10px] tracking-widest uppercase px-2.5 py-1 font-mono font-semibold">
+                Envisioned Masterplan · 15 ha Vision
               </div>
             </div>
-            <span className="text-xs font-semibold text-forest block">Site Zoning & Spatial Arrangement</span>
-            <p className="text-[11px] text-charcoal/70">Reflects 12–15 unit core, buffer zones, and agricultural terraces.</p>
+            <span className="text-xs font-semibold text-forest block">Envisioned Site Zoning & 15 ha Amenity Program</span>
+            <p className="text-[11px] text-charcoal/70">Reflects 12–15 unit hillside enclave, central permaculture & poly-tunnels, retention lake, covered dairy barn, solar microgrid depot, and outer 15 ha amenity buffers.</p>
           </div>
 
           <div className="space-y-2">

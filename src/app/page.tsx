@@ -480,21 +480,21 @@ export default function HomePage() {
             <div className="relative">
               <div className="relative h-[440px] sm:h-[500px] border border-sand/40 overflow-hidden shadow-elevated">
                 <Image
-                  src="/images/moodboard-concept.png"
-                  alt="Jonik Ndovu Farm illustrative architectural concept and site moodboard"
+                  src="/images/masterplan-aerial-vision.jpg"
+                  alt="Jonik Ndovu Farm envisioned aerial masterplan layout"
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />
                 <div className="absolute bottom-4 left-4 right-4 text-ivory">
-                  <span className="text-[10px] tracking-widest uppercase bg-earth/90 text-white px-2 py-0.5 font-semibold">
-                    Architectural & Site Direction
+                  <span className="text-[10px] tracking-widest uppercase bg-earth/95 text-white px-2.5 py-0.5 font-semibold font-mono">
+                    Envisioned Masterplan · 15 ha Vision
                   </span>
-                  <p className="font-serif text-lg font-bold text-white mt-1">
-                    Low-Density Eco-Pavilions
+                  <p className="font-serif text-lg sm:text-xl font-bold text-white mt-1">
+                    Harmonious Agro-Hospitality Layout
                   </p>
-                  <p className="text-xs text-ivory/80">
-                    Oriented toward passive cooling, natural drainage, and expansive vistas.
+                  <p className="text-xs text-ivory/85 leading-relaxed mt-0.5">
+                    Hillside guest enclave, permaculture poly-tunnels, solar microgrid depot, and central hydrology lake.
                   </p>
                 </div>
               </div>
