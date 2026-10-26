@@ -239,7 +239,69 @@ export default function ExperiencePage() {
               </div>
             </div>
 
+            {/* On-Farm Ground Truth · Authentic Cultivation in Segera */}
+            <div className="mt-14 bg-white border border-sand/40 p-6 sm:p-8 lg:p-10 shadow-subtle">
+              <div className="max-w-3xl mb-8 space-y-2">
+                <div className="inline-flex items-center space-x-2 text-xs font-semibold tracking-[0.2em] uppercase text-earth">
+                  <Leaf className="w-3.5 h-3.5" />
+                  <span>On-Farm Reality · Segera Landholding</span>
+                </div>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
+                  Living Permaculture, Already in the Ground
+                </h3>
+                <p className="text-sm text-charcoal/75 leading-relaxed font-light">
+                  Unlike conventional hospitality projects that rely purely on conceptual renderings, Jonik Ndovu Farm is anchored by active agricultural operations already thriving on our 8-hectare Segera holding.
+                </p>
+              </div>
 
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Photo 1: Active Crop Field */}
+                <div className="space-y-3">
+                  <div className="relative h-64 sm:h-72 border border-sand/40 overflow-hidden group shadow-subtle">
+                    <Image
+                      src="/images/actual-farm-crops.jpg"
+                      alt="Actual organic crop field under drip irrigation on Jonik Ndovu Farm in Segera"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-3 left-3 bg-forest text-sand text-[10px] tracking-widest uppercase px-2.5 py-1 font-mono font-bold shadow-md">
+                      Actual Farm Photography · Segera
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-serif text-base font-bold text-forest">
+                      Operational Organic Legume Terraces
+                    </h4>
+                    <p className="text-xs text-charcoal/70 leading-relaxed mt-1">
+                      Lush crop rows under active cultivation, providing fresh produce for the farm-to-table culinary program and enriching soil nitrogen naturally.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Photo 2: Precision Drip Irrigation */}
+                <div className="space-y-3">
+                  <div className="relative h-64 sm:h-72 border border-sand/40 overflow-hidden group shadow-subtle">
+                    <Image
+                      src="/images/actual-farm-irrigation.jpg"
+                      alt="Precision drip irrigation network with control valves on Jonik Ndovu Farm in Segera"
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute top-3 left-3 bg-earth text-white text-[10px] tracking-widest uppercase px-2.5 py-1 font-mono font-bold shadow-md">
+                      Smart Drip Infrastructure · Operational
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="font-serif text-base font-bold text-forest">
+                      Dryland Water Distribution
+                    </h4>
+                    <p className="text-xs text-charcoal/70 leading-relaxed mt-1">
+                      Low-pressure drip lines and zoned manifold valves delivering borehole water directly to root zones with zero evaporation waste.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 
