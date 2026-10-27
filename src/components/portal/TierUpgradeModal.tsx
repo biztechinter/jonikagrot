@@ -179,20 +179,26 @@ export default function TierUpgradeModal({ user, modalOnly = false }: Props) {
               </p>
             </div>
 
-            {/* Range confirmation */}
-            <div className="space-y-1">
-              <label className="block text-xs font-semibold text-forest uppercase tracking-wider">
-                Indicative Investment Ticket Range
-              </label>
-              <select
-                value={indicativeRange}
-                onChange={(e) => setIndicativeRange(e.target.value)}
-                className="w-full p-2.5 bg-ivory/50 border border-sand/80 focus:border-forest text-xs font-mono"
-              >
-                <option value="US$250,000 – US$500,000">US$250,000 – US$500,000 (Syndicate Participant)</option>
-                <option value="US$500,000 – US$1,000,000">US$500,000 – US$1,000,000 (Major Syndicate Partner)</option>
-                <option value="US$1,000,000 – US$2,400,000 (Lead Partner)">US$1,000,000 – US$2,400,000 (Lead Equity Partner)</option>
-              </select>
+            {/* Signatory Profile Summary (Already Captured at Registration) */}
+            <div className="p-3 bg-sand/15 border border-sand/40 grid grid-cols-2 gap-2.5 text-[11px]">
+              <div>
+                <span className="text-[10px] uppercase font-mono text-charcoal/50 block">Signatory</span>
+                <span className="font-semibold text-forest block truncate">{user.name}</span>
+              </div>
+              <div>
+                <span className="text-[10px] uppercase font-mono text-charcoal/50 block">Organization</span>
+                <span className="font-semibold text-forest block truncate">{user.organization || "Private Investor"}</span>
+              </div>
+              <div>
+                <span className="text-[10px] uppercase font-mono text-charcoal/50 block">Account Email</span>
+                <span className="font-mono text-charcoal/80 block truncate">{user.email}</span>
+              </div>
+              <div>
+                <span className="text-[10px] uppercase font-mono text-charcoal/50 block">Registered Ticket Size</span>
+                <span className="font-mono font-semibold text-forest block truncate">
+                  {user.indicativeRange || "US$250,000 – US$500,000"}
+                </span>
+              </div>
             </div>
 
             {/* Diligence Focus Notes */}
