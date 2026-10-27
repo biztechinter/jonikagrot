@@ -67,16 +67,25 @@ export default function MessagesPage() {
   return (
     <div className="space-y-8 animate-fade-in">
       {/* Title */}
-      <div className="bg-white p-6 sm:p-8 border border-sand/50 shadow-card">
-        <span className="text-[11px] uppercase tracking-widest text-earth font-bold block mb-1">
-          Direct Sponsor Channel
-        </span>
-        <h1 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
-          Investor Inquiries & Meeting Scheduling
-        </h1>
-        <p className="text-xs text-charcoal/70 mt-1.5 max-w-xl leading-relaxed">
-          Submit technical questions, request confidential sponsor briefing calls, or petition for Tier 3 data room access.
-        </p>
+      <div className="bg-white p-6 sm:p-8 border border-sand/50 shadow-card flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <span className="text-[11px] uppercase tracking-widest text-earth font-bold block mb-1">
+            Direct Sponsor Channel
+          </span>
+          <h1 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
+            Investor Inquiries & Meeting Scheduling
+          </h1>
+          <p className="text-xs text-charcoal/70 mt-1.5 max-w-xl leading-relaxed">
+            Submit technical questions, request confidential sponsor briefing calls, or petition for Tier 3 data room access.
+          </p>
+        </div>
+        <button
+          type="button"
+          onClick={() => window.dispatchEvent(new CustomEvent("open-tier-upgrade"))}
+          className="luxury-btn-primary text-xs !py-3 !px-5 tracking-wider flex items-center space-x-2 flex-shrink-0"
+        >
+          <span>Request Tier 3 / Sign NDA</span>
+        </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -118,6 +127,24 @@ export default function MessagesPage() {
                 <option value="General Question">General Project Question</option>
               </select>
             </div>
+
+            {formData.type === "Due Diligence Request" && (
+              <div className="p-3.5 bg-amber-50 border border-amber-300 text-amber-900 text-xs flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                <div className="space-y-0.5">
+                  <span className="font-bold text-forest block">Formal NDA Required for Tier 3</span>
+                  <p className="text-[11px] text-charcoal/80 leading-normal">
+                    To unlock the financial XLSX model and full diligence suite, an electronically executed NDA is legally required.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => window.dispatchEvent(new CustomEvent("open-tier-upgrade"))}
+                  className="px-3 py-1.5 bg-forest hover:bg-forest-light text-sand text-[11px] font-bold uppercase tracking-wider whitespace-nowrap"
+                >
+                  Sign NDA Now
+                </button>
+              </div>
+            )}
 
             <div>
               <label className="block font-semibold uppercase tracking-wider text-charcoal mb-1">

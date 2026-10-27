@@ -124,6 +124,7 @@ export default function AccessRequestsPage() {
                   );
                   const isAlreadyRegistered = matchedUser?.role === "registered";
                   const isAlreadyApproved = matchedUser?.role === "approved";
+                  const hasSignedNDA = Boolean(matchedUser?.ndaAccepted);
 
                   return (
                     <tr key={req.id} className="hover:bg-sand/10 transition-colors">
@@ -193,9 +194,13 @@ export default function AccessRequestsPage() {
                             </span>
                           )}
 
-                          {req.message?.includes("NDA") && (
-                            <span className="block text-[10px] font-mono text-earth font-bold">
-                              ✓ Digital NDA Executed
+                          {hasSignedNDA ? (
+                            <span className="block text-[10px] font-mono text-emerald-800 font-bold bg-emerald-50 px-1.5 py-0.5 border border-emerald-200">
+                              ✓ Digital NDA Executed {matchedUser?.ndaAcceptedAt && `(${new Date(matchedUser.ndaAcceptedAt).toLocaleDateString()})`}
+                            </span>
+                          ) : (
+                            <span className="block text-[10px] font-mono text-amber-900 font-semibold bg-amber-50 px-1.5 py-0.5 border border-amber-200">
+                              ⚠ NDA Not Executed
                             </span>
                           )}
 
@@ -209,13 +214,23 @@ export default function AccessRequestsPage() {
                       <td className="p-3.5 align-top text-right">
                         {req.status === "pending" ? (
                           <div className="flex flex-col items-end space-y-1.5">
-                            <button
-                              disabled={actionLoading === req.id}
-                              onClick={() => handleAction(req.id, "APPROVE_REQUEST", "approved")}
-                              className="w-full sm:w-auto px-3 py-1.5 bg-forest hover:bg-forest-light text-sand text-[10px] uppercase font-bold tracking-wider transition-colors shadow-sm text-center"
-                            >
-                              Approve Tier 3
-                            </button>
+                            {hasSignedNDA ? (
+                              <button
+                                disabled={actionLoading === req.id}
+                                onClick={() => handleAction(req.id, "APPROVE_REQUEST", "approved")}
+                                className="w-full sm:w-auto px-3 py-1.5 bg-forest hover:bg-forest-light text-sand text-[10px] uppercase font-bold tracking-wider transition-colors shadow-sm text-center"
+                              >
+                                Approve Tier 3
+                              </button>
+                            ) : (
+                              <button
+                                disabled={true}
+                                title="Tier 3 requires a digitally signed NDA by the investor first"
+                                className="w-full sm:w-auto px-3 py-1.5 bg-sand/40 text-charcoal/50 text-[10px] uppercase font-bold tracking-wider cursor-not-allowed text-center border border-sand/60"
+                              >
+                                NDA Required For Tier 3
+                              </button>
+                            )}
 
                             <div className="flex items-center space-x-1.5">
                               {isAlreadyRegistered ? (

@@ -2,6 +2,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { PROJECT_FACTS, SOURCES_AND_USES_ITEMS } from "@/data/projectData";
 import { FileSpreadsheet, Download, AlertTriangle, Lock, CheckCircle2, Shield } from "lucide-react";
 import Link from "next/link";
+import TierUpgradeTrigger from "@/components/portal/TierUpgradeTrigger";
 
 export default async function FinancialsPage() {
   const user = await getCurrentUser();
@@ -70,12 +71,9 @@ export default async function FinancialsPage() {
               <p className="text-[11px] text-ivory/60 max-w-xs">
                 Your current tier is Registered (Tier 2). Please request an administrative upgrade to unlock the financial spreadsheet.
               </p>
-              <Link
-                href="/portal/messages"
-                className="inline-block text-xs uppercase tracking-wider font-bold text-earth underline hover:text-sand"
-              >
-                Request Tier Upgrade
-              </Link>
+              <TierUpgradeTrigger className="inline-block text-xs uppercase tracking-wider font-bold text-earth underline hover:text-sand cursor-pointer">
+                Request Tier Upgrade (Sign NDA)
+              </TierUpgradeTrigger>
             </div>
           )}
         </div>

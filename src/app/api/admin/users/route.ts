@@ -64,17 +64,31 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ error: "Request not found" }, { status: 404 });
       }
 
-      reqObj.status = "approved";
       const approvedRole: UserRole = ALLOWED_ROLES.includes(targetRole as UserRole)
         ? (targetRole as UserRole)
         : "approved";
+
+      const matchedUser = db.getUserByEmail(reqObj.businessEmail);
+
+      // ── STRICT SECURITY GUARD: Tier 3 requires an executed NDA ───────
+      if (approvedRole === "approved") {
+        if (!matchedUser || !matchedUser.ndaAccepted) {
+          return NextResponse.json(
+            {
+              error: `Cannot grant Tier 3 Diligence Access to ${reqObj.fullName}: A digitally executed Non-Disclosure Agreement (NDA) is strictly required before Tier 3 can be unlocked.`,
+            },
+            { status: 400 }
+          );
+        }
+      }
+
+      reqObj.status = "approved";
       reqObj.assignedRole = approvedRole;
       reqObj.reviewedAt = new Date().toISOString();
       reqObj.reviewedBy = user.email;
       db.saveAccessRequest(reqObj);
 
-      // Also elevate user account
-      const matchedUser = db.getUserByEmail(reqObj.businessEmail);
+      // Elevate user account
       if (matchedUser) {
         matchedUser.role = approvedRole;
         matchedUser.approvedAt = new Date().toISOString();
@@ -135,6 +149,32 @@ export async function POST(req: NextRequest) {
           { error: "Administrators cannot change their own role." },
           { status: 400 }
         );
+      }
+
+      // ── STRICT SECURITY GUARD: Tier 3 requires an executed NDA ───────
+      if (targetRole === "approved") {
+        if (!targetUser.ndaAccepted) {
+          return NextResponse.json(
+            {
+              error: `Cannot grant Tier 3 Diligence Access to ${targetUser.name}: A digitally executed Non-Disclosure Agreement (NDA) is strictly required before Tier 3 can be unlocked.`,
+            },
+            { status: 400 }
+          );
+        }
+        targetUser.approvedAt = new Date().toISOString();
+        targetUser.approvedBy = user.email;
+
+        // Also sync any pending accessRequest
+        const pendingReq = db.getAccessRequests().find(
+          (r) => r.businessEmail.toLowerCase() === targetUser.email.toLowerCase()
+        );
+        if (pendingReq) {
+          pendingReq.status = "approved";
+          pendingReq.assignedRole = "approved";
+          pendingReq.reviewedAt = new Date().toISOString();
+          pendingReq.reviewedBy = user.email;
+          db.saveAccessRequest(pendingReq);
+        }
       }
 
       const prevRole = targetUser.role;

@@ -3,6 +3,7 @@ import { getCurrentUser } from "@/lib/auth";
 import { PROJECT_FACTS, INITIAL_DOCUMENTS } from "@/data/projectData";
 import CampaignTimetableCard from "@/components/campaign/CampaignTimetableCard";
 import TierUpgradeModal from "@/components/portal/TierUpgradeModal";
+import TierUpgradeTrigger from "@/components/portal/TierUpgradeTrigger";
 import {
   Shield,
   Lock,
@@ -225,9 +226,9 @@ export default async function PortalDashboard() {
                   <Lock className="w-3.5 h-3.5" />
                   <span>Restricted to Tier 3</span>
                 </div>
-                <Link href="/portal/messages" className="text-earth font-bold hover:underline">
-                  Request Access
-                </Link>
+                <TierUpgradeTrigger className="text-earth font-bold hover:underline cursor-pointer">
+                  Request Access (Sign NDA)
+                </TierUpgradeTrigger>
               </div>
             )}
           </div>

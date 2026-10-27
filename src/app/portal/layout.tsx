@@ -2,6 +2,7 @@ import { redirect } from "next/navigation";
 import { getCurrentUser } from "@/lib/auth";
 import PortalSidebar from "@/components/portal/PortalSidebar";
 import InvestorOnboardingModal from "@/components/portal/InvestorOnboardingModal";
+import TierUpgradeModal from "@/components/portal/TierUpgradeModal";
 
 export const metadata = {
   title: "Investor Portal | Jonik Ndovu Farm",
@@ -26,6 +27,7 @@ export default async function PortalLayout({
   return (
     <div className="min-h-screen bg-ivory flex flex-col lg:flex-row">
       <InvestorOnboardingModal user={user} />
+      <TierUpgradeModal user={user} modalOnly />
       <PortalSidebar user={user} />
       <div className="flex-1 flex flex-col min-w-0 overflow-y-auto">
         <header className="bg-white border-b border-sand/30 px-6 py-4 flex items-center justify-between">

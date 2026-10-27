@@ -289,7 +289,7 @@ export default function InvestorsDirectoryPage() {
 
                     <td className="p-3.5 whitespace-nowrap">
                       <span
-                        className={`px-2 py-0.5 text-[10px] font-mono uppercase font-bold ${
+                        className={`px-2 py-0.5 text-[10px] font-mono uppercase font-bold inline-block ${
                           u.role === "approved"
                             ? "bg-earth text-white"
                             : "bg-sand text-evergreen"
@@ -297,6 +297,15 @@ export default function InvestorsDirectoryPage() {
                       >
                         {u.role}
                       </span>
+                      {u.ndaAccepted ? (
+                        <span className="text-[10px] font-mono text-emerald-700 font-semibold block mt-1">
+                          ✓ NDA Executed
+                        </span>
+                      ) : (
+                        <span className="text-[10px] font-mono text-amber-800 font-semibold block mt-1">
+                          ⚠ NDA Not Signed
+                        </span>
+                      )}
                     </td>
 
                     <td className="p-3.5 whitespace-nowrap">
@@ -318,13 +327,23 @@ export default function InvestorsDirectoryPage() {
                     <td className="p-3.5 text-right whitespace-nowrap">
                       <div className="flex items-center justify-end space-x-2">
                         {u.role === "registered" ? (
-                          <button
-                            disabled={actionLoading === u.id}
-                            onClick={() => handleUpdateRole(u.id, "approved")}
-                            className="px-2.5 py-1 bg-earth hover:bg-earth-dark text-white text-[10px] uppercase font-bold"
-                          >
-                            Upgrade Tier 3
-                          </button>
+                          u.ndaAccepted ? (
+                            <button
+                              disabled={actionLoading === u.id}
+                              onClick={() => handleUpdateRole(u.id, "approved")}
+                              className="px-2.5 py-1 bg-earth hover:bg-earth-dark text-white text-[10px] uppercase font-bold"
+                            >
+                              Upgrade Tier 3
+                            </button>
+                          ) : (
+                            <button
+                              disabled={true}
+                              title="Investor must execute the Non-Disclosure Agreement (NDA) before Tier 3 clearance can be granted."
+                              className="px-2.5 py-1 bg-sand/40 text-charcoal/40 text-[10px] uppercase font-bold border border-sand/60 cursor-not-allowed"
+                            >
+                              NDA Required
+                            </button>
+                          )
                         ) : (
                           <button
                             disabled={actionLoading === u.id}

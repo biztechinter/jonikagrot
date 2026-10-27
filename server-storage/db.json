@@ -151,12 +151,17 @@
       "status": "active",
       "emailVerified": true,
       "category": "Private Investor",
-      "interest": "Equity",
+      "interest": "Debt or Structured Financing",
       "indicativeRange": "US$250,000 – US$500,000",
       "createdAt": "2026-10-27T00:27:50.437Z",
-      "notes": "Registered and authenticated via Google / Gmail OAuth 2.0.",
+      "notes": "Registered via Google OAuth 2.0. Onboarding completed.",
       "passwordHash": "0f4989bb3a1a1258784560a158d4c4bcca0f775258673455850fb7dd5319c9c31dcf0e071d74552a74f07e910d2939d517f4680689256502c4fe292854c36af8",
-      "passwordSalt": "06ad3dd82722524fc299f7d56fd299ed"
+      "passwordSalt": "06ad3dd82722524fc299f7d56fd299ed",
+      "organization": "TEST",
+      "country": "CANADA",
+      "termsAccepted": true,
+      "termsAcceptedAt": "2026-10-27T07:24:55.106Z",
+      "profileCompleted": true
     }
   ],
   "accessRequests": [
@@ -164,12 +169,12 @@
       "id": "req-g-jonikduo",
       "fullName": "Jonik Duo",
       "businessEmail": "jonikduo@gmail.com",
-      "organization": "—",
-      "country": "—",
+      "organization": "TEST",
+      "country": "CANADA",
       "category": "Private Investor",
-      "interest": "Equity",
+      "interest": "Debt or Structured Financing",
       "indicativeRange": "US$250,000 – US$500,000",
-      "message": "Registered via Google / Gmail OAuth 2.0. Has submitted multiple Tier 3 access inquiries via the investor portal (Due Diligence Request).",
+      "message": "Registered via Google OAuth 2.0. Investor onboarding completed.",
       "privacyAccepted": true,
       "emailVerified": true,
       "status": "pending",
@@ -623,6 +628,17 @@
   ],
   "inquiries": [
     {
+      "id": "inq-1793085970004",
+      "userId": "usr-g-1793060870437",
+      "userName": "Jonik Duo",
+      "userEmail": "jonikduo@gmail.com",
+      "subject": "Testing New Upgrade",
+      "type": "Due Diligence Request",
+      "message": "Please grant me tier 3 upgrade",
+      "status": "new",
+      "createdAt": "2026-10-27T07:26:10.004Z"
+    },
+    {
       "id": "inq-1793063020308",
       "userId": "usr-g-1793060870437",
       "userName": "Jonik Duo",
@@ -680,6 +696,58 @@
     }
   ],
   "auditLogs": [
+    {
+      "id": "aud-1793086100021",
+      "timestamp": "2026-10-27T07:28:20.021Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "ACCESS_REQUEST_APPROVED",
+      "targetResource": "jonikduo@gmail.com",
+      "details": "Administrator approved investor access for Jonik Duo (jonikduo@gmail.com) with role 'approved'."
+    },
+    {
+      "id": "aud-1793086012187",
+      "timestamp": "2026-10-27T07:26:52.187Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "details": "Administrator Biztech International (biztechinter@gmail.com) authenticated via Google OAuth 2.0."
+    },
+    {
+      "id": "aud-1793086005244",
+      "timestamp": "2026-10-27T07:26:45.244Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "USER_LOGOUT",
+      "ipAddress": "::1",
+      "details": "User signed out. IP: ::1."
+    },
+    {
+      "id": "aud-1793085970018",
+      "timestamp": "2026-10-27T07:26:10.018Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "INQUIRY_SUBMITTED",
+      "ipAddress": "::1",
+      "details": "Investor submitted Due Diligence Request: \"Testing New Upgrade\". IP: ::1."
+    },
+    {
+      "id": "aud-1793085895131",
+      "timestamp": "2026-10-27T07:24:55.131Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "PROFILE_COMPLETED",
+      "targetResource": "jonikduo@gmail.com",
+      "details": "Investor Jonik Duo (jonikduo@gmail.com) completed accreditation onboarding. Firm: TEST, Country: CANADA, Terms Accepted."
+    },
+    {
+      "id": "aud-1793085820095",
+      "timestamp": "2026-10-27T07:23:40.095Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "details": "User signed in via Google OAuth with role 'registered'."
+    },
     {
       "id": "aud-1793063031511",
       "timestamp": "2026-10-27T01:03:51.511Z",

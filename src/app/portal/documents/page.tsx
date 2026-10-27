@@ -280,12 +280,13 @@ export default function DocumentLibraryPage() {
                           Requires Tier 3 Clearance
                         </span>
                       </div>
-                      <Link
-                        href="/portal/messages"
-                        className="text-[11px] font-bold text-earth hover:text-forest underline"
+                      <button
+                        type="button"
+                        onClick={() => window.dispatchEvent(new CustomEvent("open-tier-upgrade"))}
+                        className="text-[11px] font-bold text-earth hover:text-forest underline cursor-pointer bg-transparent border-0 p-0"
                       >
                         Request Tier Upgrade
-                      </Link>
+                      </button>
                     </div>
                   )}
                 </div>
