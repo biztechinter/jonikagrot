@@ -47,6 +47,9 @@ export default function InvestorOnboardingModal({ user }: Props) {
   const [indicativeRange, setIndicativeRange] = useState(
     user.indicativeRange || "US$250,000 – US$500,000"
   );
+  const [websiteOrLinkedin, setWebsiteOrLinkedin] = useState(
+    user.websiteOrLinkedin || ""
+  );
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -82,6 +85,7 @@ export default function InvestorOnboardingModal({ user }: Props) {
           category,
           interest,
           indicativeRange,
+          websiteOrLinkedin: websiteOrLinkedin.trim(),
           termsAccepted: true,
         }),
       });
@@ -236,6 +240,23 @@ export default function InvestorOnboardingModal({ user }: Props) {
                   <option value="US$1,000,000 – US$2,400,000 (Lead Partner)">US$1,000,000 – US$2,400,000 (Lead Equity Partner)</option>
                   <option value="Prefer not to state at this stage">Prefer not to state at this stage</option>
                 </select>
+              </div>
+
+              {/* Company Website or LinkedIn Profile */}
+              <div>
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-charcoal mb-1">
+                  Corporate Website or Professional LinkedIn Profile (Recommended)
+                </label>
+                <input
+                  type="url"
+                  value={websiteOrLinkedin}
+                  onChange={(e) => setWebsiteOrLinkedin(e.target.value)}
+                  placeholder="https://www.linkedin.com/in/... or https://yourfirm.com"
+                  className="w-full px-3 py-2 bg-ivory/50 border border-sand/80 focus:border-forest focus:outline-none focus:bg-white text-xs font-mono"
+                />
+                <span className="text-[10px] text-charcoal/55 block mt-0.5">
+                  Helps project directors expedite your accreditation review for Tier 3 data room clearance.
+                </span>
               </div>
 
               {/* Legal Terms & Privacy Box */}

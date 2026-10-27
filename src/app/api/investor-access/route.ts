@@ -46,6 +46,7 @@ export async function POST(req: NextRequest) {
       category,
       interest,
       indicativeRange,
+      websiteOrLinkedin,
       message,
       privacyAccepted,
       password,
@@ -76,6 +77,7 @@ export async function POST(req: NextRequest) {
     const safeOrganization = sanitizeString(organization, 256);
     const safeMessage = sanitizeString(message, 2048);
     const safeRange = sanitizeString(indicativeRange, 128);
+    const safeWebsite = websiteOrLinkedin ? sanitizeString(websiteOrLinkedin, 256) : undefined;
     const normalisedEmail = (businessEmail as string).trim().toLowerCase();
 
     // ── Duplicate guard: one pending request per email ───────────────
@@ -106,6 +108,7 @@ export async function POST(req: NextRequest) {
       category: category as AccessRequest["category"],
       interest: interest as AccessRequest["interest"],
       indicativeRange: safeRange,
+      websiteOrLinkedin: safeWebsite,
       message: safeMessage,
       privacyAccepted: true,
       status: "pending",
@@ -127,6 +130,9 @@ export async function POST(req: NextRequest) {
       existingUser.category = category as User["category"];
       existingUser.interest = interest as User["interest"];
       existingUser.indicativeRange = safeRange;
+      if (safeWebsite) {
+        existingUser.websiteOrLinkedin = safeWebsite;
+      }
       if (!existingUser.passwordHash) {
         existingUser.passwordHash = hash;
         existingUser.passwordSalt = salt;
@@ -145,6 +151,7 @@ export async function POST(req: NextRequest) {
         category: category as User["category"],
         interest: interest as User["interest"],
         indicativeRange: safeRange,
+        websiteOrLinkedin: safeWebsite,
         passwordHash: hash,
         passwordSalt: salt,
         authProvider: "credentials",

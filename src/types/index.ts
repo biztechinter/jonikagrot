@@ -27,6 +27,7 @@ export interface User {
   category?: InvestorCategory;
   interest?: InvestmentInterest;
   indicativeRange?: string;
+  websiteOrLinkedin?: string;
   status: "active" | "suspended" | "pending";
   emailVerified?: boolean;
   verificationCode?: string;
@@ -76,6 +77,7 @@ export interface AccessRequest {
   category: InvestorCategory;
   interest: InvestmentInterest;
   indicativeRange?: string;
+  websiteOrLinkedin?: string;
   message?: string;
   privacyAccepted: boolean;
   emailVerified?: boolean;

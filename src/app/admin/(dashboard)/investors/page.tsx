@@ -12,6 +12,7 @@ import {
   ShieldAlert,
   Check,
   AlertCircle,
+  ExternalLink,
 } from "lucide-react";
 
 export default function InvestorsDirectoryPage() {
@@ -283,6 +284,17 @@ export default function InvestorsDirectoryPage() {
                     <td className="p-3.5">
                       <span className="font-semibold text-forest block">{u.name}</span>
                       <span className="text-[10px] text-charcoal/50 block">{u.organization || "Individual"}</span>
+                      {u.websiteOrLinkedin && (
+                        <a
+                          href={u.websiteOrLinkedin.startsWith("http") ? u.websiteOrLinkedin : `https://${u.websiteOrLinkedin}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[10px] text-forest underline hover:text-earth flex items-center space-x-1 pt-0.5"
+                        >
+                          <ExternalLink className="w-3 h-3 flex-shrink-0" />
+                          <span className="truncate max-w-[160px]">Website / Profile</span>
+                        </a>
+                      )}
                     </td>
 
                     <td className="p-3.5 font-mono text-[11px] text-charcoal/80">{u.email}</td>

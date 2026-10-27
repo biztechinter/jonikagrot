@@ -25,6 +25,7 @@ export async function POST(req: NextRequest) {
       category,
       interest,
       indicativeRange,
+      websiteOrLinkedin,
       termsAccepted,
     } = body as {
       organization?: string;
@@ -32,6 +33,7 @@ export async function POST(req: NextRequest) {
       category?: string;
       interest?: string;
       indicativeRange?: string;
+      websiteOrLinkedin?: string;
       termsAccepted?: boolean;
     };
 
@@ -61,6 +63,7 @@ export async function POST(req: NextRequest) {
     const safeCategory = (category as InvestorCategory) || "Private Investor";
     const safeInterest = (interest as InvestmentInterest) || "Equity";
     const safeRange = indicativeRange ? sanitizeString(indicativeRange, 128) : "US$250,000 – US$500,000";
+    const safeWebsite = websiteOrLinkedin ? sanitizeString(websiteOrLinkedin, 256) : undefined;
 
     // Update user record
     user.organization = safeOrg;
@@ -68,6 +71,9 @@ export async function POST(req: NextRequest) {
     user.category = safeCategory;
     user.interest = safeInterest;
     user.indicativeRange = safeRange;
+    if (safeWebsite) {
+      user.websiteOrLinkedin = safeWebsite;
+    }
     user.termsAccepted = true;
     user.termsAcceptedAt = new Date().toISOString();
     user.profileCompleted = true;
@@ -85,6 +91,9 @@ export async function POST(req: NextRequest) {
       existingReq.category = safeCategory;
       existingReq.interest = safeInterest;
       existingReq.indicativeRange = safeRange;
+      if (safeWebsite) {
+        existingReq.websiteOrLinkedin = safeWebsite;
+      }
       existingReq.privacyAccepted = true;
       db.saveAccessRequest(existingReq);
     }

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { AccessRequest, User, UserRole } from "@/types";
-import { CheckCircle2, XCircle, Clock, ShieldCheck, AlertCircle, RefreshCw } from "lucide-react";
+import { CheckCircle2, XCircle, Clock, ShieldCheck, AlertCircle, RefreshCw, Calendar, ExternalLink } from "lucide-react";
 
 export default function AccessRequestsPage() {
   const [requests, setRequests] = useState<AccessRequest[]>([]);
@@ -138,6 +138,17 @@ export default function AccessRequestsPage() {
                               {req.organization}
                             </span>
                           )}
+                          {(req.websiteOrLinkedin || matchedUser?.websiteOrLinkedin) && (
+                            <a
+                              href={(req.websiteOrLinkedin || matchedUser?.websiteOrLinkedin)!.startsWith("http") ? (req.websiteOrLinkedin || matchedUser?.websiteOrLinkedin) : `https://${req.websiteOrLinkedin || matchedUser?.websiteOrLinkedin}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[10px] text-forest hover:text-earth underline flex items-center space-x-1 pt-0.5"
+                            >
+                              <ExternalLink className="w-3 h-3 flex-shrink-0" />
+                              <span className="truncate max-w-[200px]">Verify Profile / Website</span>
+                            </a>
+                          )}
                           {req.message && (
                             <p className="text-[11px] text-charcoal/70 italic mt-1.5 p-2 bg-sand/15 border-l-2 border-sand rounded-none">
                               “{req.message}”
@@ -233,6 +244,16 @@ export default function AccessRequestsPage() {
                             )}
 
                             <div className="flex items-center space-x-1.5">
+                              {/* 1-Click Qualification Call Invite */}
+                              <a
+                                href={`mailto:${req.businessEmail}?subject=Jonik%20Ndovu%20Farm%20-%20Introductory%20Investor%20Briefing%20Call&body=Dear%20${encodeURIComponent(req.fullName)},%0D%0A%0D%0AThank%20you%20for%20your%20interest%20in%20Jonik%20Ndovu%20Farm%20and%20petitioning%20for%20Tier%203%20diligence%20clearance.%0D%0A%0D%0ABefore%20unlocking%20our%20proprietary%2010-Year%20Financial%20Model%20and%20unredacted%20project%20assets,%20our%20executive%20directors%20would%20like%20to%20invite%20you%20to%20a%20brief%2015-minute%20introductory%20video%20call%20to%20align%20on%20investment%20criteria.%0D%0A%0D%0APlease%20let%20us%20know%20your%20availability%20over%20the%20coming%20days%20or%20feel%20free%20to%20share%20your%20calendar%20link.%0D%0A%0D%0ABest%20regards,%0D%0AJonik%20Ndovu%20Farm%20Management`}
+                                className="px-2 py-1 bg-sand/30 hover:bg-sand/60 text-forest border border-sand/60 text-[10px] uppercase font-bold tracking-wider transition-colors inline-flex items-center space-x-1"
+                                title="Send pre-filled email invitation for a 15-minute qualification call"
+                              >
+                                <Calendar className="w-3 h-3 text-earth" />
+                                <span>Invite Call</span>
+                              </a>
+
                               {isAlreadyRegistered ? (
                                 <button
                                   disabled={actionLoading === req.id}

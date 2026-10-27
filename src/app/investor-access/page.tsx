@@ -27,6 +27,7 @@ export default function InvestorAccessPage() {
     category: "Private Investor" as InvestorCategory,
     interest: "Equity" as InvestmentInterest,
     indicativeRange: "",
+    websiteOrLinkedin: "",
     message: "",
     privacyAccepted: false,
     password: "",
@@ -429,6 +430,23 @@ export default function InvestorAccessPage() {
                     </select>
                     <span className="text-[11px] text-charcoal/50 mt-1 block">
                       Indicative only. No capital commitment is required or inferred.
+                    </span>
+                  </div>
+
+                  {/* Corporate Website or LinkedIn Profile */}
+                  <div>
+                    <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+                      Corporate Website or Professional LinkedIn Profile (Recommended)
+                    </label>
+                    <input
+                      type="url"
+                      value={formData.websiteOrLinkedin}
+                      onChange={(e) => setFormData({ ...formData, websiteOrLinkedin: e.target.value })}
+                      placeholder="https://www.linkedin.com/in/... or https://yourfirm.com"
+                      className="w-full px-3.5 py-2.5 bg-ivory/50 border border-sand/80 focus:border-forest focus:outline-none focus:bg-white text-charcoal transition-colors text-sm font-mono"
+                    />
+                    <span className="text-[11px] text-charcoal/50 mt-1 block">
+                      Assists project directors in expediting verification for Tier 3 data room clearance.
                     </span>
                   </div>
 

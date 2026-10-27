@@ -4,6 +4,7 @@ import path from "path";
 import { getCurrentUser, canAccessDocument } from "@/lib/auth";
 import { db } from "@/lib/storage";
 import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
+import { watermarkPdf } from "@/lib/watermark";
 
 interface Params {
   params: {
@@ -114,7 +115,12 @@ export async function GET(req: NextRequest, { params }: Params) {
       );
     }
 
-    const fileBuffer = fs.readFileSync(filePath);
+    let fileBuffer = fs.readFileSync(filePath);
+
+    // ── Dynamic Institutional Watermarking for PDFs ───────────────────
+    if (ext === ".pdf") {
+      fileBuffer = await watermarkPdf(fileBuffer, user.email, ip);
+    }
 
     // ── Audit and metrics ─────────────────────────────────────────────
     db.incrementDocumentDownload(doc.id);
@@ -124,7 +130,7 @@ export async function GET(req: NextRequest, { params }: Params) {
       action: "DOCUMENT_DOWNLOADED",
       targetResource: doc.filename,
       ipAddress: ip,
-      details: `Downloaded '${doc.title}' (${doc.confidentiality}, Version ${doc.version}). IP: ${ip}.`,
+      details: `Downloaded '${doc.title}' (${doc.confidentiality}, Version ${doc.version})${ext === ".pdf" ? " with dynamic investor watermark" : ""}. IP: ${ip}.`,
     });
 
     const response = new NextResponse(fileBuffer);
