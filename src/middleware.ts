@@ -16,9 +16,13 @@ export function middleware(request: NextRequest) {
   const sessionCookie = request.cookies.get("jonik_session_user");
 
   // ── Protected route enforcement ───────────────────────────────────
-  if (pathname.startsWith("/portal") || pathname.startsWith("/admin")) {
+  if (
+    pathname.startsWith("/portal") ||
+    (pathname.startsWith("/admin") && pathname !== "/admin/login")
+  ) {
     if (!sessionCookie?.value) {
-      const loginUrl = new URL("/login", request.url);
+      const isTryingAdmin = pathname.startsWith("/admin");
+      const loginUrl = new URL(isTryingAdmin ? "/admin/login" : "/login", request.url);
 
       // Validate redirect path: only allow same-origin relative paths.
       const safeRedirect = getSafeRedirect(pathname);

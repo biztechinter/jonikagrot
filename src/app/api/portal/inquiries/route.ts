@@ -4,6 +4,9 @@ import { db } from "@/lib/storage";
 import { InvestorInquiry } from "@/types";
 import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
 import { sanitizeString } from "@/lib/validation";
+import { notifyAdminNewInquiry } from "@/lib/email";
+
+export const dynamic = "force-dynamic";
 
 const ALLOWED_INQUIRY_TYPES = new Set([
   "General Question",
@@ -102,6 +105,16 @@ export async function POST(req: NextRequest) {
       ipAddress: ip,
       details: `Investor submitted ${newInquiry.type}: "${newInquiry.subject}". IP: ${ip}.`,
     });
+
+    // ── Notify admins of new message (fire-and-forget) ─────────────────────
+    notifyAdminNewInquiry({
+      investorName: user.name,
+      investorEmail: user.email,
+      type: newInquiry.type,
+      subject: newInquiry.subject,
+      message: newInquiry.message,
+      preferredDate: newInquiry.preferredDate,
+    }).catch((err) => console.error("[Email] Inquiry notification failed:", err));
 
     return NextResponse.json({ success: true, inquiry: newInquiry });
   } catch (err: unknown) {

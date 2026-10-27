@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, Shield, Lock, ChevronRight } from "lucide-react";
+import CampaignWindowBadge from "@/components/campaign/CampaignWindowBadge";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -46,10 +47,13 @@ export default function Navbar() {
         role="banner"
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled || !isHome
-            ? "bg-evergreen/95 backdrop-blur-md shadow-elevated border-b border-sand/20 py-3"
-            : "bg-gradient-to-b from-evergreen/95 via-evergreen/60 to-transparent py-4 sm:py-5"
+            ? "bg-evergreen/95 backdrop-blur-md shadow-elevated border-b border-sand/20"
+            : "bg-gradient-to-b from-evergreen/95 via-evergreen/60 to-transparent"
         }`}
       >
+        {/* Campaign Timetable Top Bar */}
+        <CampaignWindowBadge />
+
         {/* Accessible Skip Link — in-flow banner that pushes nav items down when active; completely hidden and zero-height normally */}
         <a
           href="#main-content"
@@ -66,7 +70,7 @@ export default function Navbar() {
           <span aria-hidden="true">&darr;</span>
         </a>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
           <div className="flex items-center justify-between gap-4 xl:gap-8">
             {/* Brand Wordmark — locked on single line, shrink-0 prevents awkward wrapping */}
             <Link

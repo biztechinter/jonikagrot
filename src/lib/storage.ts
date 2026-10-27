@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { User, AccessRequest, DiligenceDocument, InvestorInquiry, AuditEvent, UserRole } from "@/types";
+import { User, AccessRequest, DiligenceDocument, InvestorInquiry, AuditEvent, UserRole, CampaignWindowConfig } from "@/types";
 import { INITIAL_DOCUMENTS } from "@/data/projectData";
 
 interface DBData {
@@ -9,6 +9,7 @@ interface DBData {
   documents: DiligenceDocument[];
   inquiries: InvestorInquiry[];
   auditLogs: AuditEvent[];
+  campaignWindow?: CampaignWindowConfig;
 }
 
 const DB_PATH = path.join(process.cwd(), "server-storage", "db.json");
@@ -21,6 +22,9 @@ const SEED_USERS: User[] = [
     organization: "Jonik Ndovu Farm Management",
     country: "Kenya",
     role: "admin",
+    passwordHash: "12aa80b677752250a3aceed4c69114f73dc0d4cfe3f2786ccf9276d26c57f9f69680e3e3612d950edf8eab4842057ec5fd95441e2476d8af143b982c68ecfec6",
+    passwordSalt: "d9ca3553daf2747c09c77e0513e05a9a",
+    authProvider: "credentials",
     status: "active",
     createdAt: "2026-10-01T09:00:00Z",
     notes: "Platform Super Administrator",
@@ -35,7 +39,12 @@ const SEED_USERS: User[] = [
     category: "Hospitality or Strategic Investor",
     interest: "Equity",
     indicativeRange: "$500,000 – $1,000,000",
+    passwordHash: "2220e500278d07715332f45eb93f692bcdf4c288cbb1391adf5610ee27a8de2ce1096bdbf84b1af5c74de57164891e13bdb774781a5d9ec7e9d09c50ba59497c",
+    passwordSalt: "b4d0994939d361998041c37ad87e39d6",
+    authProvider: "credentials",
     status: "active",
+    ndaAccepted: true,
+    ndaAcceptedAt: "2026-10-06T14:20:00Z",
     createdAt: "2026-10-05T11:30:00Z",
     approvedAt: "2026-10-06T14:20:00Z",
     approvedBy: "admin@jonikndovufarm.com",
@@ -51,6 +60,9 @@ const SEED_USERS: User[] = [
     category: "Family Office or Investment Company",
     interest: "Joint Venture or Strategic Partnership",
     indicativeRange: "$250,000 – $500,000",
+    passwordHash: "0f4989bb3a1a1258784560a158d4c4bcca0f775258673455850fb7dd5319c9c31dcf0e071d74552a74f07e910d2939d517f4680689256502c4fe292854c36af8",
+    passwordSalt: "06ad3dd82722524fc299f7d56fd299ed",
+    authProvider: "credentials",
     status: "active",
     createdAt: "2026-10-18T16:45:00Z",
     notes: "Registered portal user; pending administrative diligence interview for Tier 3 upgrade.",
@@ -133,6 +145,17 @@ const SEED_AUDIT_LOGS: AuditEvent[] = [
   },
 ];
 
+const DEFAULT_CAMPAIGN_WINDOW: CampaignWindowConfig = {
+  roundName: "Phase 1 Lead Partner & Syndicate Allocation",
+  closingDate: new Date(Date.now() + 45 * 24 * 60 * 60 * 1000).toISOString(),
+  status: "active",
+  enabled: true,
+  targetCapital: "US$2.4 Million",
+  institutionalNote: "Structured timetable for lead investor diligence and indicative syndicate allocations prior to capital lock.",
+  lastUpdated: new Date().toISOString(),
+  updatedBy: "system",
+};
+
 function getDB(): DBData {
   if (!fs.existsSync(DB_PATH)) {
     const initialData: DBData = {
@@ -141,6 +164,7 @@ function getDB(): DBData {
       documents: INITIAL_DOCUMENTS,
       inquiries: [],
       auditLogs: SEED_AUDIT_LOGS,
+      campaignWindow: DEFAULT_CAMPAIGN_WINDOW,
     };
     fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
     fs.writeFileSync(DB_PATH, JSON.stringify(initialData, null, 2), "utf-8");
@@ -148,7 +172,36 @@ function getDB(): DBData {
   }
   try {
     const raw = fs.readFileSync(DB_PATH, "utf-8");
-    return JSON.parse(raw);
+    const parsed: DBData = JSON.parse(raw);
+    let mutated = false;
+
+    if (!parsed.campaignWindow) {
+      parsed.campaignWindow = DEFAULT_CAMPAIGN_WINDOW;
+      mutated = true;
+    }
+
+    // Migrate any users that lack password hashes
+    parsed.users.forEach((u) => {
+      if (!u.passwordHash) {
+        if (u.role === "admin" || u.email === "admin@jonikndovufarm.com") {
+          u.passwordHash = "12aa80b677752250a3aceed4c69114f73dc0d4cfe3f2786ccf9276d26c57f9f69680e3e3612d950edf8eab4842057ec5fd95441e2476d8af143b982c68ecfec6";
+          u.passwordSalt = "d9ca3553daf2747c09c77e0513e05a9a";
+        } else if (u.role === "approved") {
+          u.passwordHash = "2220e500278d07715332f45eb93f692bcdf4c288cbb1391adf5610ee27a8de2ce1096bdbf84b1af5c74de57164891e13bdb774781a5d9ec7e9d09c50ba59497c";
+          u.passwordSalt = "b4d0994939d361998041c37ad87e39d6";
+        } else {
+          u.passwordHash = "0f4989bb3a1a1258784560a158d4c4bcca0f775258673455850fb7dd5319c9c31dcf0e071d74552a74f07e910d2939d517f4680689256502c4fe292854c36af8";
+          u.passwordSalt = "06ad3dd82722524fc299f7d56fd299ed";
+        }
+        u.authProvider = u.authProvider || "credentials";
+        mutated = true;
+      }
+    });
+
+    if (mutated) {
+      saveDB(parsed);
+    }
+    return parsed;
   } catch (err) {
     console.error("Error reading db.json, returning empty defaults:", err);
     return {
@@ -157,6 +210,7 @@ function getDB(): DBData {
       documents: INITIAL_DOCUMENTS,
       inquiries: [],
       auditLogs: SEED_AUDIT_LOGS,
+      campaignWindow: DEFAULT_CAMPAIGN_WINDOW,
     };
   }
 }
@@ -221,6 +275,14 @@ export const db = {
     data.inquiries.unshift(inquiry);
     saveDB(data);
   },
+  updateInquiryStatus: (id: string, status: "read" | "replied"): InvestorInquiry | null => {
+    const data = getDB();
+    const inquiry = data.inquiries.find((i) => i.id === id);
+    if (!inquiry) return null;
+    inquiry.status = status;
+    saveDB(data);
+    return inquiry;
+  },
 
   getAuditLogs: (): AuditEvent[] => getDB().auditLogs,
   addAuditLog: (event: Omit<AuditEvent, "id" | "timestamp">): void => {
@@ -236,4 +298,176 @@ export const db = {
     }
     saveDB(data);
   },
+
+  getCampaignWindow: (): CampaignWindowConfig => {
+    const data = getDB();
+    return data.campaignWindow || DEFAULT_CAMPAIGN_WINDOW;
+  },
+
+  updateCampaignWindow: (
+    updates: Partial<CampaignWindowConfig>,
+    updatedBy: string
+  ): CampaignWindowConfig => {
+    const data = getDB();
+    const current = data.campaignWindow || DEFAULT_CAMPAIGN_WINDOW;
+    const updated: CampaignWindowConfig = {
+      ...current,
+      ...updates,
+      lastUpdated: new Date().toISOString(),
+      updatedBy,
+    };
+    data.campaignWindow = updated;
+    saveDB(data);
+
+    // Audit log
+    db.addAuditLog({
+      actorEmail: updatedBy,
+      actorRole: "admin",
+      action: "CAMPAIGN_WINDOW_UPDATED",
+      targetResource: "CampaignWindowConfig",
+      details: `Updated campaign window: closingDate=${updated.closingDate}, status=${updated.status}, enabled=${updated.enabled}`,
+    });
+
+    return updated;
+  },
+
+  requestTierUpgrade: (userId: string, ndaAccepted: boolean): User | null => {
+    const data = getDB();
+    const user = data.users.find((u) => u.id === userId);
+    if (!user) return null;
+
+    user.ndaAccepted = ndaAccepted;
+    user.ndaAcceptedAt = new Date().toISOString();
+    user.diligenceRequestedAt = new Date().toISOString();
+    saveDB(data);
+
+    // Also update or create an AccessRequest record so admin can review
+    const req = data.accessRequests.find((r) => r.businessEmail.toLowerCase() === user.email.toLowerCase());
+    if (req) {
+      req.status = "pending";
+      req.message = (req.message ? req.message + " | " : "") + "Requested Tier 3 Diligence Access & Accepted NDA.";
+      saveDB(data);
+    } else {
+      const newReq: AccessRequest = {
+        id: "req-" + Date.now(),
+        fullName: user.name,
+        businessEmail: user.email,
+        organization: user.organization || "Investor Syndicate",
+        country: user.country || "International",
+        category: user.category || "Private Investor",
+        interest: user.interest || "Equity",
+        indicativeRange: user.indicativeRange || "US$250,000 – US$500,000",
+        message: "Requested Tier 3 Diligence Access & Accepted NDA via portal.",
+        privacyAccepted: true,
+        emailVerified: true,
+        status: "pending",
+        createdAt: new Date().toISOString(),
+      };
+      db.saveAccessRequest(newReq);
+    }
+
+    db.addAuditLog({
+      actorEmail: user.email,
+      actorRole: user.role,
+      action: "TIER_UPGRADE_REQUESTED",
+      targetResource: user.email,
+      details: `Investor ${user.name} (${user.email}) requested Tier 3 diligence upgrade and executed digital NDA.`,
+    });
+
+    return user;
+  },
+
+  upgradeUserToApproved: (userId: string, approvedBy: string): User | null => {
+    const data = getDB();
+    const user = data.users.find((u) => u.id === userId);
+    if (!user) return null;
+
+    user.role = "approved";
+    user.approvedAt = new Date().toISOString();
+    user.approvedBy = approvedBy;
+    saveDB(data);
+
+    // Mark corresponding access request as approved
+    const req = data.accessRequests.find((r) => r.businessEmail.toLowerCase() === user.email.toLowerCase());
+    if (req) {
+      req.status = "approved";
+      req.assignedRole = "approved";
+      req.reviewedAt = new Date().toISOString();
+      req.reviewedBy = approvedBy;
+      saveDB(data);
+    }
+
+    db.addAuditLog({
+      actorEmail: approvedBy,
+      actorRole: "admin",
+      action: "TIER_UPGRADE_APPROVED",
+      targetResource: user.email,
+      details: `Administrator approved Tier 3 diligence access for ${user.name} (${user.email}). Full data room unlocked.`,
+    });
+
+    return user;
+  },
+
+  isAuthorizedAdminEmail: (email: string): boolean => {
+    if (!email || typeof email !== "string") return false;
+    const normalized = email.trim().toLowerCase();
+
+    // 1. Check ADMIN_EMAILS environment variable (comma-separated list of emails)
+    const envAdmins = (process.env.ADMIN_EMAILS || "")
+      .split(",")
+      .map((e) => e.trim().toLowerCase())
+      .filter(Boolean);
+    if (envAdmins.includes(normalized)) return true;
+
+    // 2. Default platform admin
+    if (normalized === "admin@jonikndovufarm.com") return true;
+
+    // 3. Database check: any user with role === "admin" and not suspended
+    const data = getDB();
+    const existing = data.users.find(
+      (u) => u.email.toLowerCase() === normalized && u.role === "admin" && u.status !== "suspended"
+    );
+    return Boolean(existing);
+  },
+
+  ensureAdminUser: (
+    email: string,
+    name?: string,
+    authProvider: "google" | "credentials" = "google"
+  ): User => {
+    const data = getDB();
+    const normalized = email.trim().toLowerCase();
+    let user = data.users.find((u) => u.email.toLowerCase() === normalized);
+
+    if (user) {
+      user.role = "admin";
+      user.status = "active";
+      user.authProvider = authProvider;
+      user.emailVerified = true;
+      if (name && (!user.name || user.name === "Google Verified Investor")) {
+        user.name = name;
+      }
+    } else {
+      user = {
+        id: "usr-admin-" + Date.now(),
+        email: normalized,
+        name: name || "Jonik Administrator",
+        organization: "Jonik Ndovu Farm Management",
+        country: "Kenya",
+        role: "admin",
+        status: "active",
+        createdAt: new Date().toISOString(),
+        notes: "Authorized Platform Administrator",
+        authProvider,
+        emailVerified: true,
+      };
+      data.users.push(user);
+    }
+
+    saveDB(data);
+    return user;
+  },
 };
+
+
+

@@ -2,10 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { getCurrentUser } from "@/lib/auth";
 import { db } from "@/lib/storage";
 import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
+import { isValidEmail } from "@/lib/validation";
 import type { UserRole } from "@/types";
 
+export const dynamic = "force-dynamic";
+
 const ALLOWED_ROLES: UserRole[] = ["registered", "approved", "admin"];
-const ALLOWED_ACTIONS = new Set(["APPROVE_REQUEST", "REJECT_REQUEST", "UPDATE_USER_ROLE"]);
+const ALLOWED_ACTIONS = new Set(["APPROVE_REQUEST", "REJECT_REQUEST", "UPDATE_USER_ROLE", "ADD_ADMIN"]);
 
 // Max 60 admin write operations per IP per 10 minutes.
 const ADMIN_WRITE_LIMIT = 60;
@@ -152,6 +155,31 @@ export async function POST(req: NextRequest) {
 
       const { verificationCode: _vc, ...safeTargetUser } = targetUser;
       return NextResponse.json({ success: true, user: safeTargetUser });
+    }
+
+    if (action === "ADD_ADMIN") {
+      const { email: newAdminEmail, name: newAdminName } = body as { email?: string; name?: string };
+      if (!newAdminEmail || typeof newAdminEmail !== "string" || !isValidEmail(newAdminEmail)) {
+        return NextResponse.json({ error: "A valid administrator email address is required." }, { status: 400 });
+      }
+
+      const adminUser = db.ensureAdminUser(newAdminEmail, newAdminName || "Administrator", "google");
+
+      db.addAuditLog({
+        actorEmail: user.email,
+        actorRole: "admin",
+        action: "USER_ROLE_CHANGED",
+        targetResource: newAdminEmail,
+        ipAddress: ip,
+        details: `Administrator ${user.email} provisioned ${newAdminEmail} as an authorized Administrator with Google login access.`,
+      });
+
+      const { verificationCode: _vc, passwordHash: _ph, passwordSalt: _ps, ...safeAdmin } = adminUser;
+      return NextResponse.json({
+        success: true,
+        user: safeAdmin,
+        message: `Administrator ${newAdminEmail} authorized successfully. They can now log in via Google.`,
+      });
     }
 
     return NextResponse.json({ error: "Invalid action." }, { status: 400 });

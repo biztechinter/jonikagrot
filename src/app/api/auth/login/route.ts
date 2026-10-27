@@ -2,14 +2,14 @@ import { NextRequest, NextResponse } from "next/server";
 import { db } from "@/lib/storage";
 import { setSessionUser } from "@/lib/auth";
 import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
-import { isValidEmail, sanitizeString } from "@/lib/validation";
+import { isValidEmail } from "@/lib/validation";
+import { verifyPassword } from "@/lib/security";
 
-// Allow 5 login attempts per IP per 15-minute window.
+// Allow 5 login attempts per IP per 15-minute window
 const LOGIN_LIMIT = 5;
 const LOGIN_WINDOW_MS = 15 * 60 * 1000;
 
 export async function POST(req: NextRequest) {
-  // ── Rate limiting ────────────────────────────────────────────────
   const ip = getClientIp(req);
   const rl = checkRateLimit(`login:${ip}`, LOGIN_LIMIT, LOGIN_WINDOW_MS);
   if (!rl.allowed) {
@@ -32,31 +32,23 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid request body." }, { status: 400 });
     }
 
-    const { email } = body as { email: unknown };
+    const { email, password } = body as { email?: string; password?: string };
 
-    // ── Input validation ─────────────────────────────────────────────
-    if (!isValidEmail(email)) {
-      return NextResponse.json(
-        { error: "A valid email address is required." },
-        { status: 400 }
-      );
+    if (!email || typeof email !== "string" || !isValidEmail(email)) {
+      return NextResponse.json({ error: "A valid email address is required." }, { status: 400 });
     }
 
-    // Normalise: always lower-case, trim.
-    const normalisedEmail = (email as string).trim().toLowerCase();
+    if (!password || typeof password !== "string" || password.trim().length === 0) {
+      return NextResponse.json({ error: "Password is required." }, { status: 400 });
+    }
 
-    // ── Timing-safe lookup (constant-time response even for missing users) ──
+    const normalisedEmail = email.trim().toLowerCase();
     const user = db.getUserByEmail(normalisedEmail);
 
     if (!user) {
-      // Use same response shape as suspension so the error message does not
-      // reveal whether the email exists in the system.
       return NextResponse.json(
-        {
-          error:
-            "No account found with this email address. Please request access via the Investor Access page.",
-        },
-        { status: 404 }
+        { error: "Invalid email address or password." },
+        { status: 401 }
       );
     }
 
@@ -67,6 +59,32 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Protect Admin Account: Block admin credentials on the public investor login form
+    if (user.role === "admin") {
+      return NextResponse.json(
+        {
+          error: "Administrative accounts must sign in via the isolated Admin Command Center.",
+          isAdmin: true,
+          adminUrl: "/admin/login",
+        },
+        { status: 403 }
+      );
+    }
+
+    // Verify Password
+    const passwordValid =
+      user.passwordHash && user.passwordSalt
+        ? verifyPassword(password, user.passwordHash, user.passwordSalt)
+        : false;
+
+    if (!passwordValid) {
+      return NextResponse.json(
+        { error: "Invalid email address or password." },
+        { status: 401 }
+      );
+    }
+
+    // Set authenticated session cookie
     await setSessionUser(user.id);
 
     db.addAuditLog({
@@ -74,11 +92,11 @@ export async function POST(req: NextRequest) {
       actorRole: user.role,
       action: "USER_LOGIN",
       ipAddress: ip,
-      details: `User signed in via portal with role '${user.role}'. IP: ${ip}.`,
+      details: `Investor signed in via credentials with role '${user.role}'. IP: ${ip}.`,
     });
 
-    // Strip sensitive internal fields before sending to client.
-    const { verificationCode: _vc, notes: _n, ...safeUser } = user;
+    // Strip sensitive fields
+    const { passwordHash: _ph, passwordSalt: _ps, verificationCode: _vc, notes: _n, ...safeUser } = user;
 
     return NextResponse.json({ success: true, user: safeUser });
   } catch (error: unknown) {

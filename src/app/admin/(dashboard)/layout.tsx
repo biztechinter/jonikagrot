@@ -15,7 +15,7 @@ export default async function AdminLayout({
   const user = await getCurrentUser();
 
   if (!user || user.role !== "admin") {
-    redirect("/login?error=admin_required");
+    redirect("/admin/login?error=admin_required");
   }
 
   return (
@@ -38,7 +38,7 @@ export default async function AdminLayout({
           </div>
         </header>
 
-        <main className="flex-1 p-6 sm:p-8 lg:p-10 max-w-7xl w-full mx-auto">
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 w-full max-w-[1550px] mx-auto">
           {children}
         </main>
       </div>

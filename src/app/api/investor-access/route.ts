@@ -3,6 +3,7 @@ import { db } from "@/lib/storage";
 import { setSessionUser } from "@/lib/auth";
 import { AccessRequest, User } from "@/types";
 import { checkRateLimit, getClientIp } from "@/lib/rateLimit";
+import { hashPassword } from "@/lib/security";
 import {
   isValidEmail,
   isValidName,
@@ -11,6 +12,7 @@ import {
   isValidInvestmentInterest,
   sanitizeString,
 } from "@/lib/validation";
+import { notifyAdminNewRegistration } from "@/lib/email";
 
 // Max 3 registration submissions per IP per hour to deter form flooding.
 const REGISTER_LIMIT = 3;
@@ -46,6 +48,7 @@ export async function POST(req: NextRequest) {
       indicativeRange,
       message,
       privacyAccepted,
+      password,
     } = body as Record<string, unknown>;
 
     // ── Server-side field validation ─────────────────────────────────
@@ -53,6 +56,9 @@ export async function POST(req: NextRequest) {
 
     if (!isValidName(fullName)) errors.push("Full name is required (2–256 characters).");
     if (!isValidEmail(businessEmail)) errors.push("A valid business email address is required.");
+    if (!password || typeof password !== "string" || password.length < 8) {
+      errors.push("A secure password of at least 8 characters is required.");
+    }
     if (!isValidCountry(country)) errors.push("Country is required.");
     if (!isValidInvestorCategory(category))
       errors.push("A valid investor category must be selected.");
@@ -111,6 +117,8 @@ export async function POST(req: NextRequest) {
     let userId: string;
     const existingUser = db.getUserByEmail(normalisedEmail);
 
+    const { hash, salt } = hashPassword(password as string);
+
     if (existingUser) {
       // Never downgrade an approved or admin user.
       userId = existingUser.id;
@@ -119,6 +127,10 @@ export async function POST(req: NextRequest) {
       existingUser.category = category as User["category"];
       existingUser.interest = interest as User["interest"];
       existingUser.indicativeRange = safeRange;
+      if (!existingUser.passwordHash) {
+        existingUser.passwordHash = hash;
+        existingUser.passwordSalt = salt;
+      }
       db.saveUser(existingUser);
     } else {
       userId = "usr-" + Date.now();
@@ -133,6 +145,9 @@ export async function POST(req: NextRequest) {
         category: category as User["category"],
         interest: interest as User["interest"],
         indicativeRange: safeRange,
+        passwordHash: hash,
+        passwordSalt: salt,
+        authProvider: "credentials",
         status: "active",
         emailVerified: false,
         verificationCode,
@@ -153,6 +168,17 @@ export async function POST(req: NextRequest) {
       ipAddress: ip,
       details: `New investor application submitted by ${safeFullName} (${sanitizeString(category, 80)}, ${sanitizeString(country, 100)}). IP: ${ip}.`,
     });
+
+    // ── Notify all admins by email (fire-and-forget — never blocks response) ──
+    notifyAdminNewRegistration({
+      name: safeFullName,
+      email: normalisedEmail,
+      organization: safeOrganization,
+      country: sanitizeString(country, 100),
+      category: sanitizeString(category, 80),
+      interest: sanitizeString(interest, 80),
+      indicativeRange: safeRange,
+    }).catch((err) => console.error("[Email] Admin notification failed:", err));
 
     const userObj = db.getUserById(userId);
     const { verificationCode: _vc, notes: _n, ...safeUser } = userObj!;

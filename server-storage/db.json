@@ -9,7 +9,10 @@
       "role": "admin",
       "status": "active",
       "createdAt": "2026-10-01T09:00:00Z",
-      "notes": "Platform Super Administrator"
+      "notes": "Platform Super Administrator",
+      "passwordHash": "12aa80b677752250a3aceed4c69114f73dc0d4cfe3f2786ccf9276d26c57f9f69680e3e3612d950edf8eab4842057ec5fd95441e2476d8af143b982c68ecfec6",
+      "passwordSalt": "d9ca3553daf2747c09c77e0513e05a9a",
+      "authProvider": "credentials"
     },
     {
       "id": "usr-approved",
@@ -17,7 +20,7 @@
       "name": "Marcus Vance",
       "organization": "Highland Hospitality Partners",
       "country": "United Kingdom",
-      "role": "approved",
+      "role": "registered",
       "category": "Hospitality or Strategic Investor",
       "interest": "Equity",
       "indicativeRange": "$500,000 – $1,000,000",
@@ -25,7 +28,10 @@
       "createdAt": "2026-10-05T11:30:00Z",
       "approvedAt": "2026-10-06T14:20:00Z",
       "approvedBy": "admin@jonikndovufarm.com",
-      "notes": "Verified hospitality private equity investor; full Tier 3 access granted."
+      "notes": "Verified hospitality private equity investor; full Tier 3 access granted.",
+      "passwordHash": "2220e500278d07715332f45eb93f692bcdf4c288cbb1391adf5610ee27a8de2ce1096bdbf84b1af5c74de57164891e13bdb774781a5d9ec7e9d09c50ba59497c",
+      "passwordSalt": "b4d0994939d361998041c37ad87e39d6",
+      "authProvider": "credentials"
     },
     {
       "id": "usr-registered",
@@ -39,7 +45,13 @@
       "indicativeRange": "$250,000 – $500,000",
       "status": "active",
       "createdAt": "2026-10-18T16:45:00Z",
-      "notes": "Registered portal user; pending administrative diligence interview for Tier 3 upgrade."
+      "notes": "Registered portal user; pending administrative diligence interview for Tier 3 upgrade.",
+      "passwordHash": "0f4989bb3a1a1258784560a158d4c4bcca0f775258673455850fb7dd5319c9c31dcf0e071d74552a74f07e910d2939d517f4680689256502c4fe292854c36af8",
+      "passwordSalt": "06ad3dd82722524fc299f7d56fd299ed",
+      "authProvider": "credentials",
+      "ndaAccepted": true,
+      "ndaAcceptedAt": "2026-10-26T11:54:50.626Z",
+      "diligenceRequestedAt": "2026-10-26T11:54:50.626Z"
     },
     {
       "id": "usr-1792871726822",
@@ -47,7 +59,7 @@
       "name": "Amina Kenyatta",
       "organization": "Savannah Growth Capital",
       "country": "Kenya",
-      "role": "registered",
+      "role": "approved",
       "category": "Private Investor",
       "interest": "Equity",
       "indicativeRange": "US,000 – US,000,000",
@@ -55,7 +67,10 @@
       "emailVerified": false,
       "verificationCode": "123456",
       "createdAt": "2026-10-24T19:55:26.822Z",
-      "notes": "Registered via Investor Access form. Awaiting email verification and Tier 3 diligence review."
+      "notes": "Registered via Investor Access form. Awaiting email verification and Tier 3 diligence review.",
+      "passwordHash": "0f4989bb3a1a1258784560a158d4c4bcca0f775258673455850fb7dd5319c9c31dcf0e071d74552a74f07e910d2939d517f4680689256502c4fe292854c36af8",
+      "passwordSalt": "06ad3dd82722524fc299f7d56fd299ed",
+      "authProvider": "credentials"
     },
     {
       "id": "usr-1792871746050",
@@ -67,13 +82,16 @@
       "category": "Private Investor",
       "interest": "Equity",
       "indicativeRange": "US,000 – US,000,000",
-      "status": "suspended",
+      "status": "active",
       "emailVerified": true,
       "verificationCode": "123456",
       "createdAt": "2026-10-24T19:55:46.050Z",
       "notes": "Registered via Investor Access form. Awaiting email verification and Tier 3 diligence review.",
       "approvedAt": "2026-10-24T19:55:46.637Z",
-      "approvedBy": "admin@jonikndovufarm.com"
+      "approvedBy": "admin@jonikndovufarm.com",
+      "passwordHash": "2220e500278d07715332f45eb93f692bcdf4c288cbb1391adf5610ee27a8de2ce1096bdbf84b1af5c74de57164891e13bdb774781a5d9ec7e9d09c50ba59497c",
+      "passwordSalt": "b4d0994939d361998041c37ad87e39d6",
+      "authProvider": "credentials"
     },
     {
       "id": "usr-1792945086290",
@@ -89,10 +107,89 @@
       "emailVerified": false,
       "verificationCode": "123456",
       "createdAt": "2026-10-25T16:18:06.290Z",
-      "notes": "Registered via Investor Access form. Awaiting email verification and Tier 3 diligence review."
+      "notes": "Registered via Investor Access form. Awaiting email verification and Tier 3 diligence review.",
+      "passwordHash": "0f4989bb3a1a1258784560a158d4c4bcca0f775258673455850fb7dd5319c9c31dcf0e071d74552a74f07e910d2939d517f4680689256502c4fe292854c36af8",
+      "passwordSalt": "06ad3dd82722524fc299f7d56fd299ed",
+      "authProvider": "credentials"
+    },
+    {
+      "id": "usr-admin-1793017348351",
+      "email": "director@gmail.com",
+      "name": "David Director",
+      "organization": "Jonik Ndovu Farm Management",
+      "country": "Kenya",
+      "role": "admin",
+      "status": "active",
+      "createdAt": "2026-10-26T12:22:28.351Z",
+      "notes": "Authorized Platform Administrator",
+      "authProvider": "google",
+      "emailVerified": true,
+      "passwordHash": "12aa80b677752250a3aceed4c69114f73dc0d4cfe3f2786ccf9276d26c57f9f69680e3e3612d950edf8eab4842057ec5fd95441e2476d8af143b982c68ecfec6",
+      "passwordSalt": "d9ca3553daf2747c09c77e0513e05a9a"
+    },
+    {
+      "id": "usr-admin-1793060449645",
+      "email": "biztechinter@gmail.com",
+      "name": "Biztech International",
+      "organization": "Jonik Ndovu Farm Management",
+      "country": "Kenya",
+      "role": "admin",
+      "status": "active",
+      "createdAt": "2026-10-27T00:20:49.645Z",
+      "notes": "Authorized Platform Administrator",
+      "authProvider": "google",
+      "emailVerified": true,
+      "passwordHash": "12aa80b677752250a3aceed4c69114f73dc0d4cfe3f2786ccf9276d26c57f9f69680e3e3612d950edf8eab4842057ec5fd95441e2476d8af143b982c68ecfec6",
+      "passwordSalt": "d9ca3553daf2747c09c77e0513e05a9a"
+    },
+    {
+      "id": "usr-g-1793060870437",
+      "email": "jonikduo@gmail.com",
+      "name": "Jonik Duo",
+      "role": "registered",
+      "authProvider": "google",
+      "status": "active",
+      "emailVerified": true,
+      "category": "Private Investor",
+      "interest": "Equity",
+      "indicativeRange": "US$250,000 – US$500,000",
+      "createdAt": "2026-10-27T00:27:50.437Z",
+      "notes": "Registered and authenticated via Google / Gmail OAuth 2.0.",
+      "passwordHash": "0f4989bb3a1a1258784560a158d4c4bcca0f775258673455850fb7dd5319c9c31dcf0e071d74552a74f07e910d2939d517f4680689256502c4fe292854c36af8",
+      "passwordSalt": "06ad3dd82722524fc299f7d56fd299ed"
     }
   ],
   "accessRequests": [
+    {
+      "id": "req-g-jonikduo",
+      "fullName": "Jonik Duo",
+      "businessEmail": "jonikduo@gmail.com",
+      "organization": "—",
+      "country": "—",
+      "category": "Private Investor",
+      "interest": "Equity",
+      "indicativeRange": "US$250,000 – US$500,000",
+      "message": "Registered via Google / Gmail OAuth 2.0. Has submitted multiple Tier 3 access inquiries via the investor portal (Due Diligence Request).",
+      "privacyAccepted": true,
+      "emailVerified": true,
+      "status": "pending",
+      "createdAt": "2026-10-27T00:27:50.437Z"
+    },
+    {
+      "id": "req-1793015647689",
+      "fullName": "Elena Rostova",
+      "businessEmail": "investor.registered@example.com",
+      "organization": "Rostova Capital Advisory",
+      "country": "Switzerland",
+      "category": "Family Office or Investment Company",
+      "interest": "Joint Venture or Strategic Partnership",
+      "indicativeRange": "$250,000 – $500,000",
+      "message": "Requested Tier 3 Diligence Access & Accepted NDA via portal. | Requested Tier 3 Diligence Access & Accepted NDA.",
+      "privacyAccepted": true,
+      "emailVerified": true,
+      "status": "pending",
+      "createdAt": "2026-10-26T11:54:07.689Z"
+    },
     {
       "id": "req-1792945086289",
       "fullName": "Tim Wamalwa",
@@ -164,8 +261,11 @@
       "indicativeRange": "$1,000,000+",
       "message": "Evaluating structured debt and green hospitality funding for East African biodiversity corridors.",
       "privacyAccepted": true,
-      "status": "pending",
-      "createdAt": "2026-10-24T10:05:00Z"
+      "status": "approved",
+      "createdAt": "2026-10-24T10:05:00Z",
+      "assignedRole": "registered",
+      "reviewedAt": "2026-10-27T00:26:32.233Z",
+      "reviewedBy": "biztechinter@gmail.com"
     },
     {
       "id": "req-03",
@@ -523,6 +623,39 @@
   ],
   "inquiries": [
     {
+      "id": "inq-1793063020308",
+      "userId": "usr-g-1793060870437",
+      "userName": "Jonik Duo",
+      "userEmail": "jonikduo@gmail.com",
+      "subject": "Please please Tier 3",
+      "type": "Due Diligence Request",
+      "message": "I am requesting again for Tier 3",
+      "status": "new",
+      "createdAt": "2026-10-27T01:03:40.308Z"
+    },
+    {
+      "id": "inq-1793061764334",
+      "userId": "usr-g-1793060870437",
+      "userName": "Jonik Duo",
+      "userEmail": "jonikduo@gmail.com",
+      "subject": "Hi Give Access to T3",
+      "type": "Due Diligence Request",
+      "message": "I need T3 access",
+      "status": "replied",
+      "createdAt": "2026-10-27T00:42:44.334Z"
+    },
+    {
+      "id": "inq-1793061552056",
+      "userId": "usr-g-1793060870437",
+      "userName": "Jonik Duo",
+      "userEmail": "jonikduo@gmail.com",
+      "subject": "Hi Title",
+      "type": "Due Diligence Request",
+      "message": "Hi there I am very interested",
+      "status": "new",
+      "createdAt": "2026-10-27T00:39:12.057Z"
+    },
+    {
       "id": "inq-1792945337294",
       "userId": "usr-1792945086290",
       "userName": "Tim Wamalwa",
@@ -547,6 +680,542 @@
     }
   ],
   "auditLogs": [
+    {
+      "id": "aud-1793063031511",
+      "timestamp": "2026-10-27T01:03:51.511Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "details": "Administrator Biztech International (biztechinter@gmail.com) authenticated via Google OAuth 2.0."
+    },
+    {
+      "id": "aud-1793063026654",
+      "timestamp": "2026-10-27T01:03:46.654Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "USER_LOGOUT",
+      "ipAddress": "::1",
+      "details": "User signed out. IP: ::1."
+    },
+    {
+      "id": "aud-1793063020326",
+      "timestamp": "2026-10-27T01:03:40.326Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "INQUIRY_SUBMITTED",
+      "ipAddress": "::1",
+      "details": "Investor submitted Due Diligence Request: \"Please please Tier 3\". IP: ::1."
+    },
+    {
+      "id": "aud-1793062939702",
+      "timestamp": "2026-10-27T01:02:19.702Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "details": "User signed in via Google OAuth with role 'registered'."
+    },
+    {
+      "id": "aud-1793062933454",
+      "timestamp": "2026-10-27T01:02:13.454Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGOUT",
+      "ipAddress": "::1",
+      "details": "User signed out. IP: ::1."
+    },
+    {
+      "id": "aud-1793062871111",
+      "timestamp": "2026-10-27T01:01:11.111Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "INQUIRY_STATUS_UPDATED",
+      "targetResource": "inq-1793061764334",
+      "details": "Administrator marked inquiry inq-1793061764334 as 'replied'."
+    },
+    {
+      "id": "aud-1793062868112",
+      "timestamp": "2026-10-27T01:01:08.112Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "INQUIRY_STATUS_UPDATED",
+      "targetResource": "inq-1793061764334",
+      "details": "Administrator marked inquiry inq-1793061764334 as 'read'."
+    },
+    {
+      "id": "aud-1793061792089",
+      "timestamp": "2026-10-27T00:43:12.089Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "details": "Administrator Biztech International (biztechinter@gmail.com) authenticated via Google OAuth 2.0."
+    },
+    {
+      "id": "aud-1793061787005",
+      "timestamp": "2026-10-27T00:43:07.005Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "USER_LOGOUT",
+      "ipAddress": "::1",
+      "details": "User signed out. IP: ::1."
+    },
+    {
+      "id": "aud-1793061764350",
+      "timestamp": "2026-10-27T00:42:44.350Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "INQUIRY_SUBMITTED",
+      "ipAddress": "::1",
+      "details": "Investor submitted Due Diligence Request: \"Hi Give Access to T3\". IP: ::1."
+    },
+    {
+      "id": "aud-1793061693149",
+      "timestamp": "2026-10-27T00:41:33.149Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "details": "User signed in via Google OAuth with role 'registered'."
+    },
+    {
+      "id": "aud-1793061687087",
+      "timestamp": "2026-10-27T00:41:27.087Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGOUT",
+      "ipAddress": "::1",
+      "details": "User signed out. IP: ::1."
+    },
+    {
+      "id": "aud-1793061682140",
+      "timestamp": "2026-10-27T00:41:22.140Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_ROLE_CHANGED",
+      "targetResource": "jonikduo@gmail.com",
+      "ipAddress": "::1",
+      "details": "Administrator updated role for jonikduo@gmail.com from 'approved' to 'registered'. Status: 'active'."
+    },
+    {
+      "id": "aud-1793061562062",
+      "timestamp": "2026-10-27T00:39:22.062Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "details": "Administrator Biztech International (biztechinter@gmail.com) authenticated via Google OAuth 2.0."
+    },
+    {
+      "id": "aud-1793061557088",
+      "timestamp": "2026-10-27T00:39:17.088Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "approved",
+      "action": "USER_LOGOUT",
+      "ipAddress": "::1",
+      "details": "User signed out. IP: ::1."
+    },
+    {
+      "id": "aud-1793061552076",
+      "timestamp": "2026-10-27T00:39:12.076Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "approved",
+      "action": "INQUIRY_SUBMITTED",
+      "ipAddress": "::1",
+      "details": "Investor submitted Due Diligence Request: \"Hi Title\". IP: ::1."
+    },
+    {
+      "id": "aud-1793061471018",
+      "timestamp": "2026-10-27T00:37:51.018Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "approved",
+      "action": "USER_LOGIN",
+      "details": "User signed in via Google OAuth with role 'approved'."
+    },
+    {
+      "id": "aud-1793061465391",
+      "timestamp": "2026-10-27T00:37:45.391Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGOUT",
+      "ipAddress": "::1",
+      "details": "User signed out. IP: ::1."
+    },
+    {
+      "id": "aud-1793061406214",
+      "timestamp": "2026-10-27T00:36:46.214Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_ROLE_CHANGED",
+      "targetResource": "jonikduo@gmail.com",
+      "ipAddress": "::1",
+      "details": "Administrator updated role for jonikduo@gmail.com from 'registered' to 'approved'. Status: 'active'."
+    },
+    {
+      "id": "aud-1793061380986",
+      "timestamp": "2026-10-27T00:36:20.986Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_ROLE_CHANGED",
+      "targetResource": "test.investor.lifecycle@example.com",
+      "ipAddress": "::1",
+      "details": "Administrator updated role for test.investor.lifecycle@example.com from 'registered' to 'approved'. Status: 'active'."
+    },
+    {
+      "id": "aud-1793061366100",
+      "timestamp": "2026-10-27T00:36:06.100Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_ROLE_CHANGED",
+      "targetResource": "investor.approved@example.com",
+      "ipAddress": "::1",
+      "details": "Administrator updated role for investor.approved@example.com from 'approved' to 'registered'. Status: 'active'."
+    },
+    {
+      "id": "aud-1793061360486",
+      "timestamp": "2026-10-27T00:36:00.486Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_ROLE_CHANGED",
+      "targetResource": "investor.registered@example.com",
+      "ipAddress": "::1",
+      "details": "Administrator updated role for investor.registered@example.com from 'approved' to 'registered'. Status: 'active'."
+    },
+    {
+      "id": "aud-1793061346258",
+      "timestamp": "2026-10-27T00:35:46.258Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_ROLE_CHANGED",
+      "targetResource": "test.investor.lifecycle2@example.com",
+      "ipAddress": "::1",
+      "details": "Administrator updated role for test.investor.lifecycle2@example.com from 'approved' to 'approved'. Status: 'active'."
+    },
+    {
+      "id": "aud-1793061226700",
+      "timestamp": "2026-10-27T00:33:46.700Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "details": "Administrator Biztech International (biztechinter@gmail.com) authenticated via Google OAuth 2.0."
+    },
+    {
+      "id": "aud-1793061220006",
+      "timestamp": "2026-10-27T00:33:40.006Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "USER_LOGOUT",
+      "ipAddress": "::1",
+      "details": "User signed out. IP: ::1."
+    },
+    {
+      "id": "aud-1793060870478",
+      "timestamp": "2026-10-27T00:27:50.478Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "details": "User signed in via Google OAuth with role 'registered'."
+    },
+    {
+      "id": "aud-1793060870463",
+      "timestamp": "2026-10-27T00:27:50.464Z",
+      "actorEmail": "jonikduo@gmail.com",
+      "actorRole": "registered",
+      "action": "USER_REGISTERED",
+      "details": "New investor account registered via Google OAuth 2.0 for Jonik Duo (jonikduo@gmail.com)."
+    },
+    {
+      "id": "aud-1793060792248",
+      "timestamp": "2026-10-27T00:26:32.248Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "ACCESS_REQUEST_APPROVED",
+      "targetResource": "henk@africagreencapital.com",
+      "details": "Administrator approved investor access for Dr. Henk van der Merwe (henk@africagreencapital.com) with role 'registered'."
+    },
+    {
+      "id": "aud-1793060750141",
+      "timestamp": "2026-10-27T00:25:50.141Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "CAMPAIGN_WINDOW_UPDATED",
+      "targetResource": "CampaignWindowConfig",
+      "details": "Updated campaign window: closingDate=2027-02-25T23:59:59.000Z, status=active, enabled=true"
+    },
+    {
+      "id": "aud-1793060744165",
+      "timestamp": "2026-10-27T00:25:44.165Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "details": "Administrator Biztech International (biztechinter@gmail.com) authenticated via Google OAuth 2.0."
+    },
+    {
+      "id": "aud-1793060723437",
+      "timestamp": "2026-10-27T00:25:23.437Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "CAMPAIGN_WINDOW_UPDATED",
+      "targetResource": "CampaignWindowConfig",
+      "details": "Updated campaign window: closingDate=2027-02-24T23:59:59.000Z, status=active, enabled=false"
+    },
+    {
+      "id": "aud-1793060713468",
+      "timestamp": "2026-10-27T00:25:13.468Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "details": "Administrator Biztech International (biztechinter@gmail.com) authenticated via Google OAuth 2.0."
+    },
+    {
+      "id": "aud-1793060705093",
+      "timestamp": "2026-10-27T00:25:05.093Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGOUT",
+      "ipAddress": "::1",
+      "details": "User signed out. IP: ::1."
+    },
+    {
+      "id": "aud-1793060449660",
+      "timestamp": "2026-10-27T00:20:49.660Z",
+      "actorEmail": "biztechinter@gmail.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "details": "Administrator Biztech International (biztechinter@gmail.com) authenticated via Google OAuth 2.0."
+    },
+    {
+      "id": "aud-1793021478893",
+      "timestamp": "2026-10-26T13:31:18.893Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "ipAddress": "::1",
+      "details": "Super Administrator authenticated into Command Center via multi-factor credentials. IP: ::1."
+    },
+    {
+      "id": "aud-1793017348367",
+      "timestamp": "2026-10-26T12:22:28.367Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_ROLE_CHANGED",
+      "targetResource": "director@gmail.com",
+      "ipAddress": "::1",
+      "details": "Administrator admin@jonikndovufarm.com provisioned director@gmail.com as an authorized Administrator with Google login access."
+    },
+    {
+      "id": "aud-1793017348075",
+      "timestamp": "2026-10-26T12:22:28.075Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "ipAddress": "::1",
+      "details": "Super Administrator authenticated into Command Center via multi-factor credentials. IP: ::1."
+    },
+    {
+      "id": "aud-1793017313098",
+      "timestamp": "2026-10-26T12:21:53.098Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "ipAddress": "::1",
+      "details": "Super Administrator authenticated into Command Center via multi-factor credentials. IP: ::1."
+    },
+    {
+      "id": "aud-1793017240867",
+      "timestamp": "2026-10-26T12:20:40.867Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_FAILED",
+      "ipAddress": "::1",
+      "details": "Failed admin login attempt for admin@jonikndovufarm.com: invalid credentials. IP: ::1."
+    },
+    {
+      "id": "aud-1793017216417",
+      "timestamp": "2026-10-26T12:20:16.417Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_FAILED",
+      "ipAddress": "::1",
+      "details": "Failed admin login attempt for admin@jonikndovufarm.com: invalid credentials. IP: ::1."
+    },
+    {
+      "id": "aud-1793015690948",
+      "timestamp": "2026-10-26T11:54:50.948Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_ROLE_CHANGED",
+      "targetResource": "investor.registered@example.com",
+      "ipAddress": "::1",
+      "details": "Administrator updated role for investor.registered@example.com from 'registered' to 'approved'. Status: 'active'."
+    },
+    {
+      "id": "aud-1793015690651",
+      "timestamp": "2026-10-26T11:54:50.651Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "TIER_UPGRADE_REQUESTED",
+      "targetResource": "investor.registered@example.com",
+      "details": "Investor Elena Rostova (investor.registered@example.com) requested Tier 3 diligence upgrade and executed digital NDA."
+    },
+    {
+      "id": "aud-1793015690600",
+      "timestamp": "2026-10-26T11:54:50.600Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "ipAddress": "::1",
+      "details": "Super Administrator authenticated into Command Center via multi-factor credentials. IP: ::1."
+    },
+    {
+      "id": "aud-1793015690508",
+      "timestamp": "2026-10-26T11:54:50.508Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_FAILED",
+      "ipAddress": "::1",
+      "details": "Failed admin login attempt for admin@jonikndovufarm.com: invalid password or security passkey mismatch. IP: ::1."
+    },
+    {
+      "id": "aud-1793015690378",
+      "timestamp": "2026-10-26T11:54:50.378Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "Investor signed in via credentials with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1793015647718",
+      "timestamp": "2026-10-26T11:54:07.718Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "TIER_UPGRADE_REQUESTED",
+      "targetResource": "investor.registered@example.com",
+      "details": "Investor Elena Rostova (investor.registered@example.com) requested Tier 3 diligence upgrade and executed digital NDA."
+    },
+    {
+      "id": "aud-1793015647618",
+      "timestamp": "2026-10-26T11:54:07.618Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "Investor signed in via credentials with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1793015479764",
+      "timestamp": "2026-10-26T11:51:19.764Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "Investor signed in via credentials with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1793015401159",
+      "timestamp": "2026-10-26T11:50:01.159Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "ipAddress": "::1",
+      "details": "Super Administrator authenticated into Command Center via multi-factor credentials. IP: ::1."
+    },
+    {
+      "id": "aud-1793015401078",
+      "timestamp": "2026-10-26T11:50:01.078Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_FAILED",
+      "ipAddress": "::1",
+      "details": "Failed admin login attempt for admin@jonikndovufarm.com: invalid password or security passkey mismatch. IP: ::1."
+    },
+    {
+      "id": "aud-1793015400671",
+      "timestamp": "2026-10-26T11:50:00.671Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "Investor signed in via credentials with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1793013350757",
+      "timestamp": "2026-10-26T11:15:50.757Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "User signed in via portal with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1793013347534",
+      "timestamp": "2026-10-26T11:15:47.534Z",
+      "actorEmail": "investor.approved@example.com",
+      "actorRole": "approved",
+      "action": "USER_LOGOUT",
+      "ipAddress": "::1",
+      "details": "User signed out. IP: ::1."
+    },
+    {
+      "id": "aud-1793013322808",
+      "timestamp": "2026-10-26T11:15:22.808Z",
+      "actorEmail": "investor.approved@example.com",
+      "actorRole": "approved",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "User signed in via portal with role 'approved'. IP: ::1."
+    },
+    {
+      "id": "aud-1793013313722",
+      "timestamp": "2026-10-26T11:15:13.722Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_LOGOUT",
+      "ipAddress": "::1",
+      "details": "User signed out. IP: ::1."
+    },
+    {
+      "id": "aud-1793013298903",
+      "timestamp": "2026-10-26T11:14:58.903Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "CAMPAIGN_WINDOW_UPDATED",
+      "targetResource": "CampaignWindowConfig",
+      "details": "Updated campaign window: closingDate=2027-02-23T23:59:59.000Z, status=active, enabled=true"
+    },
+    {
+      "id": "aud-1793013227969",
+      "timestamp": "2026-10-26T11:13:47.969Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "User signed in via portal with role 'admin'. IP: ::1."
+    },
+    {
+      "id": "aud-1793012639344",
+      "timestamp": "2026-10-26T11:03:59.344Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "CAMPAIGN_WINDOW_UPDATED",
+      "targetResource": "CampaignWindowConfig",
+      "details": "Updated campaign window: closingDate=2026-12-22T23:59:59.000Z, status=active, enabled=true"
+    },
+    {
+      "id": "aud-1793012639058",
+      "timestamp": "2026-10-26T11:03:59.058Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "User signed in via portal with role 'admin'. IP: ::1."
+    },
+    {
+      "id": "aud-1792984888757",
+      "timestamp": "2026-10-26T03:21:28.757Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "User signed in via portal with role 'admin'. IP: ::1."
+    },
     {
       "id": "aud-1792953892223",
       "timestamp": "2026-10-25T18:44:52.223Z",
@@ -898,5 +1567,15 @@
       "action": "ACCESS_REQUEST_SUBMITTED",
       "details": "Submitted registration request for Tier 3 accredited investor access."
     }
-  ]
+  ],
+  "campaignWindow": {
+    "roundName": "Phase 1 Lead Partner & Syndicate Allocation",
+    "closingDate": "2027-02-25T23:59:59.000Z",
+    "status": "active",
+    "enabled": true,
+    "targetCapital": "US$2.4 Million",
+    "institutionalNote": "Structured timetable for lead investor diligence and indicative syndicate allocations prior to capital lock.",
+    "lastUpdated": "2026-10-27T00:25:50.120Z",
+    "updatedBy": "biztechinter@gmail.com"
+  }
 }

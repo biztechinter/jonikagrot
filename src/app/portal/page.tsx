@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { getCurrentUser } from "@/lib/auth";
 import { PROJECT_FACTS, INITIAL_DOCUMENTS } from "@/data/projectData";
+import CampaignTimetableCard from "@/components/campaign/CampaignTimetableCard";
+import TierUpgradeModal from "@/components/portal/TierUpgradeModal";
 import {
   Shield,
   Lock,
@@ -55,6 +57,9 @@ export default async function PortalDashboard() {
         </div>
       </div>
 
+      {/* Structured Diligence & Allocation Window */}
+      <CampaignTimetableCard variant="portal" />
+
       {/* Email Verification Banner */}
       {user.emailVerified === false && (
         <div className="p-4 bg-amber-50 border-l-4 border-amber-600 text-xs text-amber-950 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -75,26 +80,8 @@ export default async function PortalDashboard() {
         </div>
       )}
 
-      {/* Upgrade Banner for Tier 2 */}
-      {!isApproved && (
-        <div className="p-5 bg-sand/30 border-l-4 border-earth text-xs text-charcoal/80 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="space-y-1">
-            <div className="flex items-center space-x-2 text-forest font-semibold text-sm">
-              <Clock className="w-4 h-4 text-earth" />
-              <span>Tier 3 Diligence Access Pending</span>
-            </div>
-            <p className="text-charcoal/70 leading-relaxed max-w-2xl">
-              You currently have access to Tier 2 Executive Overviews and FAQ files. Detailed financial models (10-Year XLSX), Sources & Uses, and Land Diligence archives require Tier 3 clearance from our administration team.
-            </p>
-          </div>
-          <Link
-            href="/portal/messages"
-            className="luxury-btn-gold text-[11px] !py-2.5 !px-4 tracking-wider flex-shrink-0"
-          >
-            Request Tier 3 Clearance
-          </Link>
-        </div>
-      )}
+      {/* Tier 3 Diligence Elevation & NDA Status */}
+      <TierUpgradeModal user={user} />
 
       {/* Factual Metrics Bar */}
       <div>

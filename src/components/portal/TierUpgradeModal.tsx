@@ -1,0 +1,244 @@
+"use client";
+
+import { useState } from "react";
+import {
+  ShieldCheck,
+  Lock,
+  FileCheck2,
+  AlertCircle,
+  CheckCircle2,
+  ArrowRight,
+  X,
+  FileText,
+  FileSpreadsheet,
+} from "lucide-react";
+import type { User } from "@/types";
+
+interface Props {
+  user: User;
+}
+
+export default function TierUpgradeModal({ user }: Props) {
+  const isTier3 = user.role === "approved" || user.role === "admin";
+  const alreadyRequested = Boolean(user.diligenceRequestedAt || user.ndaAccepted);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const [ndaAccepted, setNdaAccepted] = useState(false);
+  const [indicativeRange, setIndicativeRange] = useState(user.indicativeRange || "US$500,000 – US$1,000,000");
+  const [notes, setNotes] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  if (isTier3) {
+    return (
+      <div className="p-4 bg-forest/10 border-l-4 border-forest text-xs text-forest flex items-center justify-between">
+        <div className="flex items-center space-x-2">
+          <ShieldCheck className="w-4 h-4 text-forest flex-shrink-0" />
+          <span className="font-semibold">
+            Tier 3 Full Due Diligence Access Granted: 10-Year Pro-Forma Model and all 15 Package Documents Unlocked.
+          </span>
+        </div>
+        <span className="px-2.5 py-0.5 bg-forest text-sand text-[10px] font-mono font-bold uppercase">
+          Accredited Investor
+        </span>
+      </div>
+    );
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!ndaAccepted) {
+      setError("You must acknowledge and accept the Non-Disclosure Agreement to apply.");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch("/api/portal/request-upgrade", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ndaAccepted: true,
+          indicativeRange,
+          message: notes,
+        }),
+      });
+
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Submission failed.");
+
+      setSuccess(true);
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Error submitting application.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <>
+      {/* Banner */}
+      <div className="bg-sand/30 border border-sand/60 p-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <div className="flex items-center space-x-2">
+            <Lock className="w-4 h-4 text-earth" />
+            <span className="text-[11px] font-mono uppercase tracking-wider text-earth font-bold">
+              Tier 3 Diligence Elevation
+            </span>
+          </div>
+          <h4 className="font-serif text-base font-bold text-forest">
+            Unlock the 10-Year Financial Model & Full Diligence Room
+          </h4>
+          <p className="text-xs text-charcoal/75 max-w-xl">
+            You currently have Tier 2 overview access. Execute the confidential NDA and submit your accreditation profile to unlock the unredacted pro-forma XLSX model, Sources & Uses budget, and master architectural briefs.
+          </p>
+        </div>
+
+        <div>
+          {alreadyRequested ? (
+            <div className="flex items-center space-x-2 px-3.5 py-2 bg-amber-100/80 border border-amber-300 text-amber-900 text-xs font-mono font-semibold">
+              <CheckCircle2 className="w-4 h-4 text-amber-700" />
+              <span>Diligence Application Under Review</span>
+            </div>
+          ) : (
+            <button
+              onClick={() => setIsOpen(true)}
+              className="luxury-btn-primary text-xs !py-3 !px-5 tracking-wider flex items-center space-x-2 flex-shrink-0"
+            >
+              <FileCheck2 className="w-4 h-4 text-sand" />
+              <span>Execute NDA & Unlock Tier 3</span>
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* NDA & Elevation Modal */}
+      {isOpen && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white max-w-xl w-full max-h-[90vh] overflow-y-auto border border-sand/60 shadow-elevated p-6 sm:p-8 space-y-6">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between pb-3 border-b border-sand/30">
+              <div>
+                <span className="text-[10px] font-mono uppercase tracking-widest text-earth font-bold block">
+                  Confidential Diligence Agreement
+                </span>
+                <h3 className="font-serif text-xl font-bold text-forest mt-0.5">
+                  Tier 3 Non-Disclosure & Accreditation
+                </h3>
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-charcoal/50 hover:text-charcoal p-1 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {error && (
+              <div className="p-3 bg-red-50 border border-red-200 text-red-800 text-xs flex items-center space-x-2">
+                <AlertCircle className="w-4 h-4 text-red-600 flex-shrink-0" />
+                <span>{error}</span>
+              </div>
+            )}
+
+            {success ? (
+              <div className="py-8 text-center space-y-3">
+                <CheckCircle2 className="w-12 h-12 text-forest mx-auto animate-bounce" />
+                <h4 className="font-serif text-lg font-bold text-forest">Application & NDA Recorded</h4>
+                <p className="text-xs text-charcoal/70 max-w-sm mx-auto">
+                  Your application has been routed to the project directors. Once diligence suitability is confirmed, your account will instantly upgrade to Tier 3 Approved.
+                </p>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+                {/* Legal Summary Box */}
+                <div className="p-4 bg-sand/15 border border-sand/40 max-h-40 overflow-y-auto space-y-2 text-[11px] text-charcoal/80 leading-relaxed font-mono">
+                  <p className="font-bold text-forest">CONFIDENTIALITY & NON-DISCLOSURE UNDERTAKING:</p>
+                  <p>
+                    1. The recipient acknowledges that the documents in Tier 3 (including the 10-Year Pro-Forma Financial Model in Microsoft Excel format, capital budgets, title diligence, and development specifications) contain proprietary commercial trade secrets of Jonik Ndovu Farm Management.
+                  </p>
+                  <p>
+                    2. All materials are furnished solely for evaluating a potential lead equity, syndicate, or strategic hospitality co-investment.
+                  </p>
+                  <p>
+                    3. The recipient agrees not to disclose, duplicate, reverse-engineer, or distribute any financial calculations, room revenue yields, or land contracts to third parties without prior written consent.
+                  </p>
+                </div>
+
+                {/* Range confirmation */}
+                <div className="space-y-1">
+                  <label className="block text-xs font-semibold text-forest uppercase tracking-wider">
+                    Indicative Investment Ticket Range
+                  </label>
+                  <select
+                    value={indicativeRange}
+                    onChange={(e) => setIndicativeRange(e.target.value)}
+                    className="w-full p-2.5 bg-ivory/50 border border-sand/80 focus:border-forest text-xs font-mono"
+                  >
+                    <option value="US$250,000 – US$500,000">US$250,000 – US$500,000 (Syndicate Participant)</option>
+                    <option value="US$500,000 – US$1,000,000">US$500,000 – US$1,000,000 (Major Syndicate Partner)</option>
+                    <option value="US$1,000,000 – US$2,400,000 (Lead Partner)">US$1,000,000 – US$2,400,000 (Lead Equity Partner)</option>
+                  </select>
+                </div>
+
+                {/* Diligence Focus Notes */}
+                <div className="space-y-1">
+                  <label className="block text-xs font-semibold text-forest uppercase tracking-wider">
+                    Primary Diligence Focus / Advisory Representatives (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    value={notes}
+                    onChange={(e) => setNotes(e.target.value)}
+                    placeholder="e.g. Legal structuring, biodiversity covenants, pro-forma yield review"
+                    className="w-full p-2.5 bg-ivory/50 border border-sand/80 focus:border-forest text-xs"
+                  />
+                </div>
+
+                {/* Checkbox */}
+                <div className="pt-2 flex items-start space-x-2.5">
+                  <input
+                    type="checkbox"
+                    id="nda-checkbox"
+                    checked={ndaAccepted}
+                    onChange={(e) => setNdaAccepted(e.target.checked)}
+                    className="w-4 h-4 mt-0.5 text-forest border-sand/80 rounded focus:ring-forest cursor-pointer"
+                  />
+                  <label htmlFor="nda-checkbox" className="text-[11px] text-charcoal/90 cursor-pointer leading-normal">
+                    <strong>I confirm accredited investor eligibility</strong> and formally execute the confidential Non-Disclosure Agreement for Jonik Ndovu Farm project assets.
+                  </label>
+                </div>
+
+                {/* Buttons */}
+                <div className="pt-4 flex items-center justify-end space-x-3 border-t border-sand/30">
+                  <button
+                    type="button"
+                    onClick={() => setIsOpen(false)}
+                    className="px-4 py-2 border border-sand/60 text-charcoal/70 hover:text-charcoal text-xs tracking-wider uppercase"
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    type="submit"
+                    disabled={loading || !ndaAccepted}
+                    className="luxury-btn-primary text-xs !py-2.5 !px-5 tracking-wider flex items-center space-x-2 disabled:opacity-50"
+                  >
+                    <span>{loading ? "Recording NDA..." : "Sign NDA & Submit Application"}</span>
+                    <ArrowRight className="w-3.5 h-3.5 text-sand" />
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}

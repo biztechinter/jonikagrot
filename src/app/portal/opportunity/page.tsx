@@ -1,5 +1,7 @@
 import { getCurrentUser } from "@/lib/auth";
 import { PROJECT_FACTS } from "@/data/projectData";
+import CampaignTimetableCard from "@/components/campaign/CampaignTimetableCard";
+import TierUpgradeModal from "@/components/portal/TierUpgradeModal";
 import { TrendingUp, CheckCircle2, Download, HelpCircle, FileText } from "lucide-react";
 
 export default async function OpportunityPage() {
@@ -43,6 +45,12 @@ export default async function OpportunityPage() {
           Comprehensive synthesis of the hospitality-led commercial thesis, revenue drivers, target guest segments, and operational architecture.
         </p>
       </div>
+
+      {/* Campaign Diligence Timetable */}
+      <CampaignTimetableCard variant="portal" />
+
+      {/* Tier 3 Diligence Elevation & NDA Status */}
+      <TierUpgradeModal user={user} />
 
       {/* 90-Second Pitch Script */}
       <div className="bg-forest text-ivory p-6 sm:p-8 border border-forest-light shadow-elevated space-y-3">

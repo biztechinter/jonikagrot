@@ -13,6 +13,7 @@ import {
   ChevronRight,
   ExternalLink,
   ArrowLeft,
+  MessageSquare,
 } from "lucide-react";
 
 interface Props {
@@ -32,6 +33,7 @@ export default function AdminSidebar({ user }: Props) {
   const navItems = [
     { label: "Executive Dashboard", href: "/admin", icon: ShieldAlert },
     { label: "Access Requests", href: "/admin/access-requests", icon: UserCheck },
+    { label: "Investor Messages", href: "/admin/inquiries", icon: MessageSquare },
     { label: "Investor Directory", href: "/admin/investors", icon: Users },
     { label: "Document Registry", href: "/admin/documents", icon: FileText },
     { label: "Security Audit Log", href: "/admin/audit-log", icon: Activity },

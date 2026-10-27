@@ -18,6 +18,9 @@ export interface User {
   id: string;
   email: string;
   name: string;
+  passwordHash?: string;
+  passwordSalt?: string;
+  authProvider?: "credentials" | "google";
   organization?: string;
   country?: string;
   role: UserRole;
@@ -27,6 +30,12 @@ export interface User {
   status: "active" | "suspended" | "pending";
   emailVerified?: boolean;
   verificationCode?: string;
+  termsAccepted?: boolean;
+  termsAcceptedAt?: string;
+  profileCompleted?: boolean;
+  ndaAccepted?: boolean;
+  ndaAcceptedAt?: string;
+  diligenceRequestedAt?: string;
   createdAt: string;
   approvedAt?: string;
   approvedBy?: string;
@@ -86,7 +95,7 @@ export interface InvestorInquiry {
   type: "General Question" | "Meeting Request" | "Due Diligence Request" | "Term Sheet Discussion";
   message: string;
   preferredDate?: string;
-  status: "new" | "in_review" | "answered";
+  status: "new" | "read" | "replied" | "in_review" | "answered";
   createdAt: string;
   response?: string;
 }
@@ -108,8 +117,30 @@ export interface AuditEvent {
     | "DOCUMENT_VIEWED"
     | "DOCUMENT_DOWNLOADED"
     | "INQUIRY_SUBMITTED"
-    | "INQUIRY_RESPONDED";
+    | "INQUIRY_RESPONDED"
+    | "INQUIRY_STATUS_UPDATED"
+    | "CAMPAIGN_WINDOW_UPDATED"
+    | "USER_REGISTERED"
+    | "PASSWORD_CHANGED"
+    | "ADMIN_LOGIN_SUCCESS"
+    | "ADMIN_LOGIN_FAILED"
+    | "TIER_UPGRADE_REQUESTED"
+    | "TIER_UPGRADE_APPROVED";
   targetResource?: string;
   details: string;
   ipAddress?: string;
 }
+
+export type CampaignRoundStatus = "active" | "under_review" | "closed" | "extended";
+
+export interface CampaignWindowConfig {
+  roundName: string;
+  closingDate: string; // ISO string, e.g. "2026-12-15T23:59:59.000Z"
+  status: CampaignRoundStatus;
+  enabled: boolean;
+  targetCapital: string; // e.g. "US$2.4 Million"
+  institutionalNote: string;
+  lastUpdated: string;
+  updatedBy: string;
+}
+

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import CampaignTimetableCard from "@/components/campaign/CampaignTimetableCard";
 import { PROJECT_FACTS, SOURCES_AND_USES_ITEMS } from "@/data/projectData";
 import { Shield, CheckCircle2, ArrowRight, Lock, FileSpreadsheet, Layers, PieChart } from "lucide-react";
 
@@ -29,6 +30,11 @@ export default function InvestmentPage() {
               An opportunity to participate in developing a distinctive hospitality-led agro-tourism destination in Segera, Laikipia County, Kenya.
             </p>
           </div>
+        </section>
+
+        {/* Campaign Allocation & Diligence Timetable */}
+        <section className="pt-12 pb-4 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <CampaignTimetableCard variant="public" />
         </section>
 
         {/* Executive Investment Thesis */}
