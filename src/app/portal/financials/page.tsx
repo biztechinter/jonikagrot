@@ -71,9 +71,16 @@ export default async function FinancialsPage() {
               <p className="text-[11px] text-ivory/60 max-w-xs">
                 Your current tier is Registered (Tier 2). Please request an administrative upgrade to unlock the financial spreadsheet.
               </p>
-              <TierUpgradeTrigger className="inline-block text-xs uppercase tracking-wider font-bold text-earth underline hover:text-sand cursor-pointer">
-                Request Tier Upgrade (Sign NDA)
-              </TierUpgradeTrigger>
+              {user.ndaAccepted ? (
+                <div className="flex items-center justify-end space-x-1.5 text-amber-300 font-mono text-[11px] font-semibold">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-amber-400" />
+                  <span>NDA Signed · Diligence Review Pending</span>
+                </div>
+              ) : (
+                <TierUpgradeTrigger className="inline-block text-xs uppercase tracking-wider font-bold text-earth underline hover:text-sand cursor-pointer">
+                  Request Tier Upgrade (Sign NDA)
+                </TierUpgradeTrigger>
+              )}
             </div>
           )}
         </div>

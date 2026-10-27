@@ -280,13 +280,19 @@ export default function DocumentLibraryPage() {
                           Requires Tier 3 Clearance
                         </span>
                       </div>
-                      <button
-                        type="button"
-                        onClick={() => window.dispatchEvent(new CustomEvent("open-tier-upgrade"))}
-                        className="text-[11px] font-bold text-earth hover:text-forest underline cursor-pointer bg-transparent border-0 p-0"
-                      >
-                        Request Tier Upgrade
-                      </button>
+                      {user?.ndaAccepted ? (
+                        <span className="text-[10px] font-mono font-semibold text-amber-700 bg-amber-100/70 px-2 py-0.5 border border-amber-300">
+                          Review Pending (NDA Signed)
+                        </span>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => window.dispatchEvent(new CustomEvent("open-tier-upgrade"))}
+                          className="text-[11px] font-bold text-earth hover:text-forest underline cursor-pointer bg-transparent border-0 p-0"
+                        >
+                          Request Tier Upgrade
+                        </button>
+                      )}
                     </div>
                   )}
                 </div>

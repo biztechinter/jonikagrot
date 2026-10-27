@@ -226,9 +226,15 @@ export default async function PortalDashboard() {
                   <Lock className="w-3.5 h-3.5" />
                   <span>Restricted to Tier 3</span>
                 </div>
-                <TierUpgradeTrigger className="text-earth font-bold hover:underline cursor-pointer">
-                  Request Access (Sign NDA)
-                </TierUpgradeTrigger>
+                {user.ndaAccepted ? (
+                  <span className="text-[10px] font-mono font-semibold text-amber-700 bg-amber-100/70 px-2 py-0.5 border border-amber-300">
+                    Review Pending (NDA Signed)
+                  </span>
+                ) : (
+                  <TierUpgradeTrigger className="text-earth font-bold hover:underline cursor-pointer">
+                    Request Access (Sign NDA)
+                  </TierUpgradeTrigger>
+                )}
               </div>
             )}
           </div>

@@ -138,6 +138,31 @@ export default function TierUpgradeModal({ user, modalOnly = false }: Props) {
               Your application has been routed to the project directors. Once diligence suitability is confirmed, your account will instantly upgrade to Tier 3 Approved.
             </p>
           </div>
+        ) : alreadyRequested ? (
+          <div className="py-6 text-center space-y-3">
+            <CheckCircle2 className="w-12 h-12 text-forest mx-auto" />
+            <span className="text-[10px] font-mono uppercase tracking-widest text-earth font-bold block">
+              Accreditation Pending Review
+            </span>
+            <h4 className="font-serif text-lg font-bold text-forest">
+              NDA Already Executed & Application Under Review
+            </h4>
+            <p className="text-xs text-charcoal/70 max-w-sm mx-auto leading-relaxed">
+              You have already digitally executed the confidential Non-Disclosure Agreement {user.ndaAcceptedAt && `on ${new Date(user.ndaAcceptedAt).toLocaleDateString()}`}.
+            </p>
+            <p className="text-[11px] text-charcoal/60 max-w-sm mx-auto">
+              You do <strong>not</strong> need to sign the NDA again. Once the administrator verifies your accreditation suitability, all Tier 3 financial spreadsheets and package documents will unlock automatically.
+            </p>
+            <div className="pt-2">
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="luxury-btn-primary text-xs !py-2.5 !px-6"
+              >
+                Close Window
+              </button>
+            </div>
+          </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4 text-xs">
             {/* Legal Summary Box */}
