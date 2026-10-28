@@ -136,9 +136,9 @@ export async function POST(req: NextRequest) {
 
       const ext = path.extname(originalName).toLowerCase();
       if (ext === ".pdf") filetype = "PDF";
-      else if (ext === ".docx") filetype = "DOCX";
-      else if (ext === ".xlsx") filetype = "XLSX";
-      else if (ext === ".pptx") filetype = "PPTX";
+      else if (ext === ".docx" || ext === ".doc") filetype = "DOCX";
+      else if (ext === ".xlsx" || ext === ".xls" || ext === ".csv") filetype = "XLSX";
+      else if (ext === ".pptx" || ext === ".ppt") filetype = "PPTX";
       else filetype = "TXT";
 
       const bytes = await uploadedFile.arrayBuffer();

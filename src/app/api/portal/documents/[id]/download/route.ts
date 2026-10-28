@@ -16,11 +16,19 @@ const MIME_TYPES: Record<string, string> = {
   ".pdf": "application/pdf",
   ".docx":
     "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ".doc": "application/msword",
   ".xlsx":
     "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  ".xls": "application/vnd.ms-excel",
   ".pptx":
     "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  ".ppt": "application/vnd.ms-powerpoint",
+  ".csv": "text/csv; charset=utf-8",
   ".txt": "text/plain; charset=utf-8",
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".zip": "application/zip",
 };
 
 // Max 30 document downloads per authenticated user per 10-minute window.
@@ -98,15 +106,9 @@ export async function GET(req: NextRequest, { params }: Params) {
       );
     }
 
-    // ── Allowed extension whitelist ───────────────────────────────────
+    // ── Content type resolution ───────────────────────────────────────
     const ext = path.extname(safeFilename).toLowerCase();
-    const contentType = MIME_TYPES[ext];
-    if (!contentType) {
-      return NextResponse.json(
-        { error: "This file type is not available for download." },
-        { status: 415 }
-      );
-    }
+    const contentType = MIME_TYPES[ext] || "application/octet-stream";
 
     if (!fs.existsSync(filePath)) {
       return NextResponse.json(

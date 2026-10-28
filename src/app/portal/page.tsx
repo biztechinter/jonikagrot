@@ -226,7 +226,11 @@ export default async function PortalDashboard() {
                   <Lock className="w-3.5 h-3.5" />
                   <span>Restricted to Tier 3</span>
                 </div>
-                {user.ndaAccepted ? (
+                {user.diligenceStatus === "declined" ? (
+                  <TierUpgradeTrigger className="text-[10px] font-mono font-semibold text-red-700 bg-red-100/80 px-2 py-0.5 border border-red-300 hover:bg-red-200">
+                    Declined · Re-Apply
+                  </TierUpgradeTrigger>
+                ) : (user.diligenceStatus === "pending" || (!user.diligenceStatus && user.ndaAccepted)) ? (
                   <span className="text-[10px] font-mono font-semibold text-amber-700 bg-amber-100/70 px-2 py-0.5 border border-amber-300">
                     Review Pending (NDA Signed)
                   </span>

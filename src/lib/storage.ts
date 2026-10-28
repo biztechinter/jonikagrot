@@ -375,6 +375,9 @@ export const db = {
     user.ndaAccepted = ndaAccepted;
     user.ndaAcceptedAt = new Date().toISOString();
     user.diligenceRequestedAt = new Date().toISOString();
+    user.diligenceStatus = "pending";
+    user.diligenceDeclinedAt = undefined;
+    user.diligenceDeclinedBy = undefined;
     saveDB(data);
 
     // Also update or create an AccessRequest record so admin can review

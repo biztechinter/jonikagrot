@@ -91,6 +91,9 @@ export async function POST(req: NextRequest) {
       // Elevate user account
       if (matchedUser) {
         matchedUser.role = approvedRole;
+        if (approvedRole === "approved") {
+          matchedUser.diligenceStatus = "approved";
+        }
         matchedUser.approvedAt = new Date().toISOString();
         matchedUser.approvedBy = user.email;
         db.saveUser(matchedUser);
@@ -118,6 +121,15 @@ export async function POST(req: NextRequest) {
       reqObj.reviewedAt = new Date().toISOString();
       reqObj.reviewedBy = user.email;
       db.saveAccessRequest(reqObj);
+
+      // Update matched user to reflect declined diligence status while retaining Tier 2 account
+      const matchedUser = db.getUserByEmail(reqObj.businessEmail);
+      if (matchedUser) {
+        matchedUser.diligenceStatus = "declined";
+        matchedUser.diligenceDeclinedAt = new Date().toISOString();
+        matchedUser.diligenceDeclinedBy = user.email;
+        db.saveUser(matchedUser);
+      }
 
       db.addAuditLog({
         actorEmail: user.email,

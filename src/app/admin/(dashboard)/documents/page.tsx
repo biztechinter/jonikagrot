@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { DiligenceDocument, DocumentCategory, ConfidentialityLevel, UserRole } from "@/types";
 import {
   FileText,
@@ -42,11 +43,27 @@ export default function AdminDocumentsPage() {
   const [selectedClassification, setSelectedClassification] = useState<string>("all");
 
   // Modal State
+  const [mounted, setMounted] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingDoc, setEditingDoc] = useState<DiligenceDocument | null>(null);
   const [isSaving, setIsSaving] = useState(false);
   const [modalError, setModalError] = useState<string | null>(null);
   const [feedbackMsg, setFeedbackMsg] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isModalOpen]);
 
   // Form Fields
   const [formTitle, setFormTitle] = useState("");
@@ -235,7 +252,7 @@ export default function AdminDocumentsPage() {
   const publicCount = documents.filter((d) => d.confidentiality === "Public").length;
 
   return (
-    <div className="space-y-8 animate-fade-in pb-16">
+    <div className="space-y-8 pb-16">
       {/* Title & Actions Header */}
       <div className="bg-white p-6 sm:p-8 border border-sand/50 shadow-card flex flex-col md:flex-row md:items-center justify-between gap-6">
         <div>
@@ -494,9 +511,9 @@ export default function AdminDocumentsPage() {
       </div>
 
       {/* Modal Dialog: Add / Edit Document */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-charcoal/60 backdrop-blur-sm animate-fade-in overflow-y-auto">
-          <div className="bg-white border border-sand shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col my-8">
+      {isModalOpen && mounted && createPortal(
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6 bg-charcoal/70 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-white border border-sand shadow-2xl max-w-2xl w-full max-h-[90vh] flex flex-col my-auto relative">
             {/* Modal Header */}
             <div className="p-6 border-b border-sand/40 flex items-center justify-between bg-sand/10">
               <div>
@@ -699,7 +716,8 @@ export default function AdminDocumentsPage() {
               </div>
             </form>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

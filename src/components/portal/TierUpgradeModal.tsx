@@ -21,7 +21,9 @@ interface Props {
 
 export default function TierUpgradeModal({ user, modalOnly = false }: Props) {
   const isTier3 = user.role === "approved" || user.role === "admin";
-  const alreadyRequested = Boolean(user.diligenceRequestedAt || user.ndaAccepted);
+  const isDeclined = user.diligenceStatus === "declined";
+  const isPending = !isTier3 && !isDeclined && Boolean(user.diligenceRequestedAt || user.diligenceStatus === "pending");
+  const alreadyRequested = isPending;
 
   const [isOpen, setIsOpen] = useState(false);
   const [ndaAccepted, setNdaAccepted] = useState(false);
@@ -273,15 +275,29 @@ export default function TierUpgradeModal({ user, modalOnly = false }: Props) {
             Unlock the 10-Year Financial Model & Full Diligence Room
           </h4>
           <p className="text-xs text-charcoal/75 max-w-xl">
-            You currently have Tier 2 overview access. Execute the confidential NDA and submit your accreditation profile to unlock the unredacted pro-forma XLSX model, Sources & Uses budget, and master architectural briefs.
+            You currently have Tier 2 overview access. {isDeclined
+              ? "Your previous Tier 3 diligence request was reviewed by the investment committee and not approved at this time. You retain full Tier 2 Registered access to all overview documents and financial summaries. If your investment mandate or capital range updates, you may submit an updated application below."
+              : "Execute the confidential NDA and submit your accreditation profile to unlock the unredacted pro-forma XLSX model, Sources & Uses budget, and master architectural briefs."}
           </p>
         </div>
 
         <div>
-          {alreadyRequested ? (
+          {isPending ? (
             <div className="flex items-center space-x-2 px-3.5 py-2 bg-amber-100/80 border border-amber-300 text-amber-900 text-xs font-mono font-semibold">
               <CheckCircle2 className="w-4 h-4 text-amber-700" />
               <span>Diligence Application Under Review</span>
+            </div>
+          ) : isDeclined ? (
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <div className="px-3 py-1.5 bg-red-50 border border-red-200 text-red-800 text-xs font-mono font-semibold text-center">
+                Upgrade Declined (Tier 2 Active)
+              </div>
+              <button
+                onClick={() => setIsOpen(true)}
+                className="luxury-btn-primary text-xs !py-2 !px-3.5 tracking-wider flex items-center justify-center space-x-1"
+              >
+                <span>Re-Apply for Tier 3</span>
+              </button>
             </div>
           ) : (
             <button

@@ -37,6 +37,9 @@ export interface User {
   ndaAccepted?: boolean;
   ndaAcceptedAt?: string;
   diligenceRequestedAt?: string;
+  diligenceStatus?: "none" | "pending" | "approved" | "declined";
+  diligenceDeclinedAt?: string;
+  diligenceDeclinedBy?: string;
   createdAt: string;
   approvedAt?: string;
   approvedBy?: string;
