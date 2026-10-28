@@ -59,7 +59,44 @@ RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]
 `;
 fs.writeFileSync(htaccessPath, htaccessContent, 'utf-8');
 
-// 5. Package into jonik-hostinger-bundle.zip (on local development machines)
+// 5. Verify & hoist server.js if nested by Next.js tracing
+const topServerPath = path.join(standaloneDir, 'server.js');
+if (!fs.existsSync(topServerPath)) {
+  console.log('-> Searching for nested server.js in standalone directory...');
+  function findFile(dir, targetFile, maxDepth = 4, depth = 0) {
+    if (depth > maxDepth || !fs.existsSync(dir)) return null;
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    for (const entry of entries) {
+      const full = path.join(dir, entry.name);
+      if (entry.isFile() && entry.name === targetFile) return full;
+      if (entry.isDirectory() && entry.name !== 'node_modules' && entry.name !== '.next') {
+        const res = findFile(full, targetFile, maxDepth, depth + 1);
+        if (res) return res;
+      }
+    }
+    return null;
+  }
+
+  const nestedServer = findFile(standaloneDir, 'server.js');
+  if (nestedServer) {
+    console.log(`-> Hoisting nested server.js from ${nestedServer} to ${topServerPath}...`);
+    fs.copyFileSync(nestedServer, topServerPath);
+  }
+}
+
+// 6. Confirm server.js exists, else fail build explicitly
+if (!fs.existsSync(topServerPath)) {
+  console.error('FATAL: Standalone server.js was NOT found in .next/standalone/server.js!');
+  console.error('Directory contents of .next:');
+  if (fs.existsSync(path.join(rootDir, '.next'))) {
+    console.error(fs.readdirSync(path.join(rootDir, '.next')));
+  }
+  process.exit(1);
+} else {
+  console.log('✓ Verified: Standalone server.js is ready at .next/standalone/server.js');
+}
+
+// 7. Package into jonik-hostinger-bundle.zip (on local development machines)
 if (process.platform === 'win32' && !process.env.CI) {
   try {
     const { execSync } = require('child_process');
