@@ -65,26 +65,24 @@ export function middleware(request: NextRequest) {
   }
   const csp = [
     "default-src 'self'",
-    // Scripts: self + Next.js hot-reload in development
-    isDev
-      ? "script-src 'self' 'unsafe-eval' 'unsafe-inline'"
-      : "script-src 'self'",
+    // Scripts: Next.js App Router requires unsafe-inline for RSC hydration payloads and unsafe-eval for chunk runtime
+    "script-src 'self' 'unsafe-eval' 'unsafe-inline' https:",
     // Styles: Google Fonts + self inline (Tailwind injects inline styles via Next.js)
     "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-    // Fonts: Google Fonts CDN
-    "font-src 'self' https://fonts.gstatic.com",
-    // Images: self + data URIs (Next.js optimised images use data: in dev)
-    "img-src 'self' data: blob:",
-    // Connections: self only (no external APIs called from the browser)
-    "connect-src 'self'",
+    // Fonts: Google Fonts CDN + local self
+    "font-src 'self' https://fonts.gstatic.com data:",
+    // Images: self + data URIs + https images
+    "img-src 'self' data: blob: https:",
+    // Connections: self + OAuth APIs
+    "connect-src 'self' https:",
     // Iframes: none
     "frame-src 'none'",
     // Objects: none (no Flash / plugins)
     "object-src 'none'",
     // Base URI: restrict to self to prevent base-tag hijacking
     "base-uri 'self'",
-    // Form submission: self only
-    "form-action 'self'",
+    // Form submission: self + external auth providers
+    "form-action 'self' https://accounts.google.com",
     // Upgrade insecure requests in production
     ...(isDev ? [] : ["upgrade-insecure-requests"]),
   ].join("; ");
