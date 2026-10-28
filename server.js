@@ -10,3 +10,4 @@ if (fs.existsSync(standaloneServer)) {
   console.error('Standalone server bundle not found at .next/standalone/server.js. Please run "npm run build" first.');
   process.exit(1);
 }
+
