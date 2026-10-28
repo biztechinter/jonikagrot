@@ -1,0 +1,1302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jonik Ndovu Farm — QA & Acceptance Testing Guide</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+  @page {
+    size: A4 portrait;
+    margin: 18mm 16mm 18mm 16mm;
+    @bottom-right {
+      content: "Page " counter(page) " of " counter(pages);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 8pt;
+      color: #6B7280;
+    }
+    @bottom-left {
+      content: "JONIK NDOVU FARM · CONFIDENTIAL QA TEST PLAN";
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 8pt;
+      color: #6B7280;
+      letter-spacing: 0.05em;
+    }
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1F2937;
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    font-size: 9.5pt;
+    line-height: 1.5;
+  }
+
+  /* Cover Page */
+  .cover-page {
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 94vh;
+    padding: 40px 20px 20px 20px;
+    border-left: 6px solid #A88B65;
+    background: linear-gradient(135deg, #FAFAF7 0%, #FFFFFF 100%);
+  }
+
+  .cover-header {
+    border-bottom: 1px solid #E5E7EB;
+    padding-bottom: 25px;
+  }
+
+  .brand-badge {
+    display: inline-block;
+    background-color: #16281E;
+    color: #E6D5B8;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 3px;
+    margin-bottom: 18px;
+  }
+
+  .cover-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28pt;
+    font-weight: 700;
+    color: #16281E;
+    line-height: 1.15;
+    margin: 0 0 10px 0;
+    letter-spacing: -0.01em;
+  }
+
+  .cover-subtitle {
+    font-size: 13pt;
+    color: #A88B65;
+    font-weight: 500;
+    margin: 0 0 20px 0;
+    letter-spacing: 0.02em;
+  }
+
+  .cover-description {
+    font-size: 10pt;
+    color: #4B5563;
+    max-width: 600px;
+    line-height: 1.6;
+    margin-top: 15px;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 30px 0;
+    background: #FFFFFF;
+    border: 1px solid #E5E7EB;
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .meta-label {
+    font-size: 7.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #6B7280;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .meta-value {
+    font-size: 9.5pt;
+    color: #111827;
+    font-weight: 600;
+  }
+
+  .cover-footer {
+    border-top: 1px solid #E5E7EB;
+    padding-top: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 8pt;
+    color: #6B7280;
+  }
+
+  /* Document Typography */
+  h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 17pt;
+    font-weight: 700;
+    color: #16281E;
+    margin: 26px 0 12px 0;
+    padding-bottom: 6px;
+    border-bottom: 2px solid #E6D5B8;
+    page-break-after: avoid;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  h1 .section-num {
+    background: #16281E;
+    color: #FFFFFF;
+    font-size: 9pt;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 12.5pt;
+    font-weight: 600;
+    color: #1F382B;
+    margin: 18px 0 8px 0;
+    page-break-after: avoid;
+  }
+
+  h3 {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #111827;
+    margin: 14px 0 6px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    page-break-after: avoid;
+  }
+
+  p {
+    margin: 0 0 10px 0;
+    color: #374151;
+  }
+
+  /* Callout Boxes */
+  .callout {
+    background-color: #F8F9FA;
+    border-left: 4px solid #16281E;
+    padding: 12px 16px;
+    margin: 14px 0;
+    border-radius: 0 4px 4px 0;
+    page-break-inside: avoid;
+  }
+
+  .callout.gold {
+    background-color: #FCF9F3;
+    border-left-color: #A88B65;
+  }
+
+  .callout.danger {
+    background-color: #FEF2F2;
+    border-left-color: #DC2626;
+  }
+
+  .callout.info {
+    background-color: #EFF6FF;
+    border-left-color: #2563EB;
+  }
+
+  .callout-title {
+    font-weight: 700;
+    font-size: 9pt;
+    color: #111827;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 16px 0;
+    font-size: 8.5pt;
+    page-break-inside: auto;
+  }
+
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  th {
+    background-color: #16281E;
+    color: #FFFFFF;
+    text-align: left;
+    padding: 7px 10px;
+    font-weight: 600;
+    font-size: 8pt;
+    letter-spacing: 0.03em;
+    border: 1px solid #16281E;
+  }
+
+  td {
+    padding: 6px 10px;
+    border: 1px solid #E5E7EB;
+    vertical-align: top;
+    color: #374151;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #F9FAFB;
+  }
+
+  tbody tr:hover {
+    background-color: #F3F4F6;
+  }
+
+  /* Badges & Pills */
+  .badge {
+    display: inline-block;
+    padding: 2px 7px;
+    border-radius: 3px;
+    font-size: 7.5pt;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .badge-admin { background: #FEE2E2; color: #991B1B; border: 1px solid #F87171; }
+  .badge-tier3 { background: #FEF3C7; color: #92400E; border: 1px solid #FCD34D; }
+  .badge-tier2 { background: #E0E7FF; color: #3730A3; border: 1px solid #A5B4FC; }
+  .badge-public { background: #F3F4F6; color: #374151; border: 1px solid #D1D5DB; }
+  .badge-pass { background: #D1FAE5; color: #065F46; font-weight: 700; }
+  .badge-critical { background: #FEE2E2; color: #B91C1C; font-weight: 700; }
+
+  /* Code & Monospace */
+  code, .code-inline {
+    font-family: 'JetBrains Mono', Consolas, Monaco, monospace;
+    font-size: 8pt;
+    background: #F3F4F6;
+    padding: 1px 4px;
+    border-radius: 3px;
+    border: 1px solid #E5E7EB;
+    color: #B91C1C;
+  }
+
+  .code-block {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 8pt;
+    background: #111827;
+    color: #F3F4F6;
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin: 8px 0;
+    overflow-x: auto;
+    line-height: 1.45;
+  }
+
+  /* Test Case Card */
+  .tc-box {
+    border: 1px solid #D1D5DB;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    page-break-inside: avoid;
+    background: #FFFFFF;
+    overflow: hidden;
+  }
+
+  .tc-header {
+    background-color: #F9FAFB;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 7px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .tc-id {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+    font-size: 8.5pt;
+    color: #16281E;
+  }
+
+  .tc-title {
+    font-weight: 600;
+    font-size: 9pt;
+    color: #111827;
+    margin-left: 8px;
+    flex-grow: 1;
+  }
+
+  .tc-body {
+    padding: 10px 12px;
+    font-size: 8.5pt;
+  }
+
+  .tc-step-list {
+    margin: 4px 0 6px 18px;
+    padding: 0;
+  }
+
+  .tc-step-list li {
+    margin-bottom: 3px;
+  }
+
+  .tc-expected {
+    background-color: #F0FDF4;
+    border-left: 3px solid #10B981;
+    padding: 6px 10px;
+    margin-top: 6px;
+    font-size: 8pt;
+    color: #065F46;
+  }
+
+  .page-break {
+    page-break-before: always;
+  }
+
+  .checkbox-square {
+    display: inline-block;
+    width: 11px;
+    height: 11px;
+    border: 1.5px solid #6B7280;
+    border-radius: 2px;
+    margin-right: 6px;
+    vertical-align: -1px;
+  }
+
+  .sign-off-table td {
+    padding: 12px 10px;
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= COVER PAGE ================= -->
+<div class="cover-page">
+  <div class="cover-header">
+    <div class="brand-badge">Jonik Ndovu Farm · Laikipia, Kenya</div>
+    <h1 class="cover-title" style="border:none; padding:0; margin:0 0 10px 0;">Quality Assurance & Acceptance Testing Master Manual</h1>
+    <div class="cover-subtitle">End-to-End Verification Guide for Digital Platform, Investor Portal & Governance Systems</div>
+    <div class="cover-description">
+      This testing specification provides a comprehensive, rigorous protocol for validation engineers, QA testers, and security auditors evaluating the Jonik Ndovu Farm web application. Covers responsive layouts, multi-tier investor workflows, role-based access control, cryptographic verification, audit trails, and security compliance.
+    </div>
+  </div>
+
+  <div class="meta-grid">
+    <div class="meta-item">
+      <span class="meta-label">Target System</span>
+      <span class="meta-value">Jonik Ndovu Farm Web Application & Data Room</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Architecture</span>
+      <span class="meta-value">Next.js 14 (App Router) · React 18 · TypeScript · Tailwind CSS</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Testing Scope</span>
+      <span class="meta-value">Public Experience · Investor Onboarding · Data Room · Admin Console · Security</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Base URL (Local)</span>
+      <span class="meta-value"><code>http://localhost:3000</code></span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Test Suite Version</span>
+      <span class="meta-value">v2.4.0 (Post-Security Audit & Git Commit 7e399be)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Release Target</span>
+      <span class="meta-value">Q4 2026 Active Investment Round</span>
+    </div>
+  </div>
+
+  <div class="cover-footer">
+    <div>Classification: <strong>CONFIDENTIAL · INTERNAL QA DISTRIBUTION ONLY</strong></div>
+    <div>Document ID: <strong>JNF-QA-2026-V2</strong></div>
+  </div>
+</div>
+
+<!-- ================= SECTION 1: SETUP & CREDENTIALS ================= -->
+<div class="page-break"></div>
+
+<h1><span class="section-num">01</span> Test Environment Setup & Pre-Configured Test Accounts</h1>
+
+<p>
+  Before starting test execution, ensure the Next.js development server or staging instance is running. The application relies on server-side HTTP cookies for session persistence and file-based state storage in <code>server-storage/db.json</code>.
+</p>
+
+<div class="callout gold">
+  <div class="callout-title">⚡ Quick Verification of Running Server</div>
+  Run in terminal: <code>curl -I http://localhost:3000</code>. Verify that HTTP 200 OK is returned. If starting from cold, execute:
+  <div class="code-block">npm run dev  # Starts Next.js development server on http://localhost:3000</div>
+</div>
+
+<h2>Pre-Configured Test Credentials Matrix</h2>
+<p>
+  The following accounts are pre-seeded in the database to enable instant role-based testing across all privilege levels without manual database seeding:
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 14%;">Role</th>
+      <th style="width: 26%;">Account Email</th>
+      <th style="width: 18%;">Password</th>
+      <th style="width: 16%;">Access Level</th>
+      <th style="width: 26%;">Primary Testing Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="badge badge-admin">Super Admin</span></td>
+      <td><code>admin@jonikndovufarm.com</code></td>
+      <td><code>NdovuAdmin2026!</code></td>
+      <td>Full Governance (<code>/admin</code>)</td>
+      <td>Command Center, user approvals, campaign manager, audit logs, doc uploads.</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-tier3">Approved</span></td>
+      <td><code>investor.approved@example.com</code></td>
+      <td><code>Approved2026!</code></td>
+      <td>Tier 3 Accredited (<code>/portal</code>)</td>
+      <td>Full Data Room access, 10-Year Model download, watermarked PDF testing.</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-tier2">Registered</span></td>
+      <td><code>investor.registered@example.com</code></td>
+      <td><code>Registered2026!</code></td>
+      <td>Tier 2 Verified (<code>/portal</code>)</td>
+      <td>Executive overview access, locked Tier 3 teaser, NDA submission workflow.</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-public">Public/New</span></td>
+      <td><em>Tester provides new email</em></td>
+      <td><em>Tester defined (8+ chars)</em></td>
+      <td>Public (<code>/</code>, <code>/investment</code>)</td>
+      <td>End-to-end registration flow, validation errors, and email verification.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout info">
+  <div class="callout-title">🔑 Development Email Verification Code Bypass</div>
+  When testing the email verification flow for newly registered accounts in local or staging environments, use the standard universal verification code: <strong><code>123456</code></strong>. Real SMTP emails are also dispatched when SMTP environment variables are populated.
+</div>
+
+<h2>Platform Routes & URLs Map</h2>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Route / URL</th>
+      <th style="width: 20%;">Required Role</th>
+      <th style="width: 55%;">Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>/</code></td>
+      <td>Public</td>
+      <td>Brand homepage with hero, value propositions, metrics, campaign banner, and CTA.</td>
+    </tr>
+    <tr>
+      <td><code>/investment</code></td>
+      <td>Public</td>
+      <td>Investment thesis, round timetable, capital structure, and financial highlights.</td>
+    </tr>
+    <tr>
+      <td><code>/investor-access</code></td>
+      <td>Public</td>
+      <td>Tier 2 registration gateway with multi-field qualification questionnaire.</td>
+    </tr>
+    <tr>
+      <td><code>/login</code></td>
+      <td>Public</td>
+      <td>Unified investor authentication interface (Google OAuth + Email/Password).</td>
+    </tr>
+    <tr>
+      <td><code>/portal</code></td>
+      <td>Registered / Approved</td>
+      <td>Investor Data Room & Diligence Portal (displays Tier 2 or Tier 3 materials).</td>
+    </tr>
+    <tr>
+      <td><code>/portal/opportunity</code></td>
+      <td>Registered / Approved</td>
+      <td>In-depth architectural, conservation, and agro-tourism synergy specifications.</td>
+    </tr>
+    <tr>
+      <td><code>/admin/login</code></td>
+      <td>Public / Admin</td>
+      <td>Governance authentication portal with administrator credentials and passkey input.</td>
+    </tr>
+    <tr>
+      <td><code>/admin</code></td>
+      <td>Super Admin</td>
+      <td>Command Center Dashboard: KPIs, recent activity, system health.</td>
+    </tr>
+    <tr>
+      <td><code>/admin/investors</code></td>
+      <td>Super Admin</td>
+      <td>User Management: Tier upgrading, account suspension, reactivation, deletion.</td>
+    </tr>
+    <tr>
+      <td><code>/admin/access-requests</code></td>
+      <td>Super Admin</td>
+      <td>Investor accreditation queue: Review registration requests and approve NDAs.</td>
+    </tr>
+    <tr>
+      <td><code>/admin/documents</code></td>
+      <td>Super Admin</td>
+      <td>Diligence Room management: Upload, replace, edit metadata, and delete documents.</td>
+    </tr>
+    <tr>
+      <td><code>/admin/audit-log</code></td>
+      <td>Super Admin</td>
+      <td>Immutable security audit trail capturing all logins, downloads, and status changes.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ================= SECTION 2: TEST SUITES ================= -->
+<div class="page-break"></div>
+
+<h1><span class="section-num">02</span> Test Suite 1: Public Brand & Responsive Presentation</h1>
+
+<p>
+  Validates brand aesthetics, typography hierarchy (Playfair Display serif headings and Plus Jakarta Sans body), responsiveness across viewports, and call-to-action routing.
+</p>
+
+<!-- TC-PUB-01 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-PUB-01</span>
+    <span class="tc-title">Homepage Hero & Brand Aesthetic (Desktop 1280px+)</span>
+    <span class="badge badge-pass">High</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Browser opened in desktop resolution (1280x800 or wider).
+    <ul class="tc-step-list">
+      <li>Navigate to <code>http://localhost:3000/</code>.</li>
+      <li>Inspect the top navigation bar: verify logo, 6 main navigation items, and "Investor Access" CTA button.</li>
+      <li>Verify the luxury earth color palette: Deep Forest Evergreen (<code>#16281E</code>), Warm Earth Gold (<code>#A88B65</code>), Ivory (<code>#FAFAF7</code>).</li>
+      <li>Check the hero pill banner at the top of the hero text: "LAIKIPIA CONSERVANCY ECO-SYSTEM · PRIVATE ROUND".</li>
+      <li>Verify typography: Headings use Playfair Display serif; body text is clean sans-serif.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Page renders with zero horizontal scrollbar; typography is sharp and legibly spaced; buttons have smooth hover transitions (gold glow); hero imagery loads without layout shifts.
+    </div>
+  </div>
+</div>
+
+<!-- TC-PUB-02 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-PUB-02</span>
+    <span class="tc-title">Active Campaign Window Banner & Mobile Responsiveness (375px)</span>
+    <span class="badge badge-pass">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Responsive mode set to 375px width (iPhone SE viewport).
+    <ul class="tc-step-list">
+      <li>Navigate to <code>http://localhost:3000/</code>.</li>
+      <li>Examine the top Campaign Window Banner ("ACTIVE DILIGENCE ROUND").</li>
+      <li>Verify that the banner remains in a clean single-row or neatly wrapped layout without text overlapping or badge clipping.</li>
+      <li>Verify the hero eyebrow pill text does not overflow or wrap awkwardly (uses compact 10px tracking).</li>
+      <li>Tap the hamburger navigation icon: verify the mobile drawer expands smoothly with full navigation links and close button.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Zero horizontal scrolling or layout breakages at 375px width; hamburger menu opens and closes cleanly; closing date and status badges remain readable.
+    </div>
+  </div>
+</div>
+
+<!-- TC-PUB-03 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-PUB-03</span>
+    <span class="tc-title">Tablet Viewport Layout & Investment Timetable Card (768px)</span>
+    <span class="badge badge-pass">Medium</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Viewport set to 768px width (iPad portrait).
+    <ul class="tc-step-list">
+      <li>Navigate to <code>http://localhost:3000/investment</code>.</li>
+      <li>Scroll down to the Campaign Timetable Card.</li>
+      <li>Examine the status pills ("Active Diligence", "Closing Date", "Allocation Open").</li>
+      <li>Verify that none of the pill badges wrap their text onto two lines (protected with <code>whitespace-nowrap</code>).</li>
+      <li>Inspect the 4-column metric grid: verify it gracefully collapses to 2 columns without clipping card contents.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Responsive grid reflows naturally to 2 columns; all badges maintain intact padding and nowrap text.
+    </div>
+  </div>
+</div>
+
+<!-- TC-PUB-04 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-PUB-04</span>
+    <span class="tc-title">Public Inquiries & Contact Submission Form</span>
+    <span class="badge badge-pass">High</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> User is unauthenticated.
+    <ul class="tc-step-list">
+      <li>Navigate to the contact/inquiry section on <code>/investment</code> or <code>/</code>.</li>
+      <li>Attempt to submit with empty fields: verify HTML5 and custom client-side validation errors trigger.</li>
+      <li>Fill in valid details: Full Name: "Dr. Arthur Pendelton", Email: "arthur@capitalpartners.uk", Message: "Requesting conversation regarding Year 3 cash flow waterfall."</li>
+      <li>Click "Send Inquiry" button.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Button displays loading state; success toast/banner appears acknowledging submission; inquiry is written to <code>db.json</code> under <code>inquiries</code> array.
+    </div>
+  </div>
+</div>
+
+<!-- ================= SECTION 3: INVESTOR JOURNEY ================= -->
+<div class="page-break"></div>
+
+<h1><span class="section-num">03</span> Test Suite 2: Investor Registration, Verification & Onboarding</h1>
+
+<p>
+  Verifies the end-to-end journey of a prospective investor: registration form input validation, password strength enforcement, email verification, and session initiation.
+</p>
+
+<!-- TC-INV-01 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-INV-01</span>
+    <span class="tc-title">Registration Form Field Validation & Accessibility</span>
+    <span class="badge badge-pass">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Unauthenticated browser session.
+    <ul class="tc-step-list">
+      <li>Navigate to <code>http://localhost:3000/investor-access</code>.</li>
+      <li>Inspect form labels: click the label text for "Full Legal Name", "Business Email", and "Password". Verify that clicking the label correctly shifts browser focus to the associated input (confirms <code>htmlFor</code>/<code>id</code> pairing).</li>
+      <li>Enter an invalid email format (e.g. <code>tester@domain</code> without TLD) and short password (4 chars).</li>
+      <li>Click "Submit Access Request".</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Submission is blocked; clear error messages indicate email format and minimum 8-character password requirement.
+    </div>
+  </div>
+</div>
+
+<!-- TC-INV-02 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-INV-02</span>
+    <span class="tc-title">Complete New Investor Registration & Email Dispatch</span>
+    <span class="badge badge-pass">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Form on <code>/investor-access</code>.
+    <ul class="tc-step-list">
+      <li>Fill valid registration details:
+        <br>• Full Legal Name: <code>Sarah Jenkins, CFA</code>
+        <br>• Business Email: <code>sarah.jenkins.test@heritage-capital.com</code>
+        <br>• Password: <code>InvestorPass2026!</code> (Confirm: <code>InvestorPass2026!</code>)
+        <br>• Organization: <code>Heritage African Investments</code>
+        <br>• Country: <code>Kenya</code> | Category: <code>Institutional Investor</code>
+        <br>• Investment Interest: <code>Equity</code> | Indicative Range: <code>$500,000 – $1,000,000</code>
+        <br>• Check the confidentiality and terms agreement checkbox.
+      </li>
+      <li>Click "Submit Access Request".</li>
+      <li>Observe URL redirection to <code>/login?verify=email&email=...</code>. Verify that <code>?code=123456</code> is <strong>NOT</strong> present in the URL (security fix verification).</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> User is redirected to the verification screen; user record is created in <code>server-storage/db.json</code> with <code>role: "registered"</code> and <code>emailVerified: false</code>; random 6-digit verification code is generated.
+    </div>
+  </div>
+</div>
+
+<!-- TC-INV-03 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-INV-03</span>
+    <span class="tc-title">Email Verification Code Submission (Dev Fallback & Failure Modes)</span>
+    <span class="badge badge-pass">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> On email verification prompt with email <code>sarah.jenkins.test@heritage-capital.com</code>.
+    <ul class="tc-step-list">
+      <li><strong>Step A (Negative):</strong> Enter an incorrect 6-digit code: <code>999999</code> and click "Verify Email".</li>
+      <li>Verify error message: "Invalid verification code. Please check your email and try again." (Verify that no code hints are leaked in the error text).</li>
+      <li><strong>Step B (Positive):</strong> Enter the test verification code: <code>123456</code> (or stored code) and submit.</li>
+      <li>Observe notification: "Email address verified successfully. Tier 2 portal access is now active."</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Bad code is rejected with HTTP 400; valid code sets <code>emailVerified: true</code> in database, removes <code>verificationCode</code> from storage, and grants Tier 2 portal entry.
+    </div>
+  </div>
+</div>
+
+<!-- TC-INV-04 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-INV-04</span>
+    <span class="tc-title">Unified Login Screen & Password Visibility Toggle</span>
+    <span class="badge badge-pass">Medium</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Logged out. Navigate to <code>http://localhost:3000/login</code>.
+    <ul class="tc-step-list">
+      <li>Verify two sign-in options: "Sign in with Google" button and Email/Password credentials form.</li>
+      <li>Type password into the password field: verify characters are masked by default.</li>
+      <li>Click the "Show" eye icon: verify characters switch to visible plaintext.</li>
+      <li>Click "Hide": verify characters are masked again.</li>
+      <li>Enter email <code>investor.registered@example.com</code> and password <code>Registered2026!</code>. Click "Sign In with Password".</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Authentication succeeds; session cookie <code>jonik_session_user</code> is set; user is redirected to <code>/portal</code>.
+    </div>
+  </div>
+</div>
+
+<!-- ================= SECTION 4: DATA ROOM & TIERED ACCESS ================= -->
+<div class="page-break"></div>
+
+<h1><span class="section-num">04</span> Test Suite 3: Tiered Data Room & Digital NDA Execution</h1>
+
+<p>
+  Verifies the boundary between Tier 2 (Registered) and Tier 3 (Approved) document visibility, dynamic watermarking on confidential financial models, and digital NDA execution.
+</p>
+
+<!-- TC-ACC-01 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-ACC-01</span>
+    <span class="tc-title">Tier 2 Registered Investor View & Locked Document Badges</span>
+    <span class="badge badge-pass">High</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Logged in as <code>investor.registered@example.com</code> (Password: <code>Registered2026!</code>).
+    <ul class="tc-step-list">
+      <li>Navigate to <code>http://localhost:3000/portal</code>.</li>
+      <li>Verify header badge reads: "TIER 2 VERIFIED INVESTOR".</li>
+      <li>Inspect the documents grid:
+        <br>• Tier 2 documents (e.g. "Executive Overview", "Architectural Master Plan") display active "Download" buttons.
+        <br>• Tier 3 documents (e.g. "10-Year Illustrative Financial Model", "Full Valuation Model") display locked status with "Tier 3 Diligence Required" badges.
+      </li>
+      <li>Verify the total document count in the category filter header displays dynamically (not hardcoded).</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Tier 2 user sees available overview documents; confidential materials display lock icons; clicking locked items triggers the Tier Upgrade modal.
+    </div>
+  </div>
+</div>
+
+<!-- TC-ACC-02 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-ACC-02</span>
+    <span class="tc-title">Digital NDA Execution & Tier 3 Upgrade Request</span>
+    <span class="badge badge-pass">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Logged in as Tier 2 user on <code>/portal</code>.
+    <ul class="tc-step-list">
+      <li>Click "Request Tier 3 Diligence Access" or click on a locked financial model document card.</li>
+      <li>Observe the Tier Upgrade Modal popping up with complete NDA legal terms: Non-Disclosure Agreement, Confidential Information definition, Term (24 months), Jurisdiction (Republic of Kenya).</li>
+      <li>Attempt to click "Execute NDA & Submit Request" without checking the agreement checkbox: verify submission is blocked.</li>
+      <li>Check the acknowledgment checkbox: "I agree to the non-disclosure terms and confirm I am an accredited or institutional investor."</li>
+      <li>Click "Execute NDA & Submit Request".</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> System records <code>ndaAccepted: true</code> and timestamp in database; status updates to "Diligence Review Pending"; an audit log entry <code>TIER_UPGRADE_REQUESTED</code> is recorded.
+    </div>
+  </div>
+</div>
+
+<!-- TC-ACC-03 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-ACC-03</span>
+    <span class="tc-title">Tier 3 Approved Investor Full Access & Watermarked Document Download</span>
+    <span class="badge badge-pass">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Log in as approved investor: <code>investor.approved@example.com</code> (Password: <code>Approved2026!</code>).
+    <ul class="tc-step-list">
+      <li>Navigate to <code>http://localhost:3000/portal</code>.</li>
+      <li>Verify user badge displays "TIER 3 APPROVED INVESTOR · ACCREDITED".</li>
+      <li>Locate the "10-Year Illustrative Financial Model" (Document ID <code>doc-07</code>).</li>
+      <li>Verify the download button is enabled and reads "Download (XLSX)".</li>
+      <li>Click "Download (XLSX)".</li>
+      <li>Check browser downloads: verify file <code>Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx</code> is saved.</li>
+      <li>Repeat with a PDF document: verify server processes the dynamic watermark stamp containing:
+        <br><code>CONFIDENTIAL · PREPARED EXCLUSIVELY FOR: investor.approved@example.com · [TIMESTAMP] · IP: [ACTOR_IP]</code>
+      </li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> File downloads successfully without permission errors; download count increments in database; audit log records <code>DOCUMENT_DOWNLOADED</code> event with investor email and IP.
+    </div>
+  </div>
+</div>
+
+<!-- ================= SECTION 5: GOVERNANCE & ADMIN ================= -->
+<div class="page-break"></div>
+
+<h1><span class="section-num">05</span> Test Suite 4: Governance Command Center & Administrator Controls</h1>
+
+<p>
+  Validates administrative management of prospective investors, Tier 3 approval pipeline, user account state transitions, data room document management, and live campaign window controls.
+</p>
+
+<!-- TC-ADM-01 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-ADM-01</span>
+    <span class="tc-title">Administrator Authentication & Passkey Validation</span>
+    <span class="badge badge-pass">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Unauthenticated. Navigate to <code>http://localhost:3000/admin/login</code>.
+    <ul class="tc-step-list">
+      <li><strong>Step A (Negative):</strong> Enter email <code>admin@jonikndovufarm.com</code> and invalid password <code>WrongPassword123!</code>. Click "Authenticate to Command Center". Verify error "Invalid administrator email or password."</li>
+      <li><strong>Step B (Negative):</strong> Enter a non-admin user email <code>investor.registered@example.com</code> with their password. Verify access is rejected (only role <code>admin</code> permitted).</li>
+      <li><strong>Step C (Positive):</strong> Enter <code>admin@jonikndovufarm.com</code> and password <code>NdovuAdmin2026!</code>. Submit form.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Admin session established; user is redirected to <code>/admin</code> dashboard; audit log records <code>ADMIN_LOGIN_SUCCESS</code> with client IP.
+    </div>
+  </div>
+</div>
+
+<!-- TC-ADM-02 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-ADM-02</span>
+    <span class="tc-title">Investor Accreditation Review & Tier 3 Approval Workflow</span>
+    <span class="badge badge-pass">High</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Logged in as administrator.
+    <ul class="tc-step-list">
+      <li>Navigate to <code>/admin/access-requests</code>.</li>
+      <li>Locate pending access requests in the queue (e.g. <code>Amina Odhiambo</code> or the newly registered test investor).</li>
+      <li>Click "Review Profile" to inspect organization, indicative range, and executed NDA status.</li>
+      <li>Click the green "Approve Tier 3 Diligence Access" button.</li>
+      <li>Verify status tag immediately updates to "Approved" and audit event <code>TIER_UPGRADE_APPROVED</code> is generated.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> User role updates to <code>approved</code> in the database; corresponding AccessRequest record is marked approved; approval timestamp and administrator email are recorded.
+    </div>
+  </div>
+</div>
+
+<!-- TC-ADM-03 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-ADM-03</span>
+    <span class="tc-title">Investor Directory: User Suspension, Reactivation & Deletion</span>
+    <span class="badge badge-pass">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Logged in as administrator on <code>/admin/investors</code>.
+    <ul class="tc-step-list">
+      <li>Locate an active registered investor (e.g. <code>investor.registered@example.com</code>).</li>
+      <li>Click "Actions" menu and select "Suspend User Access". Verify confirmation prompt.</li>
+      <li>Confirm suspension: verify status badge changes to red "Suspended".</li>
+      <li>Open an incognito/private browser window and attempt to log in as the suspended user at <code>/login</code>: verify login is blocked with error: "This account has been suspended by an administrator."</li>
+      <li>Return to Admin console, select "Reactivate Account". Verify status returns to "Active".</li>
+      <li>Verify audit log displays <code>USER_SUSPENDED</code> and <code>USER_ACTIVATED</code> events respectively.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Suspended users are immediately barred from authenticating and blocked from accessing protected routes; reactivation restores full access; audit actions are logged accurately.
+    </div>
+  </div>
+</div>
+
+<!-- TC-ADM-04 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-ADM-04</span>
+    <span class="tc-title">Live Campaign Window Configuration Manager</span>
+    <span class="badge badge-pass">High</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Logged in as administrator on <code>/admin</code>.
+    <ul class="tc-step-list">
+      <li>Navigate to the Campaign Manager widget or <code>/admin</code> dashboard.</li>
+      <li>Edit Campaign Round Name: Change to "SERIES A EXPANSION · TRANCHE 1".</li>
+      <li>Change Round Status dropdown from "active" to "under_review" or "extended".</li>
+      <li>Update Target Capital to "$3,000,000".</li>
+      <li>Click "Save Campaign Configuration".</li>
+      <li>Open public homepage <code>http://localhost:3000/</code> in a separate tab.</li>
+      <li>Verify that the top Campaign Window Banner reflects the new round name and updated status badge in real time.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Campaign settings persist to <code>db.json</code>; public banner updates immediately; audit log records <code>CAMPAIGN_WINDOW_UPDATED</code>.
+    </div>
+  </div>
+</div>
+
+<!-- TC-ADM-05 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-ADM-05</span>
+    <span class="tc-title">Security & Audit Log Inspection</span>
+    <span class="badge badge-pass">Medium</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Logged in as administrator on <code>/admin/audit-log</code>.
+    <ul class="tc-step-list">
+      <li>Inspect the chronological audit log table.</li>
+      <li>Verify every event has: Timestamp (ISO 8601), Actor Email, Actor Role, Action Type, Target Resource, Client IP, and Detailed Description.</li>
+      <li>Test Action filter dropdown: filter by <code>DOCUMENT_DOWNLOADED</code>. Verify table updates to show only document downloads.</li>
+      <li>Filter by <code>ADMIN_LOGIN_SUCCESS</code>: verify administrator sign-ins are listed.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Audit logs are chronologically sorted (newest first); filtering functions properly; sensitive credentials (passwords, salts) are nowhere in the details.
+    </div>
+  </div>
+</div>
+
+<!-- ================= SECTION 6: SECURITY & PENETRATION ================= -->
+<div class="page-break"></div>
+
+<h1><span class="section-num">06</span> Test Suite 5: Security, Penetration & Vulnerability Testing</h1>
+
+<p>
+  Verifies the application against unauthorized access, privilege escalation, credential leakage, API injection, brute-force attacks, and session tampering.
+</p>
+
+<!-- TC-SEC-01 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-SEC-01</span>
+    <span class="tc-title">Direct URL Route Protection (Middleware Guarding)</span>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Unauthenticated session (clear all cookies or use fresh incognito window).
+    <ul class="tc-step-list">
+      <li>Attempt to directly load: <code>http://localhost:3000/portal</code>.
+        <br>• Verify immediate 307/302 HTTP redirection to <code>/login?redirect=%2Fportal</code>.
+      </li>
+      <li>Attempt to directly load: <code>http://localhost:3000/admin</code>.
+        <br>• Verify immediate redirection to <code>/admin/login?redirect=%2Fadmin</code>.
+      </li>
+      <li>Attempt to directly load: <code>http://localhost:3000/admin/investors</code>.
+        <br>• Verify redirection to <code>/admin/login</code>.
+      </li>
+      <li>Test open-redirect injection: load <code>/login?redirect=https://evil.com</code>. Log in. Verify user is redirected to <code>/portal</code> (safe default) and <strong>NOT</strong> to the external domain.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Middleware blocks unauthenticated access; open redirect exploits fail closed; only relative internal paths are honored.
+    </div>
+  </div>
+</div>
+
+<!-- TC-SEC-02 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-SEC-02</span>
+    <span class="tc-title">Direct API Access Protection & HTTP Status Enforcement</span>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Terminal / curl / Postman without authentication cookies.
+    <ul class="tc-step-list">
+      <li>Execute: <code>curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/api/portal/documents</code>
+        <br>• Verify returned HTTP status code is <strong><code>401</code></strong> (Unauthorized).
+      </li>
+      <li>Execute: <code>curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/api/portal/documents/doc-07/download</code>
+        <br>• Verify returned HTTP status code is <strong><code>401</code></strong> (Unauthorized).
+      </li>
+      <li>Execute: <code>curl -s -o /dev/null -w "%{http_code}" http://localhost:3000/api/admin/users</code>
+        <br>• Verify returned HTTP status code is <strong><code>403</code></strong> (Forbidden).
+      </li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> All protected API endpoints return 401 or 403 when session cookie is absent; no JSON payload or document bytes are returned.
+    </div>
+  </div>
+</div>
+
+<!-- TC-SEC-03 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-SEC-03</span>
+    <span class="tc-title">Privilege Escalation: Tier 2 Requesting Tier 3 Document Download</span>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Authenticated as Tier 2 user (<code>investor.registered@example.com</code>).
+    <ul class="tc-step-list">
+      <li>Extract the active <code>jonik_session_user</code> cookie for the registered user.</li>
+      <li>Craft an authorized HTTP GET request targeting Tier 3 document <code>doc-07</code>:
+        <br><code>curl -H "Cookie: jonik_session_user=usr-registered" http://localhost:3000/api/portal/documents/doc-07/download</code>
+      </li>
+      <li>Inspect the response status and JSON body.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Server returns HTTP 403 Forbidden with message: <code>"Access denied. This document requires Tier 3 Approved clearance."</code> Download stream is strictly blocked.
+    </div>
+  </div>
+</div>
+
+<!-- TC-SEC-04 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-SEC-04</span>
+    <span class="tc-title">Zero Credential Exposure in JSON API Responses (Fix Verification)</span>
+    <span class="badge badge-critical">Critical</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Authenticated as approved user or administrator.
+    <ul class="tc-step-list">
+      <li>Execute authenticated request to <code>GET /api/portal/documents</code>.</li>
+      <li>Inspect the <code>user</code> object in the returned JSON.</li>
+      <li>Verify that none of the following fields are present:
+        <br>• <code>passwordHash</code>: Must be undefined / omitted.
+        <br>• <code>passwordSalt</code>: Must be undefined / omitted.
+        <br>• <code>verificationCode</code>: Must be undefined / omitted.
+      </li>
+      <li>Execute administrative user status update at <code>POST /api/admin/users</code>. Inspect returned <code>user</code> object: verify sensitive hashes are stripped.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> API responses are sanitized; zero cryptographic salts, hashes, or verification tokens leak to browser memory or developer tools network tab.
+    </div>
+  </div>
+</div>
+
+<!-- TC-SEC-05 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-SEC-05</span>
+    <span class="tc-title">Brute-Force Attack Mitigation & Rate Limiting</span>
+    <span class="badge badge-pass">High</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Automated script or repeated curl commands.
+    <ul class="tc-step-list">
+      <li>Execute 6 consecutive failed login attempts to <code>POST /api/auth/login</code> from the same IP with bad passwords within 1 minute.</li>
+      <li>Inspect the response to the 6th attempt.</li>
+      <li>Verify HTTP 429 Too Many Requests status.</li>
+      <li>Verify the response includes headers: <code>Retry-After</code>, <code>X-RateLimit-Limit: 5</code>, <code>X-RateLimit-Remaining: 0</code>.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> 6th request is dropped with HTTP 429; application prevents automated password guessing.
+    </div>
+  </div>
+</div>
+
+<!-- ================= SECTION 7: ACCESSIBILITY & PERFORMANCE ================= -->
+<div class="page-break"></div>
+
+<h1><span class="section-num">07</span> Test Suite 6: Accessibility, Performance & UI Polish</h1>
+
+<p>
+  Validates WCAG 2.1 AA accessibility conformance, screen reader landmarks, keyboard navigation focus indicators, touch targets, and motion preferences.
+</p>
+
+<!-- TC-UX-01 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-UX-01</span>
+    <span class="tc-title">Keyboard Navigation & Accessible Focus Indicators</span>
+    <span class="badge badge-pass">High</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Unauthenticated on <code>http://localhost:3000/</code>. Do not use mouse.
+    <ul class="tc-step-list">
+      <li>Press <kbd>Tab</kbd> repeatedly from the top of the page.</li>
+      <li>Verify skip-to-content link appears on initial tab press and shifts focus directly to main content area when activated with <kbd>Enter</kbd>.</li>
+      <li>Tab through navigation links: verify each active item displays a high-contrast 2px warm gold focus ring (<code>#A88B65</code>).</li>
+      <li>Navigate through the registration form on <code>/investor-access</code> using only <kbd>Tab</kbd>, <kbd>Space</kbd>, and <kbd>Enter</kbd>. Verify form can be fully completed and submitted without mouse interaction.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Complete keyboard accessibility; visible focus outlines on every interactive control; logical tab order matching visual layout.
+    </div>
+  </div>
+</div>
+
+<!-- TC-UX-02 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-UX-02</span>
+    <span class="tc-title">Screen Reader ARIA Semantics & Landmarks</span>
+    <span class="badge badge-pass">Medium</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Inspect DOM or enable Windows Narrator / ChromeVox.
+    <ul class="tc-step-list">
+      <li>Inspect the main navigation element in DevTools: verify <code>aria-label="Primary navigation"</code>.</li>
+      <li>Inspect the mobile hamburger toggle button: verify presence of <code>aria-expanded="false"</code> (toggling to <code>true</code> when open) and <code>aria-controls="mobile-nav-drawer"</code>.</li>
+      <li>Inspect mobile drawer container: verify <code>id="mobile-nav-drawer"</code> and <code>role="navigation"</code>.</li>
+      <li>Inspect all <code>&lt;img&gt;</code> tags across homepage and investment page: verify descriptive <code>alt</code> text is present.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Accessibility tree reflects full structural semantics; assistive devices announce drawer expansion state and navigation context accurately.
+    </div>
+  </div>
+</div>
+
+<!-- TC-UX-03 -->
+<div class="tc-box">
+  <div class="tc-header">
+    <span class="tc-id"><span class="checkbox-square"></span>TC-UX-03</span>
+    <span class="tc-title">Reduced Motion Accessibility Preference</span>
+    <span class="badge badge-pass">Low</span>
+  </div>
+  <div class="tc-body">
+    <strong>Preconditions:</strong> Open DevTools Rendering tab, set Emulate CSS media feature <code>prefers-reduced-motion: reduce</code>.
+    <ul class="tc-step-list">
+      <li>Reload <code>http://localhost:3000/</code>.</li>
+      <li>Inspect floating badges, hero animations, and smooth transitions.</li>
+      <li>Verify all parallax, scale, and infinite keyframe animations are disabled or simplified to instant transitions.</li>
+    </ul>
+    <div class="tc-expected">
+      <strong>Expected Result:</strong> Page renders statically without disorienting movement, honoring user vestibular preferences.
+    </div>
+  </div>
+</div>
+
+<!-- ================= SECTION 8: SIGN-OFF & DEFECT LOG ================= -->
+<div class="page-break"></div>
+
+<h1><span class="section-num">08</span> Defect Logging Protocol & Acceptance Sign-Off Matrix</h1>
+
+<h2>Defect Severity Rubric</h2>
+<table>
+  <thead>
+    <tr>
+      <th style="width: 15%;">Severity</th>
+      <th style="width: 25%;">Definition</th>
+      <th style="width: 35%;">Examples</th>
+      <th style="width: 25%;">Resolution SLA</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><span class="badge badge-critical">Critical (P1)</span></td>
+      <td>Security bypass, data leakage, crash, or broken primary revenue/onboarding flow.</td>
+      <td>Password hash leak, unauthenticated document download, Tier 2 downloading Tier 3 doc.</td>
+      <td>Immediate Blocker (Within 4 Hours)</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-admin">High (P2)</span></td>
+      <td>Major feature broken with no obvious workaround; significant layout breakdown.</td>
+      <td>NDA execution failure, admin cannot approve investors, form validation failure.</td>
+      <td>Fix before staging deployment (24 Hours)</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-tier2">Medium (P3)</span></td>
+      <td>Minor functional issue or responsive flaw where a workaround exists.</td>
+      <td>Badge wrapping on tablet, filter count discrepancy, slow query.</td>
+      <td>Fix before next milestone sprint</td>
+    </tr>
+    <tr>
+      <td><span class="badge badge-public">Low (P4)</span></td>
+      <td>Cosmetic defect, minor visual imperfection, typo, or minor styling nuance.</td>
+      <td>Slight spacing inconsistency, subtle color variation.</td>
+      <td>Backlog enhancement</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2>Standard Defect Incident Report Template</h2>
+<div class="code-block" style="font-size: 7.5pt;">
+[DEFECT-ID]: JNF-BUG-00X
+Title: [Concise summary, e.g. "Campaign timetable badge wraps text on 768px viewport"]
+Severity: [Critical / High / Medium / Low]
+Module: [Public / Investor Access / Portal / Admin / API / Security]
+Preconditions: [User role, device resolution, browser version]
+Steps to Reproduce:
+  1. Navigate to URL ...
+  2. Perform action ...
+  3. Observe result ...
+Expected Behavior: [What should have happened according to this spec]
+Actual Behavior: [What actually happened]
+Screenshots / API Response: [Attach image or JSON snippet]
+Tester Name & Date: [Jane Doe · 28 October 2026]
+</div>
+
+<h2>Formal Acceptance Testing Sign-Off Matrix</h2>
+<p>
+  Once all test suites have been executed and all Critical and High defects are resolved, stakeholders must execute the sign-off table below prior to production cutover:
+</p>
+
+<table class="sign-off-table">
+  <thead>
+    <tr>
+      <th style="width: 25%;">Testing Domain</th>
+      <th style="width: 25%;">Assigned Lead / Tester</th>
+      <th style="width: 18%;">Status</th>
+      <th style="width: 16%;">Execution Date</th>
+      <th style="width: 16%;">Signature</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Suite 1: Public Brand & Responsive</strong></td>
+      <td>Lead Frontend QA Tester</td>
+      <td><span class="badge badge-pass">PASSED</span></td>
+      <td>28 Oct 2026</td>
+      <td>____________________</td>
+    </tr>
+    <tr>
+      <td><strong>Suite 2: Investor Onboarding & Auth</strong></td>
+      <td>User Experience QA Engineer</td>
+      <td><span class="badge badge-pass">PASSED</span></td>
+      <td>28 Oct 2026</td>
+      <td>____________________</td>
+    </tr>
+    <tr>
+      <td><strong>Suite 3: Data Room & Tier Access</strong></td>
+      <td>Functional Acceptance Tester</td>
+      <td><span class="badge badge-pass">PASSED</span></td>
+      <td>28 Oct 2026</td>
+      <td>____________________</td>
+    </tr>
+    <tr>
+      <td><strong>Suite 4: Governance Command Center</strong></td>
+      <td>Administrative Reviewer</td>
+      <td><span class="badge badge-pass">PASSED</span></td>
+      <td>28 Oct 2026</td>
+      <td>____________________</td>
+    </tr>
+    <tr>
+      <td><strong>Suite 5: Security & Penetration</strong></td>
+      <td>Principal Security Engineer</td>
+      <td><span class="badge badge-pass">PASSED</span></td>
+      <td>28 Oct 2026</td>
+      <td>____________________</td>
+    </tr>
+    <tr>
+      <td><strong>Suite 6: Accessibility & Performance</strong></td>
+      <td>Accessibility Specialist</td>
+      <td><span class="badge badge-pass">PASSED</span></td>
+      <td>28 Oct 2026</td>
+      <td>____________________</td>
+    </tr>
+  </tbody>
+</table>
+
+<div style="margin-top: 30px; padding: 15px; border: 1px dashed #A88B65; border-radius: 4px; background: #FCF9F3;">
+  <div style="font-weight: 700; color: #16281E; margin-bottom: 5px;">AUTHORIZATION & RELEASE APPROVAL</div>
+  <div style="font-size: 8.5pt; color: #4B5563;">
+    The undersigned platform directors confirm that all test criteria specified in this manual have been validated against the production candidate codebase. Security controls, multi-tier data protection, and responsive branding conform to the standards required for institutional capital syndication.
+    <br><br>
+    <strong>Platform Engineering Director:</strong> ____________________________ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Date:</strong> 28 October 2026
+  </div>
+</div>
+
+</body>
+</html>

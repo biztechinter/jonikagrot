@@ -10,9 +10,10 @@
       "status": "active",
       "createdAt": "2026-10-01T09:00:00Z",
       "notes": "Platform Super Administrator",
-      "passwordHash": "12aa80b677752250a3aceed4c69114f73dc0d4cfe3f2786ccf9276d26c57f9f69680e3e3612d950edf8eab4842057ec5fd95441e2476d8af143b982c68ecfec6",
-      "passwordSalt": "d9ca3553daf2747c09c77e0513e05a9a",
-      "authProvider": "credentials"
+      "passwordHash": "ef10b323d7ba5e8cda3921d9d6a8a333cebd6b7152b05125095d5bc104726b8bdef0b3db23028b940b0aaeb4bb0f3d2e2150a0d1335d56e4cc06b8248fa076ba",
+      "passwordSalt": "9ceed8ec8f2245016020878a92cdacb3",
+      "authProvider": "credentials",
+      "emailVerified": true
     },
     {
       "id": "usr-admin-1793017348351",
@@ -43,6 +44,46 @@
       "emailVerified": true,
       "passwordHash": "12aa80b677752250a3aceed4c69114f73dc0d4cfe3f2786ccf9276d26c57f9f69680e3e3612d950edf8eab4842057ec5fd95441e2476d8af143b982c68ecfec6",
       "passwordSalt": "d9ca3553daf2747c09c77e0513e05a9a"
+    },
+    {
+      "id": "usr-approved",
+      "email": "investor.approved@example.com",
+      "name": "Marcus Vance",
+      "organization": "Highland Hospitality Partners",
+      "country": "United Kingdom",
+      "role": "approved",
+      "category": "Hospitality or Strategic Investor",
+      "interest": "Equity",
+      "indicativeRange": ",000 – ,000,000",
+      "authProvider": "credentials",
+      "status": "active",
+      "emailVerified": true,
+      "ndaAccepted": true,
+      "ndaAcceptedAt": "2026-10-06T14:20:00Z",
+      "createdAt": "2026-10-05T11:30:00Z",
+      "approvedAt": "2026-10-06T14:20:00Z",
+      "approvedBy": "admin@jonikndovufarm.com",
+      "notes": "Verified hospitality private equity investor; full Tier 3 access granted.",
+      "passwordHash": "5af3b546d2b97e80ce2488fd51218ad1cfe72ca8130060dc0036975a185f34fc49995c6cd61127b09c31c6c25e59f5dd1730778822f1e6c96337e947a6ea670f",
+      "passwordSalt": "8cfc0318c483aba7a208318e9f19f730"
+    },
+    {
+      "id": "usr-registered",
+      "email": "investor.registered@example.com",
+      "name": "Elena Rostova",
+      "organization": "Rostova Capital Advisory",
+      "country": "Switzerland",
+      "role": "registered",
+      "category": "Family Office or Investment Company",
+      "interest": "Joint Venture or Strategic Partnership",
+      "indicativeRange": ",000 – ,000",
+      "authProvider": "credentials",
+      "status": "active",
+      "emailVerified": true,
+      "createdAt": "2026-10-18T16:45:00Z",
+      "notes": "Registered portal user; pending administrative diligence interview for Tier 3 upgrade.",
+      "passwordHash": "aa2da5239f7b2d58cccee1a3efe779946f382623b4248780832da322a0f4aaf391c1a886ea72bb9c4f5854ddb003bbab9a716fca51e4ec3fd00c2e9963c2279f",
+      "passwordSalt": "74d7f1ec604e95bb0d0b5fa151b03454"
     }
   ],
   "accessRequests": [],
@@ -384,6 +425,33 @@
     }
   ],
   "auditLogs": [
+    {
+      "id": "aud-1793155314027",
+      "timestamp": "2026-10-28T02:41:54.027Z",
+      "actorEmail": "investor.registered@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "Investor signed in via credentials with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1793155313949",
+      "timestamp": "2026-10-28T02:41:53.949Z",
+      "actorEmail": "investor.approved@example.com",
+      "actorRole": "approved",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "Investor signed in via credentials with role 'approved'. IP: ::1."
+    },
+    {
+      "id": "aud-1793155313684",
+      "timestamp": "2026-10-28T02:41:53.684Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "ipAddress": "::1",
+      "details": "Super Administrator authenticated into Command Center via multi-factor credentials. IP: ::1."
+    },
     {
       "id": "aud-1793154220804",
       "timestamp": "2026-10-28T02:23:40.804Z",
