@@ -31,5 +31,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# deployment archives
+*.zip
+jonik-hostinger-bundle.zip
+
 # scratch exploration scripts
 /scratch
