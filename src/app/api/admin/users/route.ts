@@ -268,7 +268,7 @@ export async function POST(req: NextRequest) {
       db.addAuditLog({
         actorEmail: user.email,
         actorRole: "admin",
-        action: "USER_SUSPENDED",
+        action: "USER_DELETED",
         targetResource: targetUser.email,
         ipAddress: ip,
         details: `Administrator ${user.email} permanently deleted user account ${targetUser.name} (${targetUser.email}).`,
@@ -304,15 +304,17 @@ export async function POST(req: NextRequest) {
       db.addAuditLog({
         actorEmail: user.email,
         actorRole: "admin",
-        action: "USER_SUSPENDED",
+        action: action === "SUSPEND_USER" ? "USER_SUSPENDED" : "USER_ACTIVATED",
         targetResource: targetUser.email,
         ipAddress: ip,
         details: `Administrator ${user.email} changed status of ${targetUser.email} to '${newStatus}'.`,
       });
 
+      // Strip sensitive fields before returning the updated user record.
+      const { passwordHash: _ph, passwordSalt: _ps, verificationCode: _vc, notes: _n, ...safeTarget } = targetUser;
       return NextResponse.json({
         success: true,
-        user: targetUser,
+        user: safeTarget,
         message: `User status set to ${newStatus}.`,
       });
     }

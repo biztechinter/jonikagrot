@@ -133,7 +133,7 @@ export default async function PortalDashboard() {
             href="/portal/documents"
             className="text-xs font-semibold text-forest hover:text-earth flex items-center space-x-1"
           >
-            <span>View All 17 Documents</span>
+            <span>View All {INITIAL_DOCUMENTS.length} Documents</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         </div>

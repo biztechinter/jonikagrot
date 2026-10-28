@@ -20,8 +20,11 @@ export async function GET() {
     };
   });
 
+  // Strip all sensitive server-side fields before sending to the browser.
+  const { passwordHash: _ph, passwordSalt: _ps, verificationCode: _vc, notes: _n, ...safeUser } = user;
+
   return NextResponse.json({
-    user,
+    user: safeUser,
     documents: enrichedDocs,
   });
 }

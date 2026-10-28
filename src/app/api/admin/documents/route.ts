@@ -181,7 +181,7 @@ export async function POST(req: NextRequest) {
     db.addAuditLog({
       actorEmail: user.email,
       actorRole: "admin",
-      action: existingDoc ? "DOCUMENT_VIEWED" : "DOCUMENT_VIEWED",
+      action: existingDoc ? "DOCUMENT_UPDATED" : "DOCUMENT_UPLOADED",
       targetResource: filename,
       details: `Administrator ${existingDoc ? "updated" : "uploaded"} document '${docToSave.title}' (${docToSave.confidentiality}, Role: ${docToSave.requiredRole}).`,
     });
@@ -239,7 +239,7 @@ export async function DELETE(req: NextRequest) {
     db.addAuditLog({
       actorEmail: user.email,
       actorRole: "admin",
-      action: "DOCUMENT_VIEWED",
+      action: "DOCUMENT_DELETED",
       targetResource: doc.filename,
       details: `Administrator ${user.email} deleted document '${doc.title}' (${doc.filename}) from data room.`,
     });

@@ -156,10 +156,11 @@ function LoginForm() {
           {/* Option 2: Email & Password Form */}
           <form onSubmit={handleCredentialsLogin} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+              <label htmlFor="login-email" className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
                 Registered Business Email
               </label>
               <input
+                id="login-email"
                 type="email"
                 required
                 value={email}
@@ -171,7 +172,7 @@ function LoginForm() {
 
             <div>
               <div className="flex items-center justify-between mb-1.5">
-                <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal">
+                <label htmlFor="login-password" className="block text-xs font-semibold uppercase tracking-wider text-charcoal">
                   Password
                 </label>
                 <button
@@ -184,6 +185,7 @@ function LoginForm() {
                 </button>
               </div>
               <input
+                id="login-password"
                 type={showPassword ? "text" : "password"}
                 required
                 value={password}

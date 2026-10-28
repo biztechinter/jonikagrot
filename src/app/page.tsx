@@ -44,9 +44,9 @@ export default function HomePage() {
 
           <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
             {/* Eyebrow */}
-            <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 border border-sand/40 bg-evergreen/75 backdrop-blur-md mb-6 text-sand text-xs tracking-[0.25em] uppercase shadow-md">
-              <Sparkles className="w-3.5 h-3.5 text-earth" />
-              <span>Agro-Tourism Destination · Segera, Laikipia · Kenya</span>
+            <div className="inline-flex items-center space-x-2 px-3 sm:px-3.5 py-1.5 border border-sand/40 bg-evergreen/75 backdrop-blur-md mb-6 text-sand text-[10px] sm:text-xs tracking-[0.2em] sm:tracking-[0.25em] uppercase shadow-md max-w-full">
+              <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-earth flex-shrink-0" />
+              <span className="leading-tight">Agro-Tourism Destination · Segera, Laikipia · Kenya</span>
             </div>
 
             {/* Headline */}

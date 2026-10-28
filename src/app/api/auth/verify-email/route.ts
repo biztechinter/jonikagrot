@@ -51,11 +51,24 @@ export async function POST(req: NextRequest) {
     }
 
     const providedCode = typeof code === "string" ? code.trim() : null;
-    const expectedCode = user.verificationCode || "123456";
+    // Fallback for demo/seed accounts that were created before email-verification
+    // was implemented and therefore have no stored code in the database.
+    // Real registrations always generate and store a random 6-digit code.
+    const expectedCode = user.verificationCode || (process.env.NODE_ENV !== "production" ? "123456" : null);
 
-    if (providedCode && providedCode !== expectedCode && providedCode !== "123456") {
+    // If no code is expected (production seed scenario) and none is provided, pass through.
+    // Otherwise the provided code must exactly match the stored/expected code.
+    if (providedCode && providedCode !== expectedCode) {
       return NextResponse.json(
-        { error: "Invalid verification code. Please check your email or use the demo code 123456." },
+        { error: "Invalid verification code. Please check your email and try again." },
+        { status: 400 }
+      );
+    }
+
+    // Require a code to be provided in production (unless account already has none stored)
+    if (!providedCode && expectedCode) {
+      return NextResponse.json(
+        { error: "Please enter the 6-digit verification code sent to your email." },
         { status: 400 }
       );
     }

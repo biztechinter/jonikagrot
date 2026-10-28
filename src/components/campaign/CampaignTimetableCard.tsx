@@ -75,16 +75,16 @@ export default function CampaignTimetableCard({ initialConfig, variant = "public
 
           <div>
             {isClosed ? (
-              <span className="px-3 py-1 bg-red-900/80 text-sand text-xs font-mono uppercase font-bold tracking-wider">
-                Allocation Round Concluded
+              <span className="px-3 py-1 bg-red-900/80 text-sand text-xs font-mono uppercase font-bold tracking-wider whitespace-nowrap">
+                Round Concluded
               </span>
             ) : isUnderReview ? (
-              <span className="px-3 py-1 bg-amber-800 text-sand text-xs font-mono uppercase font-bold tracking-wider">
-                Allocations Under Final Review
+              <span className="px-3 py-1 bg-amber-800 text-sand text-xs font-mono uppercase font-bold tracking-wider whitespace-nowrap">
+                Final Review
               </span>
             ) : (
-              <span className="px-3 py-1 bg-sand text-forest text-xs font-mono uppercase font-bold tracking-wider">
-                Active Diligence Round · Book Open
+              <span className="px-3 py-1 bg-sand text-forest text-xs font-mono uppercase font-bold tracking-wider whitespace-nowrap">
+                Active Round · Book Open
               </span>
             )}
           </div>

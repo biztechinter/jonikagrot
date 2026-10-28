@@ -50,40 +50,43 @@ export default function CampaignWindowBadge({ initialConfig }: Props) {
   const isUnderReview = config.status === "under_review" || (days <= 0 && config.status === "active");
 
   return (
-    <div className="bg-forest-dark border-b border-sand/30 text-ivory text-xs px-3 sm:px-4 py-2 transition-all">
-      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-        <div className="flex items-center space-x-2 text-center sm:text-left flex-wrap justify-center sm:justify-start">
-          <span className="inline-flex items-center space-x-1.5 px-2 py-0.5 bg-earth/80 text-sand text-[10px] font-mono uppercase font-bold tracking-wider">
+    <div className="bg-forest-dark border-b border-sand/30 text-ivory text-xs px-3 sm:px-4 py-1.5 transition-all">
+      <div className="max-w-7xl mx-auto flex items-center justify-between gap-2 min-w-0">
+        {/* Left: Badge + Info */}
+        <div className="flex items-center gap-2 min-w-0 overflow-hidden">
+          <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-earth/80 text-sand text-[10px] font-mono uppercase font-bold tracking-wider whitespace-nowrap flex-shrink-0">
             <Clock className="w-3 h-3 text-sand" />
-            <span>{isClosed ? "Book Closed" : isUnderReview ? "Allocation Review" : "Diligence Window"}</span>
+            <span>{isClosed ? "Book Closed" : isUnderReview ? "Under Review" : "Diligence Window"}</span>
           </span>
 
-          <span className="font-serif font-medium text-ivory text-xs sm:text-[13px]">
+          {/* Round name — hidden on xs, truncated on sm */}
+          <span className="hidden sm:inline font-serif font-medium text-ivory text-[13px] truncate min-w-0">
             {config.roundName}:
           </span>
 
-          <span className="text-sand font-mono text-xs font-semibold">
+          <span className="text-sand font-mono text-[11px] font-semibold whitespace-nowrap flex-shrink-0">
             {isClosed ? (
               "Window Concluded"
             ) : isUnderReview ? (
-              "Allocations Under Final Diligence Review"
+              "Final Review"
             ) : (
               <>
-                Target Closing: {formattedDate} ·{" "}
+                {formattedDate} ·{" "}
                 <span className="text-amber-300 font-bold">
-                  {days} {days === 1 ? "Day" : "Days"} Remaining
+                  {days} {days === 1 ? "Day" : "Days"}
                 </span>
               </>
             )}
           </span>
         </div>
 
-        <div className="flex items-center space-x-3 text-[11px]">
+        {/* Right: Link + Dismiss */}
+        <div className="flex items-center gap-2 flex-shrink-0 text-[11px]">
           <Link
             href="/investment"
-            className="text-sand hover:text-white underline underline-offset-4 font-medium flex items-center space-x-1 transition-colors"
+            className="hidden sm:flex text-sand hover:text-white underline underline-offset-4 font-medium items-center gap-1 transition-colors whitespace-nowrap"
           >
-            <span>Review Investment Timetable</span>
+            <span>Review Timetable</span>
             <ArrowRight className="w-3 h-3" />
           </Link>
 

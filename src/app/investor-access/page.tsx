@@ -196,7 +196,7 @@ export default function InvestorAccessPage() {
 
                 <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
                   <Link
-                    href={`/verify-email?email=${encodeURIComponent(formData.businessEmail)}&code=123456`}
+                    href={`/verify-email?email=${encodeURIComponent(formData.businessEmail)}`}
                     className="luxury-btn-gold text-xs !py-3 !px-7 tracking-widest inline-flex items-center space-x-2"
                   >
                     <span>Verify Business Email</span>
@@ -270,10 +270,11 @@ export default function InvestorAccessPage() {
                   {/* Row 1: Name & Business Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+                      <label htmlFor="ia-fullname" className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
                         Full Name *
                       </label>
                       <input
+                        id="ia-fullname"
                         type="text"
                         required
                         value={formData.fullName}
@@ -284,10 +285,11 @@ export default function InvestorAccessPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+                      <label htmlFor="ia-email" className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
                         Business Email *
                       </label>
                       <input
+                        id="ia-email"
                         type="email"
                         required
                         value={formData.businessEmail}
@@ -301,10 +303,11 @@ export default function InvestorAccessPage() {
                   {/* Row 1.5: Password & Confirm Password */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+                      <label htmlFor="ia-password" className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
                         Create Password * (min 8 characters)
                       </label>
                       <input
+                        id="ia-password"
                         type="password"
                         required
                         minLength={8}
@@ -316,10 +319,11 @@ export default function InvestorAccessPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+                      <label htmlFor="ia-confirm-password" className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
                         Confirm Password *
                       </label>
                       <input
+                        id="ia-confirm-password"
                         type="password"
                         required
                         minLength={8}
@@ -334,10 +338,11 @@ export default function InvestorAccessPage() {
                   {/* Row 2: Organization & Country */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+                      <label htmlFor="ia-organization" className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
                         Organization / Firm
                       </label>
                       <input
+                        id="ia-organization"
                         type="text"
                         value={formData.organization}
                         onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
@@ -347,10 +352,11 @@ export default function InvestorAccessPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+                      <label htmlFor="ia-country" className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
                         Country of Domicile *
                       </label>
                       <input
+                        id="ia-country"
                         type="text"
                         required
                         value={formData.country}
@@ -364,10 +370,11 @@ export default function InvestorAccessPage() {
                   {/* Row 3: Category & Interest */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+                      <label htmlFor="ia-category" className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
                         Investor Category *
                       </label>
                       <select
+                        id="ia-category"
                         value={formData.category}
                         onChange={(e) =>
                           setFormData({ ...formData, category: e.target.value as InvestorCategory })
@@ -388,10 +395,11 @@ export default function InvestorAccessPage() {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+                      <label htmlFor="ia-interest" className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
                         Investment Interest *
                       </label>
                       <select
+                        id="ia-interest"
                         value={formData.interest}
                         onChange={(e) =>
                           setFormData({ ...formData, interest: e.target.value as InvestmentInterest })
@@ -412,10 +420,11 @@ export default function InvestorAccessPage() {
 
                   {/* Row 4: Optional Indicative Range */}
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+                    <label htmlFor="ia-range" className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
                       Optional Indicative Ticket Size (USD)
                     </label>
                     <select
+                      id="ia-range"
                       value={formData.indicativeRange}
                       onChange={(e) => setFormData({ ...formData, indicativeRange: e.target.value })}
                       className="w-full px-3.5 py-2.5 bg-ivory/50 border border-sand/80 focus:border-forest focus:outline-none focus:bg-white text-charcoal transition-colors text-sm"
@@ -435,10 +444,11 @@ export default function InvestorAccessPage() {
 
                   {/* Corporate Website or LinkedIn Profile */}
                   <div>
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
+                    <label htmlFor="ia-website" className="block text-xs font-semibold uppercase tracking-wider text-charcoal mb-1.5">
                       Corporate Website or Professional LinkedIn Profile (Recommended)
                     </label>
                     <input
+                      id="ia-website"
                       type="url"
                       value={formData.websiteOrLinkedin}
                       onChange={(e) => setFormData({ ...formData, websiteOrLinkedin: e.target.value })}

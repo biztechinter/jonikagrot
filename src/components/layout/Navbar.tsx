@@ -86,7 +86,7 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop Navigation — responsive spacing & font size to prevent squishing */}
-            <nav className="hidden lg:flex items-center space-x-3.5 xl:space-x-6 text-[11px] xl:text-xs font-medium tracking-wider xl:tracking-widest uppercase">
+            <nav aria-label="Primary navigation" className="hidden lg:flex items-center space-x-3.5 xl:space-x-6 text-[11px] xl:text-xs font-medium tracking-wider xl:tracking-widest uppercase">
               {navLinks.map((link) => {
                 const isActive = pathname === link.href;
                 return (
@@ -137,6 +137,8 @@ export default function Navbar() {
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="p-2 text-ivory hover:text-sand transition-colors border border-sand/20 bg-evergreen/40"
                 aria-label="Toggle Navigation Menu"
+                aria-expanded={isMobileMenuOpen}
+                aria-controls="mobile-nav-drawer"
               >
                 {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
               </button>
@@ -146,7 +148,7 @@ export default function Navbar() {
 
         {/* Mobile Drawer Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-evergreen/98 backdrop-blur-lg border-b border-sand/30 px-5 pt-4 pb-8 space-y-4 shadow-elevated animate-fade-in">
+          <div id="mobile-nav-drawer" className="lg:hidden bg-evergreen/98 backdrop-blur-lg border-b border-sand/30 px-5 pt-4 pb-8 space-y-4 shadow-elevated animate-fade-in" role="navigation" aria-label="Mobile navigation">
             <nav className="flex flex-col space-y-2 pt-2">
               {navLinks.map((link) => (
                 <Link

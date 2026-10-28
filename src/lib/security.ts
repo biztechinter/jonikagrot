@@ -4,8 +4,10 @@ const PBKDF2_ITERATIONS = 100000;
 const PBKDF2_KEYLEN = 64;
 const PBKDF2_DIGEST = "sha512";
 
-// Default admin security key fallback if not specified in environment
-export const DEFAULT_ADMIN_SECURITY_KEY = process.env.ADMIN_SECURITY_KEY || "NDOVU_ADMIN_2026_SECURE_PASSKEY";
+// The admin security passkey MUST be set via ADMIN_SECURITY_KEY environment variable.
+// No default fallback is provided — an unset variable will cause all passkey verification to fail,
+// preventing unauthorised admin access if the env var is accidentally omitted in production.
+export const DEFAULT_ADMIN_SECURITY_KEY = process.env.ADMIN_SECURITY_KEY || "";
 
 /**
  * Hash a plaintext password with a unique salt using PBKDF2 (SHA-512, 100k rounds)

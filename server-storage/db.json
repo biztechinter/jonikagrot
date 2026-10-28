@@ -199,7 +199,7 @@
       "date": "October 2026",
       "confidentiality": "Tier 3 Approved",
       "requiredRole": "approved",
-      "downloadsCount": 0,
+      "downloadsCount": 2,
       "executiveHighlights": [
         "Interactive workbook with sheets: Read Me, Inputs, 10-Year Model, Sources & Uses, Scenarios",
         "Conservative base-case ramping to $3.33M gross revenue and $1.07M EBITDA in Year 10",
@@ -384,6 +384,26 @@
     }
   ],
   "auditLogs": [
+    {
+      "id": "aud-1793154220804",
+      "timestamp": "2026-10-28T02:23:40.804Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
+      "ipAddress": "::1",
+      "details": "Downloaded '10-Year Illustrative Financial Model' (Tier 3 Approved, Version V3.0). IP: ::1."
+    },
+    {
+      "id": "aud-1793153778268",
+      "timestamp": "2026-10-28T02:16:18.268Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
+      "ipAddress": "::1",
+      "details": "Downloaded '10-Year Illustrative Financial Model' (Tier 3 Approved, Version V3.0). IP: ::1."
+    },
     {
       "id": "aud-1793152147982",
       "timestamp": "2026-10-28T01:49:07.982Z",
