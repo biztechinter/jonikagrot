@@ -59,16 +59,18 @@ RewriteRule ^(.*)$ http://127.0.0.1:3000/$1 [P,L]
 `;
 fs.writeFileSync(htaccessPath, htaccessContent, 'utf-8');
 
-// 5. Package into jonik-hostinger-bundle.zip
-try {
-  const { execSync } = require('child_process');
-  console.log('-> Compressing standalone package into jonik-hostinger-bundle.zip...');
-  const zipPath = path.join(rootDir, 'jonik-hostinger-bundle.zip');
-  if (fs.existsSync(zipPath)) fs.unlinkSync(zipPath);
-  execSync('tar.exe -a -c -f jonik-hostinger-bundle.zip -C .next/standalone .', { cwd: rootDir });
-  console.log('✓ Created jonik-hostinger-bundle.zip ready for Hostinger upload!');
-} catch (e) {
-  console.log('Note: Automatic zip packaging skipped. You can manually zip the contents of .next/standalone');
+// 5. Package into jonik-hostinger-bundle.zip (on local development machines)
+if (process.platform === 'win32' && !process.env.CI) {
+  try {
+    const { execSync } = require('child_process');
+    console.log('-> Compressing standalone package into jonik-hostinger-bundle.zip...');
+    const zipPath = path.join(rootDir, 'jonik-hostinger-bundle.zip');
+    if (fs.existsSync(zipPath)) fs.unlinkSync(zipPath);
+    execSync('tar.exe -a -c -f jonik-hostinger-bundle.zip -C .next/standalone .', { cwd: rootDir });
+    console.log('✓ Created jonik-hostinger-bundle.zip ready for Hostinger upload!');
+  } catch (e) {
+    console.log('Note: Automatic zip packaging skipped.');
+  }
 }
 
 console.log('Hostinger packaging complete!');
