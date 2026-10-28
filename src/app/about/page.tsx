@@ -5,8 +5,23 @@ import { PROJECT_FACTS } from "@/data/projectData";
 import { Shield, Users, HeartHandshake, Award, ArrowRight } from "lucide-react";
 
 export const metadata = {
-  title: "About & Stewardship | Jonik Ndovu Farm",
-  description: "The story, stewardship commitments, and project leadership behind Jonik Ndovu Farm in Segera, Laikipia.",
+  title: "About & Landscape Stewardship",
+  description:
+    "The genesis, founders, conservation commitments, and community partnerships shaping Jonik Ndovu Farm in Segera, Laikipia County, Kenya.",
+  keywords: [
+    "Jonik Ndovu Farm founders",
+    "Laikipia land stewardship",
+    "agro-tourism conservation leadership",
+    "Segera community partnership",
+  ],
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About & Landscape Stewardship | Jonik Ndovu Farm",
+    description:
+      "Bridging regenerative agriculture with boutique safari hospitality in Segera, Laikipia County, Kenya.",
+  },
 };
 
 export default function AboutPage() {

@@ -6,8 +6,24 @@ import { PROJECT_FACTS } from "@/data/projectData";
 import { Compass, CheckCircle2, ArrowRight, Layers, Sun, Shield, FileText, Flame, Droplets, ShoppingBag, Sprout, Utensils, Trees, Fence, Sparkles } from "lucide-react";
 
 export const metadata = {
-  title: "The Vision | Jonik Ndovu Farm",
-  description: "Architectural philosophy, site planning, low-impact design, and agro-tourism masterplan logic for Jonik Ndovu Farm.",
+  title: "Masterplan Vision & Ecological Architecture",
+  description:
+    "Low-impact architectural masterplan, solar microgrid engineering, closed-loop bio-economy, and 15-hectare regenerative land stewardship at Jonik Ndovu Farm, Segera.",
+  keywords: [
+    "sustainable lodge masterplan",
+    "eco architecture Kenya",
+    "off-grid solar safari lodge",
+    "regenerative farm design",
+    "closed-loop bio economy Kenya",
+  ],
+  alternates: {
+    canonical: "/vision",
+  },
+  openGraph: {
+    title: "Masterplan Vision & Ecological Architecture | Jonik Ndovu Farm",
+    description:
+      "A 15-hectare regenerative stewardship platform combining 12–15 boutique suites with closed-loop solar bio-economy and bee-fence corridor buffers.",
+  },
 };
 
 export default function VisionPage() {

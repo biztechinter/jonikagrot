@@ -21,9 +21,25 @@ import {
 } from "lucide-react";
 
 export const metadata = {
-  title: "Destination & Wildlife Conservancies | Jonik Ndovu Farm",
+  title: "Destination & Wildlife Conservancies, Segera Laikipia",
   description:
-    "Segera and Laikipia County regional landscape: bordering Lewa Wildlife Conservancy and Ol Pejeta Conservancy, home to rhinos, large predators, and elephant migration corridors.",
+    "Explore the Segera landscape in Laikipia County, Kenya. Bordering Lewa Wildlife Conservancy and Ol Pejeta Conservancy, home to black rhinos, predators, and migratory elephant corridors.",
+  keywords: [
+    "Segera Laikipia",
+    "Lewa Wildlife Conservancy",
+    "Ol Pejeta Conservancy",
+    "Laikipia safari accommodation",
+    "elephant migration corridor Kenya",
+    "luxury conservation lodge Laikipia",
+  ],
+  alternates: {
+    canonical: "/destination",
+  },
+  openGraph: {
+    title: "Destination & Wildlife Conservancies | Jonik Ndovu Farm, Segera Laikipia",
+    description:
+      "A rare conservation buffer bordering Lewa and Ol Pejeta. Experience Kenya's greatest rhino strongholds and elephant migration routes.",
+  },
 };
 
 export default function DestinationPage() {

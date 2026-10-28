@@ -4,13 +4,16 @@ import { db } from "@/lib/storage";
 
 export async function GET() {
   const user = await getCurrentUser();
+  if (!user) {
+    return NextResponse.json(
+      { error: "Authentication required to access the confidential data room." },
+      { status: 401 }
+    );
+  }
+
   const allDocs = db.getDocuments();
-
-  // If user is not authenticated, only public docs (none by default, or just basic metadata)
-  const userRole = user ? user.role : "public";
-
   const enrichedDocs = allDocs.map((doc) => {
-    const hasAccess = canAccessDocument(userRole, doc.requiredRole);
+    const hasAccess = canAccessDocument(user.role, doc.requiredRole);
     return {
       ...doc,
       userHasAccess: hasAccess,
@@ -18,7 +21,7 @@ export async function GET() {
   });
 
   return NextResponse.json({
-    user: user || null,
+    user,
     documents: enrichedDocs,
   });
 }

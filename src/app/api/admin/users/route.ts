@@ -8,7 +8,15 @@ import type { UserRole } from "@/types";
 export const dynamic = "force-dynamic";
 
 const ALLOWED_ROLES: UserRole[] = ["registered", "approved", "admin"];
-const ALLOWED_ACTIONS = new Set(["APPROVE_REQUEST", "REJECT_REQUEST", "UPDATE_USER_ROLE", "ADD_ADMIN", "DELETE_USER"]);
+const ALLOWED_ACTIONS = new Set([
+  "APPROVE_REQUEST",
+  "REJECT_REQUEST",
+  "UPDATE_USER_ROLE",
+  "ADD_ADMIN",
+  "DELETE_USER",
+  "SUSPEND_USER",
+  "ACTIVATE_USER",
+]);
 
 // Max 60 admin write operations per IP per 10 minutes.
 const ADMIN_WRITE_LIMIT = 60;
@@ -269,6 +277,43 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({
         success: true,
         message: `Investor ${targetUser.name} (${targetUser.email}) has been permanently deleted.`,
+      });
+    }
+
+    if (action === "SUSPEND_USER" || action === "ACTIVATE_USER") {
+      if (!userId || typeof userId !== "string") {
+        return NextResponse.json({ error: "User ID is required." }, { status: 400 });
+      }
+
+      const targetUser = db.getUserById(userId);
+      if (!targetUser) {
+        return NextResponse.json({ error: "User not found." }, { status: 404 });
+      }
+
+      if (targetUser.id === user.id) {
+        return NextResponse.json(
+          { error: "Administrators cannot suspend their own account." },
+          { status: 400 }
+        );
+      }
+
+      const newStatus = action === "SUSPEND_USER" ? "suspended" : "active";
+      targetUser.status = newStatus;
+      db.saveUser(targetUser);
+
+      db.addAuditLog({
+        actorEmail: user.email,
+        actorRole: "admin",
+        action: "USER_SUSPENDED",
+        targetResource: targetUser.email,
+        ipAddress: ip,
+        details: `Administrator ${user.email} changed status of ${targetUser.email} to '${newStatus}'.`,
+      });
+
+      return NextResponse.json({
+        success: true,
+        user: targetUser,
+        message: `User status set to ${newStatus}.`,
       });
     }
 

@@ -3,11 +3,51 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CampaignTimetableCard from "@/components/campaign/CampaignTimetableCard";
 import { PROJECT_FACTS, SOURCES_AND_USES_ITEMS } from "@/data/projectData";
-import { Shield, CheckCircle2, ArrowRight, Lock, FileSpreadsheet, Layers, PieChart } from "lucide-react";
+import { Shield, CheckCircle2, ArrowRight, Lock, FileSpreadsheet, Layers, PieChart, HelpCircle } from "lucide-react";
 
 export const metadata = {
-  title: "Investment Proposition | Jonik Ndovu Farm",
-  description: "Public investment overview for Jonik Ndovu Farm: US$2.4M capital requirement, 12–15 units, land strategy, and due diligence pathway.",
+  title: "Investment Proposition & Capital Strategy",
+  description:
+    "Public investment overview for Jonik Ndovu Farm: US$2.4M capital requirement, 12–15 boutique suites, regenerative bio-economy in Segera Laikipia, and accredited diligence pathway.",
+  alternates: {
+    canonical: "/investment",
+  },
+};
+
+const investmentFaqs = [
+  {
+    q: "What is the capital requirement for Jonik Ndovu Farm?",
+    a: "The total capital requirement is US$2.4 million, allocated across boutique lodge infrastructure ($980,000 / 40.8%), off-grid bio-economy & agro-forestry ($420,000 / 17.5%), land acquisition & titles ($400,000 / 16.7%), working capital ($350,000 / 14.6%), and contingency ($250,000 / 10.4%).",
+  },
+  {
+    q: "Where is the property situated in Kenya?",
+    a: "Jonik Ndovu Farm is situated in Segera, Laikipia County, Kenya, at an elevation of ~1,800m, bordering the renowned Lewa Wildlife Conservancy and Ol Pejeta Conservancy in the Greater Ewaso wildlife corridor.",
+  },
+  {
+    q: "How many accommodation units are planned for the lodge?",
+    a: "The development plans an intimate, low-density 12 to 15 key boutique luxury eco-lodge (accommodating 24 to 30 guests maximum) ensuring low environmental footprint, high average daily rates (ADR), and personalized culinary and safari immersion.",
+  },
+  {
+    q: "What is the land ownership status and expansion strategy?",
+    a: "8 hectares are currently owned by the project sponsors (subject to customary title verification). Acquisition of approximately 7 adjacent hectares is currently under negotiation to establish a contiguous 15-hectare regenerative stewardship buffer.",
+  },
+  {
+    q: "How do accredited investors access confidential financial models?",
+    a: "Accredited investors and institutional funds can register via the Investor Access portal, execute an electronic NDA, and obtain credentials to review the data room, 10-year financial model, and architectural drawings.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: investmentFaqs.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
 };
 
 export default function InvestmentPage() {
@@ -246,6 +286,46 @@ export default function InvestmentPage() {
               <p className="text-xs text-charcoal/75 leading-relaxed">
                 Participate in sponsor meetings, discuss indicative term sheet options, and align on syndication terms.
               </p>
+            </div>
+          </div>
+        </section>
+
+        {/* Investment FAQs & Structured Data for Search Engine Indexing */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+
+        <section className="py-16 bg-white border-b border-sand/30">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+            <div className="text-center space-y-2">
+              <div className="inline-flex items-center space-x-2 px-3 py-1 bg-ivory border border-sand/40 text-forest text-xs tracking-widest uppercase">
+                <HelpCircle className="w-3.5 h-3.5 text-earth" />
+                <span>Frequently Asked Questions</span>
+              </div>
+              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">
+                Investment & Due Diligence Clarifications
+              </h2>
+              <p className="text-xs sm:text-sm text-charcoal/70 max-w-xl mx-auto">
+                Key questions addressed for private equity sponsors, family offices, and institutional investors.
+              </p>
+            </div>
+
+            <div className="space-y-4 pt-4">
+              {investmentFaqs.map((faq, idx) => (
+                <div
+                  key={idx}
+                  className="p-6 bg-ivory/50 border border-sand/40 hover:border-sand transition-colors"
+                >
+                  <h3 className="font-serif text-base font-bold text-forest flex items-start space-x-3">
+                    <span className="text-earth font-mono text-sm">0{idx + 1}.</span>
+                    <span>{faq.q}</span>
+                  </h3>
+                  <p className="text-xs sm:text-sm text-charcoal/75 leading-relaxed mt-2.5 pl-7">
+                    {faq.a}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </section>

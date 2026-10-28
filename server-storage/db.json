@@ -60,7 +60,7 @@
       "date": "October 2026",
       "confidentiality": "Tier 2 Registered",
       "requiredRole": "registered",
-      "downloadsCount": 0,
+      "downloadsCount": 3,
       "executiveHighlights": [
         "Fixed US$2.4M capital target with US$980k (40.8%) allocated to greener ecosystem & productive assets",
         "8.0 ha owned today + ~7.0 ha adjacent option in negotiation (15 ha total)",
@@ -384,6 +384,223 @@
     }
   ],
   "auditLogs": [
+    {
+      "id": "aud-1793152147982",
+      "timestamp": "2026-10-28T01:49:07.982Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_SUSPENDED",
+      "targetResource": "sec.test2.1793152147146@example.com",
+      "ipAddress": "::1",
+      "details": "Administrator admin@jonikndovufarm.com permanently deleted user account Second Investor (sec.test2.1793152147146@example.com)."
+    },
+    {
+      "id": "aud-1793152147768",
+      "timestamp": "2026-10-28T01:49:07.768Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_SUSPENDED",
+      "targetResource": "sec.test.1793152145123@example.com",
+      "ipAddress": "::1",
+      "details": "Administrator admin@jonikndovufarm.com permanently deleted user account Security Test Investor (sec.test.1793152145123@example.com)."
+    },
+    {
+      "id": "aud-1793152147613",
+      "timestamp": "2026-10-28T01:49:07.613Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_SUSPENDED",
+      "targetResource": "sec.test.1793152145123@example.com",
+      "ipAddress": "::1",
+      "details": "Administrator admin@jonikndovufarm.com changed status of sec.test.1793152145123@example.com to 'suspended'."
+    },
+    {
+      "id": "aud-1793152147481",
+      "timestamp": "2026-10-28T01:49:07.481Z",
+      "actorEmail": "sec.test2.1793152147146@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "Investor signed in via credentials with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1793152147334",
+      "timestamp": "2026-10-28T01:49:07.334Z",
+      "actorEmail": "sec.test2.1793152147146@example.com",
+      "actorRole": "registered",
+      "action": "ACCESS_REQUEST_SUBMITTED",
+      "ipAddress": "::1",
+      "details": "New investor application submitted by Second Investor (Private Investor, Canada). IP: ::1."
+    },
+    {
+      "id": "aud-1793152147103",
+      "timestamp": "2026-10-28T01:49:07.103Z",
+      "actorEmail": "sec.test.1793152145123@example.com",
+      "actorRole": "registered",
+      "action": "INQUIRY_SUBMITTED",
+      "ipAddress": "::1",
+      "details": "Investor submitted Due Diligence Request: \"Confidential Inquiry Alpha\". IP: ::1."
+    },
+    {
+      "id": "aud-1793152146614",
+      "timestamp": "2026-10-28T01:49:06.614Z",
+      "actorEmail": "sec.test.1793152145123@example.com",
+      "actorRole": "registered",
+      "action": "DOCUMENT_VIEWED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
+      "ipAddress": "::1",
+      "details": "UNAUTHORISED download attempt: role 'registered' tried to access '10-Year Illustrative Financial Model' (Tier 3 Approved). Blocked. IP: ::1."
+    },
+    {
+      "id": "aud-1793152146561",
+      "timestamp": "2026-10-28T01:49:06.561Z",
+      "actorEmail": "sec.test.1793152145123@example.com",
+      "actorRole": "registered",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_One_Page_Investor_Teaser.pdf",
+      "ipAddress": "::1",
+      "details": "Downloaded 'One-Page Investor Teaser' (Tier 2 Registered, Version V3.0) with dynamic investor watermark. IP: ::1."
+    },
+    {
+      "id": "aud-1793152146379",
+      "timestamp": "2026-10-28T01:49:06.379Z",
+      "actorEmail": "sec.test.1793152145123@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "Investor signed in via credentials with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1793152145822",
+      "timestamp": "2026-10-28T01:49:05.822Z",
+      "actorEmail": "sec.test.1793152145123@example.com",
+      "actorRole": "registered",
+      "action": "ACCESS_REQUEST_SUBMITTED",
+      "ipAddress": "::1",
+      "details": "New investor application submitted by Security Test Investor (Private Investor, United Kingdom). IP: ::1."
+    },
+    {
+      "id": "aud-1793152145075",
+      "timestamp": "2026-10-28T01:49:05.075Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "ipAddress": "::1",
+      "details": "Super Administrator authenticated into Command Center via multi-factor credentials. IP: ::1."
+    },
+    {
+      "id": "aud-1793151960297",
+      "timestamp": "2026-10-28T01:46:00.297Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_SUSPENDED",
+      "targetResource": "sec.test2.1793151959522@example.com",
+      "ipAddress": "::1",
+      "details": "Administrator admin@jonikndovufarm.com permanently deleted user account Second Investor (sec.test2.1793151959522@example.com)."
+    },
+    {
+      "id": "aud-1793151960248",
+      "timestamp": "2026-10-28T01:46:00.248Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "USER_SUSPENDED",
+      "targetResource": "sec.test.1793151957096@example.com",
+      "ipAddress": "::1",
+      "details": "Administrator admin@jonikndovufarm.com permanently deleted user account Security Test Investor (sec.test.1793151957096@example.com)."
+    },
+    {
+      "id": "aud-1793151960168",
+      "timestamp": "2026-10-28T01:46:00.168Z",
+      "actorEmail": "sec.test.1793151957096@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "Investor signed in via credentials with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1793151960061",
+      "timestamp": "2026-10-28T01:46:00.061Z",
+      "actorEmail": "sec.test.1793151957096@example.com",
+      "actorRole": "registered",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_One_Page_Investor_Teaser.pdf",
+      "ipAddress": "::1",
+      "details": "Downloaded 'One-Page Investor Teaser' (Tier 2 Registered, Version V3.0) with dynamic investor watermark. IP: ::1."
+    },
+    {
+      "id": "aud-1793151959855",
+      "timestamp": "2026-10-28T01:45:59.855Z",
+      "actorEmail": "sec.test2.1793151959522@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "Investor signed in via credentials with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1793151959711",
+      "timestamp": "2026-10-28T01:45:59.711Z",
+      "actorEmail": "sec.test2.1793151959522@example.com",
+      "actorRole": "registered",
+      "action": "ACCESS_REQUEST_SUBMITTED",
+      "ipAddress": "::1",
+      "details": "New investor application submitted by Second Investor (Private Investor, Canada). IP: ::1."
+    },
+    {
+      "id": "aud-1793151959493",
+      "timestamp": "2026-10-28T01:45:59.493Z",
+      "actorEmail": "sec.test.1793151957096@example.com",
+      "actorRole": "registered",
+      "action": "INQUIRY_SUBMITTED",
+      "ipAddress": "::1",
+      "details": "Investor submitted Due Diligence Request: \"Confidential Inquiry Alpha\". IP: ::1."
+    },
+    {
+      "id": "aud-1793151959025",
+      "timestamp": "2026-10-28T01:45:59.025Z",
+      "actorEmail": "sec.test.1793151957096@example.com",
+      "actorRole": "registered",
+      "action": "DOCUMENT_VIEWED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_10_Year_Illustrative_Model.xlsx",
+      "ipAddress": "::1",
+      "details": "UNAUTHORISED download attempt: role 'registered' tried to access '10-Year Illustrative Financial Model' (Tier 3 Approved). Blocked. IP: ::1."
+    },
+    {
+      "id": "aud-1793151958996",
+      "timestamp": "2026-10-28T01:45:58.996Z",
+      "actorEmail": "sec.test.1793151957096@example.com",
+      "actorRole": "registered",
+      "action": "DOCUMENT_DOWNLOADED",
+      "targetResource": "Jonik_Ndovu_Farm_V3_One_Page_Investor_Teaser.pdf",
+      "ipAddress": "::1",
+      "details": "Downloaded 'One-Page Investor Teaser' (Tier 2 Registered, Version V3.0) with dynamic investor watermark. IP: ::1."
+    },
+    {
+      "id": "aud-1793151958860",
+      "timestamp": "2026-10-28T01:45:58.860Z",
+      "actorEmail": "sec.test.1793151957096@example.com",
+      "actorRole": "registered",
+      "action": "USER_LOGIN",
+      "ipAddress": "::1",
+      "details": "Investor signed in via credentials with role 'registered'. IP: ::1."
+    },
+    {
+      "id": "aud-1793151958125",
+      "timestamp": "2026-10-28T01:45:58.125Z",
+      "actorEmail": "sec.test.1793151957096@example.com",
+      "actorRole": "registered",
+      "action": "ACCESS_REQUEST_SUBMITTED",
+      "ipAddress": "::1",
+      "details": "New investor application submitted by Security Test Investor (Private Investor, United Kingdom). IP: ::1."
+    },
+    {
+      "id": "aud-1793151957060",
+      "timestamp": "2026-10-28T01:45:57.060Z",
+      "actorEmail": "admin@jonikndovufarm.com",
+      "actorRole": "admin",
+      "action": "ADMIN_LOGIN_SUCCESS",
+      "ipAddress": "::1",
+      "details": "Super Administrator authenticated into Command Center via multi-factor credentials. IP: ::1."
+    },
     {
       "id": "log-prod-init",
       "timestamp": "2026-10-28T01:41:02.328Z",

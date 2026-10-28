@@ -5,8 +5,24 @@ import Footer from "@/components/layout/Footer";
 import { Utensils, Bed, Compass, Sun, Leaf, ArrowRight, Shield } from "lucide-react";
 
 export const metadata = {
-  title: "The Experience | Jonik Ndovu Farm",
-  description: "Proposed hospitality, culinary, permaculture, and nature experiences at Jonik Ndovu Farm in Segera, Laikipia.",
+  title: "Agro-Tourism & Wildlife Safari Guest Experience",
+  description:
+    "Immersive farm-to-table culinary journeys, organic orchard permaculture, guided safari walking trails, and star-gazing at Jonik Ndovu Farm in Segera, Laikipia.",
+  keywords: [
+    "agro-tourism experiences Kenya",
+    "farm to table safari lodge",
+    "Laikipia eco lodge experiences",
+    "walking safari Segera",
+    "organic farming safari Kenya",
+  ],
+  alternates: {
+    canonical: "/experience",
+  },
+  openGraph: {
+    title: "Agro-Tourism & Safari Experience | Jonik Ndovu Farm, Laikipia",
+    description:
+      "Where authentic agro-ecology meets luxury wilderness hospitality. Culinary gardens, organic orchards, and unhurried safari immersion.",
+  },
 };
 
 export default function ExperiencePage() {
