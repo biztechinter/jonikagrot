@@ -245,6 +245,22 @@ export const db = {
     }
   },
 
+  deleteUser: (userId: string): boolean => {
+    const data = getDB();
+    const user = data.users.find((u) => u.id === userId);
+    if (!user) return false;
+
+    data.users = data.users.filter((u) => u.id !== userId);
+    data.accessRequests = data.accessRequests.filter(
+      (r) => r.businessEmail.toLowerCase() !== user.email.toLowerCase()
+    );
+    data.inquiries = data.inquiries.filter(
+      (i) => i.userId !== userId && i.userEmail.toLowerCase() !== user.email.toLowerCase()
+    );
+    saveDB(data);
+    return true;
+  },
+
   getAccessRequests: (): AccessRequest[] => getDB().accessRequests,
   saveAccessRequest: (req: AccessRequest): void => {
     const data = getDB();
@@ -260,6 +276,26 @@ export const db = {
   getDocuments: (): DiligenceDocument[] => getDB().documents,
   getDocumentById: (id: string): DiligenceDocument | undefined =>
     getDB().documents.find((d) => d.id === id),
+  saveDocument: (doc: DiligenceDocument): void => {
+    const data = getDB();
+    const idx = data.documents.findIndex((d) => d.id === doc.id);
+    if (idx >= 0) {
+      data.documents[idx] = doc;
+    } else {
+      data.documents.push(doc);
+    }
+    saveDB(data);
+  },
+  deleteDocument: (id: string): boolean => {
+    const data = getDB();
+    const initLen = data.documents.length;
+    data.documents = data.documents.filter((d) => d.id !== id);
+    if (data.documents.length !== initLen) {
+      saveDB(data);
+      return true;
+    }
+    return false;
+  },
   incrementDocumentDownload: (id: string): void => {
     const data = getDB();
     const doc = data.documents.find((d) => d.id === id);

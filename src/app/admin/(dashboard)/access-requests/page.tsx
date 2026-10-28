@@ -125,6 +125,7 @@ export default function AccessRequestsPage() {
                   const isAlreadyRegistered = matchedUser?.role === "registered";
                   const isAlreadyApproved = matchedUser?.role === "approved";
                   const hasSignedNDA = Boolean(matchedUser?.ndaAccepted);
+                  const hasRequestedTier3 = Boolean(matchedUser?.diligenceRequestedAt || matchedUser?.ndaAccepted || req.message?.toLowerCase().includes("tier 3"));
 
                   return (
                     <tr key={req.id} className="hover:bg-sand/10 transition-colors">
@@ -193,9 +194,13 @@ export default function AccessRequestsPage() {
                             <span className="block text-[10px] font-mono text-emerald-800 font-bold">
                               ✓ Active Tier 3 Investor
                             </span>
-                          ) : isAlreadyRegistered ? (
+                          ) : isAlreadyRegistered && hasRequestedTier3 ? (
                             <span className="block text-[10px] font-mono text-earth font-bold">
                               • Tier 2 (Requesting Tier 3)
+                            </span>
+                          ) : isAlreadyRegistered ? (
+                            <span className="block text-[10px] font-mono text-forest font-semibold">
+                              ✓ Active Tier 2 Investor
                             </span>
                           ) : null}
 
@@ -205,14 +210,16 @@ export default function AccessRequestsPage() {
                             </span>
                           )}
 
-                          {hasSignedNDA ? (
-                            <span className="block text-[10px] font-mono text-emerald-800 font-bold bg-emerald-50 px-1.5 py-0.5 border border-emerald-200">
-                              ✓ Digital NDA Executed {matchedUser?.ndaAcceptedAt && `(${new Date(matchedUser.ndaAcceptedAt).toLocaleDateString()})`}
-                            </span>
-                          ) : (
-                            <span className="block text-[10px] font-mono text-amber-900 font-semibold bg-amber-50 px-1.5 py-0.5 border border-amber-200">
-                              ⚠ NDA Not Executed
-                            </span>
+                          {hasRequestedTier3 && (
+                            hasSignedNDA ? (
+                              <span className="block text-[10px] font-mono text-emerald-800 font-bold bg-emerald-50 px-1.5 py-0.5 border border-emerald-200">
+                                ✓ Digital NDA Executed {matchedUser?.ndaAcceptedAt && `(${new Date(matchedUser.ndaAcceptedAt).toLocaleDateString()})`}
+                              </span>
+                            ) : (
+                              <span className="block text-[10px] font-mono text-amber-900 font-semibold bg-amber-50 px-1.5 py-0.5 border border-amber-200">
+                                ⚠ NDA Not Executed
+                              </span>
+                            )
                           )}
 
                           <span className="block text-[10px] font-mono text-charcoal/50 pt-0.5">
@@ -225,63 +232,85 @@ export default function AccessRequestsPage() {
                       <td className="p-3.5 align-top text-right">
                         {req.status === "pending" ? (
                           <div className="flex flex-col items-end space-y-1.5">
-                            {hasSignedNDA ? (
-                              <button
-                                disabled={actionLoading === req.id}
-                                onClick={() => handleAction(req.id, "APPROVE_REQUEST", "approved")}
-                                className="w-full sm:w-auto px-3 py-1.5 bg-forest hover:bg-forest-light text-sand text-[10px] uppercase font-bold tracking-wider transition-colors shadow-sm text-center"
-                              >
-                                Approve Tier 3
-                              </button>
+                            {isAlreadyRegistered && !hasRequestedTier3 ? (
+                              /* Case A: Already Tier 2, never requested Tier 3 */
+                              <div className="flex flex-col items-end space-y-1.5">
+                                <span className="text-[10px] font-mono uppercase font-bold text-forest bg-sand/30 px-2 py-1 border border-sand/50">
+                                  Tier 2 Active
+                                </span>
+                                <div className="flex items-center space-x-1.5">
+                                  <a
+                                    href={`mailto:${req.businessEmail}?subject=Jonik%20Ndovu%20Farm%20-%20Introductory%20Investor%20Briefing%20Call&body=Dear%20${encodeURIComponent(req.fullName)},%0D%0A%0D%0AThank%20you%20for%20registering%20with%20Jonik%20Ndovu%20Farm%20Investor%20Portal.%0D%0A%0D%0AOur%20executive%20directors%20would%20welcome%20the%20opportunity%20for%20a%20brief%2015-minute%20introductory%20call.%20Please%20let%20us%20know%20your%20availability%20over%20the%20coming%20days.%0D%0A%0D%0ABest%20regards,%0D%0AJonik%20Ndovu%20Farm%20Management`}
+                                    className="px-2 py-1 bg-sand/30 hover:bg-sand/60 text-forest border border-sand/60 text-[10px] uppercase font-bold tracking-wider transition-colors inline-flex items-center space-x-1"
+                                    title="Send qualification call invitation"
+                                  >
+                                    <Calendar className="w-3 h-3 text-earth" />
+                                    <span>Invite Call</span>
+                                  </a>
+                                </div>
+                              </div>
                             ) : (
-                              <button
-                                disabled={true}
-                                title="Tier 3 requires a digitally signed NDA by the investor first"
-                                className="w-full sm:w-auto px-3 py-1.5 bg-sand/40 text-charcoal/50 text-[10px] uppercase font-bold tracking-wider cursor-not-allowed text-center border border-sand/60"
-                              >
-                                NDA Required For Tier 3
-                              </button>
+                              /* Case B: Pending Tier 3 Request or New Registration */
+                              <>
+                                {hasSignedNDA ? (
+                                  <button
+                                    disabled={actionLoading === req.id}
+                                    onClick={() => handleAction(req.id, "APPROVE_REQUEST", "approved")}
+                                    className="w-full sm:w-auto px-3 py-1.5 bg-forest hover:bg-forest-light text-sand text-[10px] uppercase font-bold tracking-wider transition-colors shadow-sm text-center"
+                                  >
+                                    Approve Tier 3
+                                  </button>
+                                ) : hasRequestedTier3 ? (
+                                  <button
+                                    disabled={true}
+                                    title="Tier 3 requires a digitally signed NDA by the investor first"
+                                    className="w-full sm:w-auto px-3 py-1.5 bg-sand/40 text-charcoal/50 text-[10px] uppercase font-bold tracking-wider cursor-not-allowed text-center border border-sand/60"
+                                  >
+                                    NDA Required For Tier 3
+                                  </button>
+                                ) : null}
+
+                                <div className="flex items-center space-x-1.5">
+                                  {/* 1-Click Qualification Call Invite */}
+                                  <a
+                                    href={`mailto:${req.businessEmail}?subject=Jonik%20Ndovu%20Farm%20-%20Introductory%20Investor%20Briefing%20Call&body=Dear%20${encodeURIComponent(req.fullName)},%0D%0A%0D%0AThank%20you%20for%20your%20interest%20in%20Jonik%20Ndovu%20Farm%20and%20petitioning%20for%20Tier%203%20diligence%20clearance.%0D%0A%0D%0ABefore%20unlocking%20our%20proprietary%2010-Year%20Financial%20Model%20and%20unredacted%20project%20assets,%20our%20executive%20directors%20would%20like%20to%20invite%20you%20to%20a%20brief%2015-minute%20introductory%20video%20call%20to%20align%20on%20investment%20criteria.%0D%0A%0D%0APlease%20let%20us%20know%20your%20availability%20over%20the%20coming%20days%20or%20feel%20free%20to%20share%20your%20calendar%20link.%0D%0A%0D%0ABest%20regards,%0D%0AJonik%20Ndovu%20Farm%20Management`}
+                                    className="px-2 py-1 bg-sand/30 hover:bg-sand/60 text-forest border border-sand/60 text-[10px] uppercase font-bold tracking-wider transition-colors inline-flex items-center space-x-1"
+                                    title="Send pre-filled email invitation for a 15-minute qualification call"
+                                  >
+                                    <Calendar className="w-3 h-3 text-earth" />
+                                    <span>Invite Call</span>
+                                  </a>
+
+                                  {isAlreadyRegistered && hasRequestedTier3 ? (
+                                    <button
+                                      disabled={actionLoading === req.id}
+                                      onClick={() => handleAction(req.id, "REJECT_REQUEST")}
+                                      className="px-2.5 py-1 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-[10px] uppercase font-bold transition-colors"
+                                      title="Decline Tier 3 diligence upgrade while leaving user at Tier 2"
+                                    >
+                                      Decline Upgrade
+                                    </button>
+                                  ) : !isAlreadyRegistered ? (
+                                    <>
+                                      <button
+                                        disabled={actionLoading === req.id}
+                                        onClick={() => handleAction(req.id, "APPROVE_REQUEST", "registered")}
+                                        className="px-2.5 py-1 bg-sand hover:bg-sand-dark text-evergreen text-[10px] uppercase font-bold tracking-wider transition-colors"
+                                      >
+                                        Grant Tier 2
+                                      </button>
+                                      <button
+                                        disabled={actionLoading === req.id}
+                                        onClick={() => handleAction(req.id, "REJECT_REQUEST")}
+                                        className="px-2 py-1 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-[10px] uppercase font-bold transition-colors"
+                                      >
+                                        Decline
+                                      </button>
+                                    </>
+                                  ) : null}
+                                </div>
+                              </>
                             )}
-
-                            <div className="flex items-center space-x-1.5">
-                              {/* 1-Click Qualification Call Invite */}
-                              <a
-                                href={`mailto:${req.businessEmail}?subject=Jonik%20Ndovu%20Farm%20-%20Introductory%20Investor%20Briefing%20Call&body=Dear%20${encodeURIComponent(req.fullName)},%0D%0A%0D%0AThank%20you%20for%20your%20interest%20in%20Jonik%20Ndovu%20Farm%20and%20petitioning%20for%20Tier%203%20diligence%20clearance.%0D%0A%0D%0ABefore%20unlocking%20our%20proprietary%2010-Year%20Financial%20Model%20and%20unredacted%20project%20assets,%20our%20executive%20directors%20would%20like%20to%20invite%20you%20to%20a%20brief%2015-minute%20introductory%20video%20call%20to%20align%20on%20investment%20criteria.%0D%0A%0D%0APlease%20let%20us%20know%20your%20availability%20over%20the%20coming%20days%20or%20feel%20free%20to%20share%20your%20calendar%20link.%0D%0A%0D%0ABest%20regards,%0D%0AJonik%20Ndovu%20Farm%20Management`}
-                                className="px-2 py-1 bg-sand/30 hover:bg-sand/60 text-forest border border-sand/60 text-[10px] uppercase font-bold tracking-wider transition-colors inline-flex items-center space-x-1"
-                                title="Send pre-filled email invitation for a 15-minute qualification call"
-                              >
-                                <Calendar className="w-3 h-3 text-earth" />
-                                <span>Invite Call</span>
-                              </a>
-
-                              {isAlreadyRegistered ? (
-                                <button
-                                  disabled={actionLoading === req.id}
-                                  onClick={() => handleAction(req.id, "REJECT_REQUEST")}
-                                  className="px-2.5 py-1 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-[10px] uppercase font-bold transition-colors"
-                                  title="Decline Tier 3 diligence upgrade while leaving user at Tier 2"
-                                >
-                                  Decline Upgrade
-                                </button>
-                              ) : (
-                                <>
-                                  <button
-                                    disabled={actionLoading === req.id}
-                                    onClick={() => handleAction(req.id, "APPROVE_REQUEST", "registered")}
-                                    className="px-2.5 py-1 bg-sand hover:bg-sand-dark text-evergreen text-[10px] uppercase font-bold tracking-wider transition-colors"
-                                  >
-                                    Grant Tier 2
-                                  </button>
-                                  <button
-                                    disabled={actionLoading === req.id}
-                                    onClick={() => handleAction(req.id, "REJECT_REQUEST")}
-                                    className="px-2 py-1 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 text-[10px] uppercase font-bold transition-colors"
-                                  >
-                                    Decline
-                                  </button>
-                                </>
-                              )}
-                            </div>
                           </div>
                         ) : (
                           <div className="text-[11px] text-charcoal/50 text-right">

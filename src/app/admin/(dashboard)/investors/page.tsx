@@ -13,6 +13,7 @@ import {
   Check,
   AlertCircle,
   ExternalLink,
+  Trash2,
 } from "lucide-react";
 
 export default function InvestorsDirectoryPage() {
@@ -63,6 +64,37 @@ export default function InvestorsDirectoryPage() {
         const d = await res.json();
         throw new Error(d.error || "Failed to update user");
       }
+      fetchUsers();
+    } catch (err: any) {
+      alert(err.message || "Operation failed");
+    } finally {
+      setActionLoading(null);
+    }
+  };
+
+  const handleDeleteUser = async (userId: string, name: string, email: string) => {
+    if (
+      !confirm(
+        `Are you sure you want to permanently delete investor "${name}" (${email})?\n\nThis will remove their portal account, data room requests, and inquiries. This cannot be undone.`
+      )
+    ) {
+      return;
+    }
+    setActionLoading(userId);
+    try {
+      const res = await fetch("/api/admin/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          action: "DELETE_USER",
+          userId,
+        }),
+      });
+
+      const d = await res.json();
+      if (!res.ok) throw new Error(d.error || "Failed to delete investor");
+
+      alert(d.message || "Investor deleted successfully.");
       fetchUsers();
     } catch (err: any) {
       alert(err.message || "Operation failed");
@@ -397,6 +429,16 @@ export default function InvestorsDirectoryPage() {
                             Reactivate
                           </button>
                         )}
+
+                        {/* Delete Investor button */}
+                        <button
+                          disabled={actionLoading === u.id}
+                          onClick={() => handleDeleteUser(u.id, u.name, u.email)}
+                          className="p-1.5 bg-red-50 hover:bg-red-200 text-red-700 hover:text-red-900 border border-red-200 transition-colors"
+                          title={`Permanently Delete ${u.name}`}
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
                       </div>
                     </td>
                   </tr>

@@ -127,7 +127,8 @@ export interface AuditEvent {
     | "ADMIN_LOGIN_SUCCESS"
     | "ADMIN_LOGIN_FAILED"
     | "TIER_UPGRADE_REQUESTED"
-    | "TIER_UPGRADE_APPROVED";
+    | "TIER_UPGRADE_APPROVED"
+    | "PROFILE_COMPLETED";
   targetResource?: string;
   details: string;
   ipAddress?: string;

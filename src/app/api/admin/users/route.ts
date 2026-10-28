@@ -8,7 +8,7 @@ import type { UserRole } from "@/types";
 export const dynamic = "force-dynamic";
 
 const ALLOWED_ROLES: UserRole[] = ["registered", "approved", "admin"];
-const ALLOWED_ACTIONS = new Set(["APPROVE_REQUEST", "REJECT_REQUEST", "UPDATE_USER_ROLE", "ADD_ADMIN"]);
+const ALLOWED_ACTIONS = new Set(["APPROVE_REQUEST", "REJECT_REQUEST", "UPDATE_USER_ROLE", "ADD_ADMIN", "DELETE_USER"]);
 
 // Max 60 admin write operations per IP per 10 minutes.
 const ADMIN_WRITE_LIMIT = 60;
@@ -219,6 +219,44 @@ export async function POST(req: NextRequest) {
         success: true,
         user: safeAdmin,
         message: `Administrator ${newAdminEmail} authorized successfully. They can now log in via Google.`,
+      });
+    }
+
+    if (action === "DELETE_USER") {
+      if (!userId || typeof userId !== "string") {
+        return NextResponse.json({ error: "User ID is required." }, { status: 400 });
+      }
+
+      const targetUser = db.getUserById(userId);
+      if (!targetUser) {
+        return NextResponse.json({ error: "User not found." }, { status: 404 });
+      }
+
+      // Prevent an administrator from deleting their own account
+      if (targetUser.id === user.id) {
+        return NextResponse.json(
+          { error: "You cannot delete your own administrator account." },
+          { status: 400 }
+        );
+      }
+
+      const deleted = db.deleteUser(userId);
+      if (!deleted) {
+        return NextResponse.json({ error: "Failed to delete user." }, { status: 500 });
+      }
+
+      db.addAuditLog({
+        actorEmail: user.email,
+        actorRole: "admin",
+        action: "USER_SUSPENDED",
+        targetResource: targetUser.email,
+        ipAddress: ip,
+        details: `Administrator ${user.email} permanently deleted user account ${targetUser.name} (${targetUser.email}).`,
+      });
+
+      return NextResponse.json({
+        success: true,
+        message: `Investor ${targetUser.name} (${targetUser.email}) has been permanently deleted.`,
       });
     }
 

@@ -119,7 +119,7 @@ export async function GET(req: NextRequest, { params }: Params) {
 
     // ── Dynamic Institutional Watermarking for PDFs ───────────────────
     if (ext === ".pdf") {
-      fileBuffer = await watermarkPdf(fileBuffer, user.email, ip);
+      fileBuffer = Buffer.from(await watermarkPdf(fileBuffer, user.email, ip));
     }
 
     // ── Audit and metrics ─────────────────────────────────────────────

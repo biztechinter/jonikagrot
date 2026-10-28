@@ -138,7 +138,8 @@ export async function GET(req: NextRequest) {
         message: "Registered via Google OAuth 2.0. Onboarding profile completion pending.",
         privacyAccepted: false,
         emailVerified: true,
-        status: "pending",
+        status: "approved",
+        assignedRole: "registered",
         createdAt: new Date().toISOString(),
       };
       db.saveAccessRequest(newAccessRequest);
