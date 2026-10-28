@@ -4,9 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
-    "build": "node scripts/cleanup-config.js && next build && node scripts/prepare-hostinger.js",
+    "build": "next build && node scripts/prepare-hostinger.js",
     "build:hostinger": "next build && node scripts/prepare-hostinger.js",
-    "start": "node server.js",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
